@@ -11,6 +11,13 @@ function onDeviceReady() {
 		
 	});
 	
+	$(document).on("touchend", "#iscriviti", function(e){
+				   //window.location.href = "map.html";
+				   iscriviti();
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+				   });
+	
 
 		document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
 		document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
@@ -169,8 +176,6 @@ function iscriviti(){
 	var emailreg = self.document.formia.emailreg.value;
 	var pinreg = self.document.formia.pinreg.value;
 	var nomereg = self.document.formia.nome.value;
-	var cognome = self.document.formia.cognome.value;
-	var citta = self.document.formia.citta.value;
 	
 	if (emailreg == "") {
 		navigator.notification.alert(
@@ -203,27 +208,6 @@ function iscriviti(){
 		return;
 	}
 	
-	if (cognome == "") {
-		navigator.notification.alert(
-									 'inserire il cognome',  // message
-									 alertDismissed,         // callback
-									 'Cognome',            // title
-									 'OK'                  // buttonName
-									 );
-		return;
-	}
-	
-	
-	if (citta == "") {
-		navigator.notification.alert(
-									 'inserire una citta',  // message
-									 alertDismissed,         // callback
-									 'Citta',            // title
-									 'OK'                  // buttonName
-									 );
-		return;
-	}
-	
 	
 	EmailAddr = self.document.formia.emailreg.value;
 	Filtro = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-]{2,})+\.)+([a-zA-Z0-9]{2,})+$/;
@@ -248,9 +232,9 @@ function iscriviti(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://www.gtechplay.com/mycollection/www/Check_Reg.asp",
+		   url:"http://purplemiles.com/www/check_reg_pass.php?email="+ emailreg +"&password="+ pinreg +"&nickname="+ nomereg +"",
 		   contentType: "application/json",
-		   data: {email:emailreg,nome:nomereg,cognome:cognome,citta:citta,pin:pinreg},
+		   //data: {email:emailreg,nickname:nomereg,pin:pinreg},
 		   timeout: 7000,
 		   jsonp: 'callback',
 		   crossDomain: true,
