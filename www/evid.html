@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+		<title>Hello World</title>
+		
+		<link rel="stylesheet" href="themes/jquery.mobile.structure-1.4.2.min.css" />
+		<link rel="stylesheet" href="themes/ThemeAnswer.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		
+		
+		<script src="jquery-1.10.2.min.js"></script>
+		<script src="js/jquery.mobile-1.4.2.min.js"></script>
+		
+		
+		<title>jQuery highlightText Demo</title>
+		<style>
+			.highlight {
+				background-color: yellow;
+			}
+			.bold {
+				font-weight: bold;
+			}
+			.blue {
+				color: blue;
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="v5.js"></script>
+        
+		<script type='text/javascript'>//<![CDATA[ 
+        $(window).load(function(){
+		
+		 $("#content").highlight();
+		 $("#ciccio").highlight("ciccio");
+        
+        function getSelectionText() {
+            var text = "";
+            if (window.getSelection) {
+                text = window.getSelection().toString();
+            } else if (document.selection && document.selection.type != "Control") {
+                text = document.selection.createRange().text;
+            }
+			
+            return text;
+			
+        }
+					   
+        $(document).ready(function (){
+		   $("#content").on("click touchend", function(e) {
+               var selected = getSelectionText();
+			   
+			   $("#content").highlight(selected);
+               //$('<div id="addedDiv_num" />').text('SELECTED-TEXT:  ' + selected).appendTo('#targetArea');
+			   
+           })
+			
+		    $("#content").on("click touchstart", function(e) {
+               var selected = getSelectionText();
+			   
+			   $("#content").removeHighlight();
+               //$('<div id="addedDiv_num" />').text('SELECTED-TEXT:  ' + selected).appendTo('#targetArea');
+           })
+        });
+        
+         });//]]>  
+        
+
+			//$(document).ready(function(){
+				
+				
+				//$(".content").eq(0).highlightText("in");
+				/*$(".content").eq(1).highlightText("in|odio");
+				$(".content").eq(2).highlightText(["in","odio"],true);
+				$(".content").eq(3).highlightText("[a-z]{4}","bold blue",true);
+				var re = new RegExp("\\bpul(vin)ar\\b","ig");
+				$(".content").eq(4).highlightText(re);*/
+	
+			//});
+	
+		</script>
+	</head>
+	<body>
+		<h1>jQuery highlightText plugin demo</h1>
+		<hr />
+		<h2>simple string:</h2>
+		<pre>$(".content").highlightText("in");</pre>
+		<!--<div class="content">
+			<p>Turpis lectus, odio pulvinar ut ut dictumst pulvinar dictumst rhoncus ut, enim, sit et dolor ultricies ac sit cum mid adipiscing nunc nascetur velit, sed egestas. Parturient sed, dolor montes nunc dignissim et ac enim, vel urna lectus, sociis porta, ut dignissim? Et aenean nisi. Porttitor a pellentesque lectus tristique habitasse! Ac, dapibus habitasse tempor urna! In vut, porttitor ultrices. Arcu ultrices ut! Adipiscing ultricies cursus in non odio, nunc mus? Rhoncus pid phasellus nunc. Mattis urna. Et risus! Cum dis placerat nisi elementum. Placerat, ac turpis turpis pid sit, porta purus lorem facilisis egestas pellentesque, eros cras odio integer, a scelerisque dis turpis quis nunc mattis velit egestas. Dis purus porttitor, urna et massa? Elementum! Odio, enim in et.</p>
+		</div>-->
+
+		
+ <div>  
+<div> First Text</div>
+  <div> Second Text</div>
+  <div id="content"> Third Text for Selection  This is a longer set of words.</div>
+  <div id="ciccio">sd as  dfdsdsfds dsf ds fds fs df sddsds ciccio</div>
+ </div>
+<div id="targetArea"></div>
+	</body>
+</html>
