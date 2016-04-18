@@ -60,6 +60,17 @@ function onDeviceReady() {
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				   });
 	
+	$(document).on("touchend", "#XX3", function(e){
+				   window.location.href = "#win2";
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   });
+	
+	$(document).on("touchend", "#back3", function(e){
+				   window.location.href = "#win2";
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   });
+	
+	
 	//$(document).on("touchend", "#XXX", function(e){
 				  // window.location.href = "index.html";
 	//});
@@ -666,7 +677,7 @@ function resetta2() {
 															  
 }
 
-function resetta1() {
+function resetta1(focus) {
 	var email = localStorage.getItem("email");
 	
 	
@@ -915,7 +926,7 @@ function resetta1() {
 	   centerControlDiv.index = 1;
 	   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 	   
-		
+	if(focus==1){
 		refreshIntervalId = setInterval(function() {
 					var lat = parseFloat("41.777525");
 					var lng = parseFloat("12.364673" );
@@ -1114,7 +1125,7 @@ function resetta1() {
 					
 			//navigator.geolocation.getCurrentPosition(onSuccess2, onError2, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 		}, 5000);
-	
+	}
 	
 	
 	/*INSERT TAP PROLUNGATO*/
@@ -1347,6 +1358,42 @@ function magia(utente,pass) {
 	//alert(pass)
 }
 
+function cancella(id){
+	window.location.href = "map.html";
+	
+	 $.ajax({
+	 type:"GET",
+	 url:"http://purplemiles.com/www/check_cancella.php?id="+ id +"",
+	 contentType: "application/json",
+	 //data: {ID: "Lazio"}, LIMIT 10
+	 timeout: 7000,
+	 jsonp: 'callback',
+	 crossDomain: true,
+	 success:function(result){
+	 
+	 $.each(result, function(i,item){
+	 
+		
+	   resetta1();
+	 
+	 });
+	 
+	 
+	 },
+	 error: function(){
+	 
+	 navigator.notification.alert(
+	 'Possibile errore di rete, riprova tra qualche minuto.',  // message
+	 alertDismissed,         // callback
+	 'Attenzione',           // title
+	 'Done'                  // buttonName
+	 );
+	 
+	 },
+	 dataType:"jsonp"});
+	 
+}
+
 function casa(){
 	window.location.href = "map.html";
 	
@@ -1439,8 +1486,10 @@ function casa(){
 
 function start() {
 	//chiamo e setto a 1 lo stato dell'autista (ok lavoro)
-
+	
 	$("#btninizia").hide();
+	
+	resetta1(1);
 	
 }
 
@@ -1480,19 +1529,23 @@ function richiesta1(id) {
 	
 	$("#blob2").show();
 	
-	$("#idrichiesta2").html(id);
+	$("#idrichiesta2").html("<font color='#cc33cc'>NickName</font>");
 	
-	$("#quando").html(id);
+	$("#quando").html("<b>Quando:</b><font color='#cc33cc'>Adesso prima possibile</font>");
 	
-	$("#Da").html(id);
+	$("#Da").html("<b>Da:</b><font color='#cc33cc'>Via adsasda</font>");
 	
-	$("#Ad").html(id);
+	$("#Ad").html("<b>Ad:</b><font color='#cc33cc'>Via dsdsdsdsd</font>");
 	
-	$("#Note").html(id);
+	$("#Note").html("<b>Note:</b><font color='#cc33cc'>Nessuna nota</font>");
 	
 	$("#close").show();
 	$("#close2").hide();
 	$("#close3").hide();
+	
+	$("#risp").show();
+	$("#risp2").hide();
+	$("#risp3").hide();
 
 	$(document).on("tap", "#close", function(e){
 		magia(1,id)
@@ -1503,6 +1556,17 @@ function richiesta1(id) {
 		e.preventDefault();
 				   
 		return false;
+	});
+	
+	$(document).on("tap", "#risp", function(e){
+				   $("#blob2").hide();
+				   window.location.href = "#home3";
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
 	});
 }
 
@@ -1525,6 +1589,10 @@ function richiesta2(id) {
 	$("#close2").show();
 	$("#close").hide();
 	$("#close3").hide();
+	
+	$("#risp2").show();
+	$("#risp").hide();
+	$("#risp3").hide();
 
 	$(document).on("tap", "#close2", function(e){
 	magia(2,id)
@@ -1536,6 +1604,17 @@ function richiesta2(id) {
 		
 	return false;
 	});
+	
+	$(document).on("tap", "#risp2", function(e){
+				   $("#blob2").hide();
+				   window.location.href = "#home3";
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   });
 	
 }
 
@@ -1559,9 +1638,24 @@ function richiesta3(id) {
 	$("#close2").hide();
 	$("#close").hide();
 	
+	$("#risp3").show();
+	$("#risp2").hide();
+	$("#risp").hide();
+	
 	$(document).on("tap", "#close3", function(e){
 				   magia(3,id)
 				   $("#blob2").hide();
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   });
+	
+	$(document).on("tap", "#risp3", function(e){
+				   $("#blob2").hide();
+				   window.location.href = "#home3";
 				   
 				   e.stopImmediatePropagation();
 				   
