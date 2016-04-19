@@ -139,6 +139,7 @@ function LoginVera(email,pin){
 				if (item.Token == 1){
 				  localStorage.setItem("email", email);
 				  localStorage.setItem("email2", email);
+				  localStorage.setItem("id_autista", item.id);
 
 				  window.location.href = "map.html";
 				  
@@ -232,7 +233,7 @@ function iscriviti(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://purplemiles.com/www/check_reg_pass.php?email="+ emailreg +"&password="+ pinreg +"&nickname="+ nomereg +"",
+		   url:"http://purplemiles.com/www/check_reg_autista.php?email="+ emailreg +"&password="+ pinreg +"&nickname="+ nomereg +"",
 		   contentType: "application/json",
 		   //data: {email:emailreg,nickname:nomereg,pin:pinreg},
 		   timeout: 7000,
