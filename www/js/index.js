@@ -349,7 +349,7 @@ function onPause3() {
 
 	/*$.ajax({
 		   type:"GET",
-		   url:"http://gtechplay.com/mycollection/www/Posizione.asp",
+		   url:"http://gtechplay.com/mycollection/www2/Posizione.asp",
 		   contentType: "application/json",
 		   data: {Lat:3,Longi:4},
 		   timeout: 7000,
