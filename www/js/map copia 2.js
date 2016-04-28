@@ -14,7 +14,7 @@ function onDeviceReady() {
 	
 	localStorage.setItem("palla1", "0")
 	localStorage.setItem("palla2", "0")
-	localStorage.setItem("exit", "0")
+	localStorage.setItem("exit","0");
 	
 	//alert(localStorage.getItem("id_autista"))
 	
@@ -48,6 +48,26 @@ function onDeviceReady() {
 	var refreshIntervalId33;
 	var prefi2000;
 	
+	$(document).on("tap", "#esci", function(e){
+				   //$("#btninizia").show();
+				   //$("#esci").hide();
+				   
+				   //$("#pass1").hide();
+				   //$("#pass2").hide();
+				   //$("#pass3").hide();
+				   
+				   localStorage.setItem("palla1", "1")
+				   localStorage.setItem("palla2", "0")
+				   
+				   onResume();
+				   
+				   //setTimeout(function() {
+							  //localStorage.setItem("geostory", "NO")
+							  //clearInterval(refreshIntervalId33);
+							  //window.location.href = "map.html?id=1&od=1";
+							  //onResume();
+					//}, 200);
+	});
 	
 	$(document).on("tap", "#inizia", function(e){
 		start();
@@ -90,11 +110,22 @@ function onDeviceReady() {
 	
 	$(document).on("tap", "#gratis", function(e){
 		inviopasseggero(1);
-
+				   
+		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
 	});
 	
 	$(document).on("tap", "#offerta", function(e){
 		inviopasseggero(2);
+		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
 	});
 	
 	
@@ -152,7 +183,6 @@ function onDeviceReady() {
         //codeLatLng(latitudine,longitudine);
         $(".spinner").hide();
     }
-		
 		
 								  //var lat = localStorage.getItem("lat");
 								  //var lng = localStorage.getItem("lng");
@@ -418,6 +448,8 @@ function onDeviceReady() {
 	  
 	
 	if(IDPage==1){
+		localStorage.setItem("exit","1");
+		
 		window.location.href = "#win2";
 		resetta1(1);
 	}
@@ -714,7 +746,7 @@ function resetta1(focus) {
 	var distanza = "";
 	var numero = "";
 	
-	beaches.push(['Tua Posizione',lat,lng,1,0,0])
+	beaches.push(['Tua Posizione',lat,lng,1,0,0,0])
 	
 	//alert("http://purplemiles.com/www2/check_richiesta_autista.php?email="+ localStorage.getItem("email") +"&lat="+ localStorage.getItem("lat") +"&lng="+ localStorage.getItem("lng") +"&id_autista="+ localStorage.getItem("id_autista") +"");
 	
@@ -732,59 +764,9 @@ function resetta1(focus) {
 				  
 				  distanza = getDistance(lat,lng,item.lat,item.lng).toFixed(1);
 				  
-				  beaches.push(["<h2>"+item.nick+"</h2><br>"+item.partenza,item.lat,item.lng,posizione,item.rating,item.distanza,item.id_pass])
+				  beaches.push(["<h2>"+item.nick+"</h2><br>"+item.partenza,item.lat,item.lng,posizione,item.rating,item.distanza,item.id_pass,item.stato])
 				  
-				  
-				if(posizione==1){
-				  
-				  if(item.stato==1){
-				  $("#pass1").removeClass("custom-pass").addClass("custom-pass1");
-				  }
-				  if(item.stato==0){
-				  $("#pass1").removeClass("custom-pass1").addClass("custom-pass");
-				  $("#pass1").removeClass("custom-pass2").addClass("custom-pass");
-				  $("#pass1").removeClass("custom-pass3").addClass("custom-pass");
-				  }
-				  if(item.stato==2){
-				  $("#pass1").removeClass("custom-pass").addClass("custom-pass2");
-				  $("#pass1").removeClass("custom-pass1").addClass("custom-pass2");
-				  }
-				}
-				  
-				if(posizione==2){
-				  
-				  if(item.stato==1){
-				  $("#pass2").removeClass("custom-pass").addClass("custom-pass1");
-				  }
-				  if(item.stato==0){
-				  $("#pass2").removeClass("custom-pass1").addClass("custom-pass");
-				  $("#pass2").removeClass("custom-pass2").addClass("custom-pass");
-				  $("#pass2").removeClass("custom-pass3").addClass("custom-pass");
-				  }
-				  if(item.stato==2){
-				  $("#pass2").removeClass("custom-pass").addClass("custom-pass2");
-				  $("#pass2").removeClass("custom-pass1").addClass("custom-pass2");
-				  }
-				}
-				  if(posizione==3){
-				  
-				  if(item.stato==1){
-				  $("#pass3").removeClass("custom-pass").addClass("custom-pass1");
-				  }
-				  if(item.stato==0){
-				  $("#pass3").removeClass("custom-pass1").addClass("custom-pass");
-				  $("#pass3").removeClass("custom-pass2").addClass("custom-pass");
-				  $("#pass3").removeClass("custom-pass3").addClass("custom-pass");
-				  }
-				  if(item.stato==2){
-				  $("#pass3").removeClass("custom-pass").addClass("custom-pass2");
-				  $("#pass3").removeClass("custom-pass1").addClass("custom-pass2");
-				  }
-				  }
-
-				  
-				  
-				posizione = (posizione+1);
+				  posizione = (posizione+1);
 				  
 			});
 		   
@@ -811,7 +793,6 @@ function resetta1(focus) {
 					
 					var myLatLng = new google.maps.LatLng(beach[1], beach[2], beach[3]);
 					
-					
 					if(i==0){
 						 var icon = new google.maps.MarkerImage("img/autista.png", null, null, null, new google.maps.Size(30,50));
 						 //alert(myLatLng + beach[0])
@@ -836,12 +817,10 @@ function resetta1(focus) {
 
 
 					}
-					
-			if(focus==1){
+			//if(localStorage.getItem("exit")==1){
 					if(i==1){
 						 var icon = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 					
-						 //alert(myLatLng + beach[0] + beach[5])
 						 marker1 = new google.maps.Marker ({
 													 map : map,
 													 icon: icon,
@@ -853,8 +832,19 @@ function resetta1(focus) {
 													 zIndex: beach[3]
 													 });
 					
+					if(beach[7]==1){
+					$("#pass1").removeClass("custom-pass").addClass("custom-pass1");
+					}
+					if(beach[7]==0){
+					$("#pass1").removeClass("custom-pass1").addClass("custom-pass");
+					$("#pass1").removeClass("custom-pass2").addClass("custom-pass");
+					}
+					if(beach[7]==2){
+					$("#pass1").removeClass("custom-pass").addClass("custom-pass2");
+					$("#pass1").removeClass("custom-pass1").addClass("custom-pass2");
+					}
 					
-						//markers.push(marker)
+					
 					
 						 google.maps.event.addListener(marker1, 'click', function() {
 												  
@@ -866,7 +856,6 @@ function resetta1(focus) {
 					}
 					if(i==2){
 						 var icon = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
-						 //alert(myLatLng + beach[0] + beach[5])
 						 marker3 = new google.maps.Marker ({
 													 map : map,
 													 icon: icon,
@@ -878,8 +867,18 @@ function resetta1(focus) {
 													 zIndex: beach[3]
 													 });
 					
+					if(beach[7]==1){
+					$("#pass2").removeClass("custom-pass").addClass("custom-pass1");
+					}
+					if(beach[7]==0){
+					$("#pass2").removeClass("custom-pass1").addClass("custom-pass");
+					$("#pass2").removeClass("custom-pass2").addClass("custom-pass");
+					}
+					if(beach[7]==2){
+					$("#pass2").removeClass("custom-pass").addClass("custom-pass2");
+					$("#pass2").removeClass("custom-pass1").addClass("custom-pass2");
+					}
 					
-						 //markers.push(marker)
 					
 						 google.maps.event.addListener(marker3, 'click', function() {
 												  
@@ -892,7 +891,6 @@ function resetta1(focus) {
 					
 					if(i==3){
 					var icon = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
-					//alert(myLatLng + beach[0] + beach[5])
 					marker4 = new google.maps.Marker ({
 													  map : map,
 													  icon: icon,
@@ -900,12 +898,22 @@ function resetta1(focus) {
 													  position : myLatLng,
 													  content:'<div class="popup">'+ beach[0] +'<br>Km'+ beach[5] +'<br><a href="#home3">Cliccami</a></div>',
 													  title: beach[0],
-													  //label: ''+ beach[1] +','+ beach[2] +'',
 													  zIndex: beach[3]
 													  });
 					
+					if(beach[7]==1){
+					$("#pass3").removeClass("custom-pass").addClass("custom-pass1");
+					}
+					if(beach[7]==0){
+					$("#pass3").removeClass("custom-pass1").addClass("custom-pass");
+					$("#pass3").removeClass("custom-pass2").addClass("custom-pass");
+					}
+					if(beach[7]==2){
+					$("#pass3").removeClass("custom-pass").addClass("custom-pass2");
+					$("#pass3").removeClass("custom-pass1").addClass("custom-pass2");
+					}
 					
-					//markers.push(marker)
+
 					
 					google.maps.event.addListener(marker4, 'click', function() {
 												  
@@ -916,11 +924,11 @@ function resetta1(focus) {
 					
 					}
 
-			  }
+					}
 					
 					
 
-					}
+			//}
 					
 					
 		 }, 1000);
@@ -940,10 +948,10 @@ function resetta1(focus) {
 		
 		refreshIntervalId = setInterval(function() {
 					//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+					//alert("1")
 										
 					var lat = localStorage.getItem("lat");
 					var lng = localStorage.getItem("lng");
-										
 										
 					//var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
 					//var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
@@ -984,8 +992,7 @@ function resetta1(focus) {
 								  
 								   //resetta1(1);
 								  
-								   // ??
-								   marker1.setMap(null);
+								   /*marker1.setMap(null);
 								  
 								  var isVisible3 = marker3.getVisible();
 								  if(isVisible3){
@@ -996,7 +1003,8 @@ function resetta1(focus) {
 								  var isVisible4 = marker4.getVisible();
 								  if(isVisible4){
 								    marker4.setMap(null);
-								  }
+								  }*/
+								  
 
 								   // GO in resetta1
 								  }
@@ -1017,7 +1025,7 @@ function resetta1(focus) {
 								  if(posizione==1){
 								  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 								  
-								  marker1.setMap(null);
+								  //marker1.setMap(null);
 								  
 								  marker1 = new google.maps.Marker ({
 																	map : map,
@@ -1062,30 +1070,28 @@ function resetta1(focus) {
 								  
 								  if(item.stato==1){
 								    $("#pass1").removeClass("custom-pass").addClass("custom-pass1");
-								    $("#pass1").removeClass("custom-pass2").addClass("custom-pass1");
-								    $("#pass1").removeClass("custom-pass3").addClass("custom-pass1");
 								  }
 								  if(item.stato==0){
 								    $("#pass1").removeClass("custom-pass1").addClass("custom-pass");
 								    $("#pass1").removeClass("custom-pass2").addClass("custom-pass");
-								    $("#pass1").removeClass("custom-pass3").addClass("custom-pass");
 								  }
 								  if(item.stato==2){
 				                     $("#pass1").removeClass("custom-pass").addClass("custom-pass2");
 									 $("#pass1").removeClass("custom-pass1").addClass("custom-pass2");
-								     $("#pass1").removeClass("custom-pass3").addClass("custom-pass2");
 								  }
 
 								  
 								  $(document).on("tap", "#pass1", function(e){
 												 //window.location.href = "#index3";
 
-											
-													//localStorage.setItem("geostory", "NO")
-													clearInterval(refreshIntervalId);
+												 
+												 setTimeout(function() {
+															//localStorage.setItem("geostory", "NO")
+															clearInterval(refreshIntervalId);
 															
-													richiesta1(item.id_richiesta);
-
+															richiesta1(item.id_richiesta);
+															}, 0);
+												 
 												 });
 
 								  }
@@ -1093,7 +1099,7 @@ function resetta1(focus) {
 								  if(posizione==2){
 								  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 								  
-								  marker3.setMap(null);
+								  //marker3.setMap(null);
 								  
 								  marker3 = new google.maps.Marker ({
 																	map : map,
@@ -1122,18 +1128,14 @@ function resetta1(focus) {
 								  
 								  if(item.stato==1){
 								  $("#pass2").removeClass("custom-pass").addClass("custom-pass1");
-								  $("#pass2").removeClass("custom-pass2").addClass("custom-pass1");
-								  $("#pass2").removeClass("custom-pass3").addClass("custom-pass1");
 								  }
 								  if(item.stato==0){
 								  $("#pass2").removeClass("custom-pass1").addClass("custom-pass");
 								  $("#pass2").removeClass("custom-pass2").addClass("custom-pass");
-								  $("#pass2").removeClass("custom-pass3").addClass("custom-pass");
 								  }
 								  if(item.stato==2){
 								  $("#pass2").removeClass("custom-pass").addClass("custom-pass2");
-									 $("#pass2").removeClass("custom-pass1").addClass("custom-pass2");
-								  $("#pass2").removeClass("custom-pass3").addClass("custom-pass2");
+								  $("#pass2").removeClass("custom-pass1").addClass("custom-pass2");
 								  }
 								  
 
@@ -1141,12 +1143,12 @@ function resetta1(focus) {
 								  
 								    $(document).on("tap", "#pass2", function(e){
 												 //window.location.href = "#index3";
-
-												//localStorage.setItem("geostory", "NO")
-											    clearInterval(refreshIntervalId);
+												   setTimeout(function() {
+															  //localStorage.setItem("geostory", "NO")
+															  clearInterval(refreshIntervalId);
 															  
-												richiesta2(item.id_richiesta);
-
+															  richiesta2(item.id_richiesta);
+															  }, 0);
 
 												 });
 								  
@@ -1155,7 +1157,7 @@ function resetta1(focus) {
 								  if(posizione==3){
 								  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 								  
-								  marker4.setMap(null);
+								  //marker4.setMap(null);
 								  
 								  marker4 = new google.maps.Marker ({
 																	map : map,
@@ -1183,29 +1185,26 @@ function resetta1(focus) {
 								  
 								  if(item.stato==1){
 								  $("#pass3").removeClass("custom-pass").addClass("custom-pass1");
-								  $("#pass3").removeClass("custom-pass2").addClass("custom-pass1");
-								  $("#pass3").removeClass("custom-pass3").addClass("custom-pass1");
 								  }
 								  if(item.stato==0){
 								  $("#pass3").removeClass("custom-pass1").addClass("custom-pass");
 								  $("#pass3").removeClass("custom-pass2").addClass("custom-pass");
-								  $("#pass3").removeClass("custom-pass3").addClass("custom-pass");
 								  }
 								  if(item.stato==2){
 								  $("#pass3").removeClass("custom-pass").addClass("custom-pass2");
-									 $("#pass3").removeClass("custom-pass1").addClass("custom-pass2");
-								  $("#pass3").removeClass("custom-pass3").addClass("custom-pass2");
+								  $("#pass3").removeClass("custom-pass1").addClass("custom-pass2");
 								  }
-
 
 								  
 								  $(document).on("tap", "#pass3", function(e){
 										//window.location.href = "#index3";
-
+											  
+												 setTimeout(function() {
 															//localStorage.setItem("geostory", "NO")
 															clearInterval(refreshIntervalId);
 															
 															richiesta3(item.id_richiesta);
+															}, 0);
 
 									});
 								  
@@ -1253,9 +1252,7 @@ function resetta1(focus) {
 								//se leggo=0
 								if((k==1) && (localStorage.getItem("palla1")!=1)){
 								  
-							    //if(localStorage.getItem("ODPage")=="0"){
 								  palla1()
-							    //}
 							   
 							      /*$(document).on("tap", "#pass1", function(e){
 											//window.location.href = "#index3";
@@ -1271,21 +1268,6 @@ function resetta1(focus) {
 									});*/
 							   
 								}
-							   
-							   
-							   if(k==2){
-							   
-								
-							   
-							   }
-
-							   
-								//se leggo=0
-								//if(k==2 && localStorage.getItem("palla2")!=1){
-									//palla2()
-								//}
-							   
-								//$("#pass"+k+"").attr("href", "javascript:magia("+ k +","+ beach[6] +")");
 
 								
 							   }
@@ -1293,8 +1275,7 @@ function resetta1(focus) {
 							   codeLatLng(lat,lng);
 							   map.setCenter(centromap);
 										
-							   
-							   //alert(3);
+
 					}, 1000);
 			/*
 			 var lat = parseFloat("41.777525");
@@ -1442,11 +1423,8 @@ function magia(utente,pass) {
 						});
 					   
 					   clearInterval(refreshIntervalId);
-					   
 					   magia2C(utente,pass);
-					   
-					   
-					   
+
 					   },
 					   error: function(){
 					   
@@ -1509,7 +1487,6 @@ function magia(utente,pass) {
 															 zIndex: beach[3]
 															 });*/
 						   
-
 							 }
 						   
 							if(utente==2){
@@ -1519,7 +1496,7 @@ function magia(utente,pass) {
 						      marker3.setVisible(true);
 						      marker3.setIcon(icon2);
 						   
-							 
+
 						    }
 						   
 						   if(utente==3){
@@ -1529,8 +1506,8 @@ function magia(utente,pass) {
 						   
 							 marker4.setVisible(true);
 							 marker4.setIcon(icon2);
-
 						   
+
 						   }
 
 
@@ -1543,7 +1520,6 @@ function magia(utente,pass) {
 						   map.setCenter(myLatLng);
 						   
 						   $("#XXX").attr("href", "index.html");
-						   
 						   
 						   //clearInterval(refreshIntervalId);
 						   
@@ -1559,11 +1535,12 @@ function magia(utente,pass) {
 
 function magia2C(utente,pass) {
 clearInterval(refreshIntervalId);
-	
+
 
 refreshIntervalId33 = setInterval(function() {
 								  
 	//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+	//alert("2")
 										
 	var lat = localStorage.getItem("lat");
 	var lng = localStorage.getItem("lng");
@@ -1575,134 +1552,12 @@ refreshIntervalId33 = setInterval(function() {
 	beaches.push(['Tua Posizione',lat,lng,1,0,0,0])
 	
 	var centromap = new google.maps.LatLng(lat, lng, posizione);
-								  
-								  $.ajax({
-										 type:"GET",
-										 url:"http://purplemiles.com/www2/check_richiesta_autista_id.php?email="+ localStorage.getItem("email") +"&lat="+ localStorage.getItem("lat") +"&lng="+ localStorage.getItem("lng") +"&id_richiesta="+ pass +"&id_autista="+ localStorage.getItem("id_autista") +"",
-										 contentType: "application/json",
-										 //data: {ID: "Lazio"}, LIMIT 10
-										 timeout: 7000,
-										 jsonp: 'callback',
-										 crossDomain: true,
-										 success:function(result){
-										 
-										 $.each(result, function(i,item){
-												
-												if(item.Token==1){
-												
-												
-												distanza = getDistance(lat,lng,item.lat,item.lng).toFixed(1);
-												
-												beaches.push(["<h2>"+item.nick+"</h2><br>"+item.partenza,item.lat,item.lng,posizione,item.rating,item.distanza,item.id_richiesta])
-												
-												alert(utente + item.stato)
-												
-											if(utente==1){
-												if(item.stato==1){
-												$("#pass1").removeClass("custom-pass").addClass("custom-pass1");
-												$("#pass1").removeClass("custom-pass2").addClass("custom-pass1");
-												$("#pass1").removeClass("custom-pass3").addClass("custom-pass1");
-												}
-												if(item.stato==0){
-												$("#pass1").removeClass("custom-pass1").addClass("custom-pass");
-												$("#pass1").removeClass("custom-pass2").addClass("custom-pass");
-												$("#pass1").removeClass("custom-pass3").addClass("custom-pass");
-												}
-												if(item.stato==2){
-												$("#pass1").removeClass("custom-pass").addClass("custom-pass2");
-												$("#pass1").removeClass("custom-pass1").addClass("custom-pass2");
-												$("#pass1").removeClass("custom-pass3").addClass("custom-pass2");
-												}
-												if(item.stato==3){
-												$("#pass1").removeClass("custom-pass").addClass("custom-pass3");
-												$("#pass1").removeClass("custom-pass1").addClass("custom-pass3");
-												$("#pass1").removeClass("custom-pass2").addClass("custom-pass3");
-												}
-											}
-												
-											if(utente==2){
-												if(item.stato==1){
-												$("#pass2").removeClass("custom-pass").addClass("custom-pass1");
-												$("#pass2").removeClass("custom-pass2").addClass("custom-pass1");
-												$("#pass2").removeClass("custom-pass3").addClass("custom-pass1");
-												}
-												if(item.stato==0){
-												$("#pass2").removeClass("custom-pass1").addClass("custom-pass");
-												$("#pass2").removeClass("custom-pass2").addClass("custom-pass");
-												$("#pass2").removeClass("custom-pass3").addClass("custom-pass");
-												}
-												if(item.stato==2){
-												$("#pass2").removeClass("custom-pass").addClass("custom-pass2");
-												$("#pass2").removeClass("custom-pass1").addClass("custom-pass2");
-												$("#pass2").removeClass("custom-pass3").addClass("custom-pass2");
-												}
-												if(item.stato==3){
-												$("#pass2").removeClass("custom-pass").addClass("custom-pass3");
-												$("#pass2").removeClass("custom-pass1").addClass("custom-pass3");
-												$("#pass2").removeClass("custom-pass2").addClass("custom-pass3");
-												}
-											}
-												
-											if(utente==3){
-												if(item.stato==1){
-												$("#pass3").removeClass("custom-pass").addClass("custom-pass1");
-												$("#pass3").removeClass("custom-pass2").addClass("custom-pass1");
-												$("#pass3").removeClass("custom-pass3").addClass("custom-pass1");
-												}
-												if(item.stato==0){
-												$("#pass3").removeClass("custom-pass1").addClass("custom-pass");
-												$("#pass3").removeClass("custom-pass2").addClass("custom-pass");
-												$("#pass3").removeClass("custom-pass3").addClass("custom-pass");
-												}
-												if(item.stato==2){
-												$("#pass3").removeClass("custom-pass").addClass("custom-pass2");
-												$("#pass3").removeClass("custom-pass1").addClass("custom-pass2");
-												$("#pass3").removeClass("custom-pass3").addClass("custom-pass2");
-												}
-												if(item.stato==3){
-												$("#pass3").removeClass("custom-pass").addClass("custom-pass3");
-												$("#pass3").removeClass("custom-pass1").addClass("custom-pass3");
-												$("#pass3").removeClass("custom-pass2").addClass("custom-pass3");
-												}
-											}
-												
-
-												
-												
-												posizione = (posizione+1);
-												
-												}
-												else{
-												//marker1.setMap(null);
-												}
-												
-												});
-										 
-										 
-										 },
-										 error: function(){
-										 
-										 navigator.notification.alert(
-																	  'Possibile errore di rete, riprova tra qualche minuto.',  // message
-																	  alertDismissed,         // callback
-																	  'Attenzione',           // title
-																	  'Done'                  // buttonName
-																	  );
-										 
-										 },
-										 dataType:"jsonp"});
-
-	
-	//var lat = localStorage.getItem("lat");
-	//var lng = localStorage.getItem("lng");
 	
 	//var lat = parseFloat("41.8337871");
 	//var lng = parseFloat("12.4757278" );
-
-	map.setCenter(centromap);
 	
-
-	/*var posizione = 1;
+	//alert(pass)
+	var posizione = 1;
 
 	$.ajax({
 		   type:"GET",
@@ -1718,90 +1573,16 @@ refreshIntervalId33 = setInterval(function() {
 				  
 			if(item.Token==1){
 				  
+				  distanza = getDistance(lat,lng,item.lat,item.lng).toFixed(1);
 				  
 				  beaches.push(["<h2>"+item.nick+"</h2><br>"+item.partenza,item.lat,item.lng,posizione,item.rating,item.distanza,item.stato])
 				  
 				  posizione = (posizione+1);
-				  
-				  if(utente==1){
-				  
-				  if(item.stato==1){
-				  $("#pass1").removeClass("custom-pass").addClass("custom-pass1");
-				  $("#pass1").removeClass("custom-pass2").addClass("custom-pass1");
-				  $("#pass1").removeClass("custom-pass3").addClass("custom-pass1");
-				  }
-				  if(item.stato==0){
-				  $("#pass1").removeClass("custom-pass1").addClass("custom-pass");
-				  $("#pass1").removeClass("custom-pass2").addClass("custom-pass");
-				  $("#pass1").removeClass("custom-pass3").addClass("custom-pass");
-				  }
-				  if(item.stato==2){
-				  $("#pass1").removeClass("custom-pass").addClass("custom-pass2");
-				  $("#pass1").removeClass("custom-pass1").addClass("custom-pass2");
-				  $("#pass1").removeClass("custom-pass3").addClass("custom-pass2");
-				  }
-				  if(item.stato==3){
-				  $("#pass1").removeClass("custom-pass1").addClass("custom-pass3");
-				  $("#pass1").removeClass("custom-pass2").addClass("custom-pass3");
-				  $("#pass1").removeClass("custom-pass").addClass("custom-pass3");
-				  }
-				  
-				  
-				  }
-				  
-				  if(utente==2){
-				  if(item.stato==1){
-				  $("#pass2").removeClass("custom-pass").addClass("custom-pass1");
-				  $("#pass2").removeClass("custom-pass2").addClass("custom-pass1");
-				  $("#pass2").removeClass("custom-pass3").addClass("custom-pass1");
-				  }
-				  if(item.stato==0){
-				  $("#pass2").removeClass("custom-pass1").addClass("custom-pass");
-				  $("#pass2").removeClass("custom-pass2").addClass("custom-pass");
-				  $("#pass2").removeClass("custom-pass3").addClass("custom-pass");
-				  }
-				  if(item.stato==2){
-				  $("#pass2").removeClass("custom-pass").addClass("custom-pass2");
-				  $("#pass2").removeClass("custom-pass1").addClass("custom-pass2");
-				  $("#pass2").removeClass("custom-pass3").addClass("custom-pass2");
-				  }
-				  if(item.stato==3){
-				  $("#pass2").removeClass("custom-pass1").addClass("custom-pass3");
-				  $("#pass2").removeClass("custom-pass2").addClass("custom-pass3");
-				  $("#pass2").removeClass("custom-pass").addClass("custom-pass3");
-				  }
-				  
-				  
-				  }
-				  
-				  if(utente==3){
-				  
-				  if(item.stato==1){
-				  $("#pass3").removeClass("custom-pass").addClass("custom-pass1");
-				  $("#pass3").removeClass("custom-pass2").addClass("custom-pass1");
-				  $("#pass3").removeClass("custom-pass3").addClass("custom-pass1");
-				  }
-				  if(item.stato==0){
-				  $("#pass3").removeClass("custom-pass1").addClass("custom-pass");
-				  $("#pass3").removeClass("custom-pass2").addClass("custom-pass");
-				  $("#pass3").removeClass("custom-pass3").addClass("custom-pass");
-				  }
-				  if(item.stato==2){
-				  $("#pass33").removeClass("custom-pass").addClass("custom-pass2");
-				  $("#pass3").removeClass("custom-pass1").addClass("custom-pass2");
-				  $("#pass3").removeClass("custom-pass3").addClass("custom-pass2");
-				  }
-				  if(item.stato==3){
-				  $("#pass3").removeClass("custom-pass1").addClass("custom-pass3");
-				  $("#pass3").removeClass("custom-pass2").addClass("custom-pass3");
-				  $("#pass3").removeClass("custom-pass").addClass("custom-pass3");
-				  }
-				  
-				  }
 
+				  
 			}
 				  else{
-
+				  //marker1.setMap(null);
 				  }
 				  
 			});
@@ -1815,42 +1596,86 @@ refreshIntervalId33 = setInterval(function() {
 		   dataType:"jsonp"});
 								  setTimeout(function() {
 											 for (var i = 0; i < beaches.length; i++) {
-											   var beach = beaches[i];
+											 var beach = beaches[i];
 											 
-											   var myLatLng = new google.maps.LatLng(beach[1], beach[2], beach[3]);
+											 var myLatLng = new google.maps.LatLng(beach[1], beach[2], beach[3]);
+											 //cambiare icona
+											 
+											 if(i==1){
+											 
+											 if(beach[6]==1){
+											 $("#pass1").removeClass("custom-pass").addClass("custom-pass1");
+											 }
+											 if(beach[6]==0){
+											 $("#pass1").removeClass("custom-pass1").addClass("custom-pass");
+											 $("#pass1").removeClass("custom-pass2").addClass("custom-pass");
+											 }
+											 if(beach[6]==2){
+											 $("#pass1").removeClass("custom-pass").addClass("custom-pass2");
+											 $("#pass1").removeClass("custom-pass1").addClass("custom-pass2");
+											 }
+											 if(beach[6]==3){
+											 $("#pass1").removeClass("custom-pass1").addClass("custom-pass3");
+											 $("#pass1").removeClass("custom-pass2").addClass("custom-pass3");
+											 }
 
+											 
+											 }
+											 
+											 if(i==2){
+											 if(beach[6]==1){
+											 $("#pass2").removeClass("custom-pass").addClass("custom-pass1");
+											 }
+											 if(beach[6]==0){
+											 $("#pass2").removeClass("custom-pass1").addClass("custom-pass");
+											 $("#pass2").removeClass("custom-pass2").addClass("custom-pass");
+											 }
+											 if(beach[6]==2){
+											 $("#pass2").removeClass("custom-pass").addClass("custom-pass2");
+											 $("#pass2").removeClass("custom-pass1").addClass("custom-pass2");
+											 }
+											 if(beach[6]==3){
+											 $("#pass2").removeClass("custom-pass1").addClass("custom-pass3");
+											 $("#pass2").removeClass("custom-pass2").addClass("custom-pass3");
+											 }
 
+											 
+											 }
+											 
+											 if(i==3){
+											
+											 if(beach[6]==1){
+											 $("#pass3").removeClass("custom-pass").addClass("custom-pass1");
+											 }
+											 if(beach[6]==0){
+											 $("#pass3").removeClass("custom-pass1").addClass("custom-pass");
+											 $("#pass3").removeClass("custom-pass2").addClass("custom-pass");
+											 }
+											 if(beach[6]==2){
+											 $("#pass3").removeClass("custom-pass").addClass("custom-pass2");
+											 $("#pass3").removeClass("custom-pass1").addClass("custom-pass2");
+											 }
+											 if(beach[6]==3){
+											 $("#pass3").removeClass("custom-pass1").addClass("custom-pass3");
+											 $("#pass3").removeClass("custom-pass2").addClass("custom-pass3");
+											 }
+
+											 
+											 }
+ 
 											 }
 											 
 											 
-
+											 
+											 //clearInterval(refreshIntervalId);
+											 
+											 //richiesta(pass);
 											 map.setCenter(centromap);
 											 
-											 }, 1000);*/
+											 }, 1000);
 	
 	
 }, 10000);
-	
-	$(document).on("tap", "#esci", function(e){
-				   //$("#btninizia").show();
-				   //$("#esci").hide();
-				   
-				   localStorage.setItem("palla1", "1")
-				   localStorage.setItem("palla2", "0")
-				   localStorage.setItem("exit", "1")
-				   
-				   clearInterval(refreshIntervalId33);
-				   
-				   //setTimeout(function() {
-				   //localStorage.setItem("geostory", "NO")
-				   //clearInterval(refreshIntervalId33);
-						 //window.location.href = "map.html?id=1";
-				   //onResume();
-				   //}, 200);
-				   
-				   //window.location.href = "#win2";
-				   resetta1(1);
-	});
 	
 	
 	//---------------------------
@@ -1910,26 +1735,20 @@ function cancella(id){
 
 			
 			    $("#btninizia").show();
-			
-					//localStorage.setItem("geostory", "NO")
-				     //clearInterval(refreshIntervalId33);
-					//window.location.href = "map.html?id=1&od=1";
-					onResume();
-
 			    //resetta1();
-			    //setTimeout(function() {
+			    setTimeout(function() {
 					   //localStorage.setItem("geostory", "NO")
 					   //clearInterval(refreshIntervalId33);
 					   //window.location.href = "map.html?id=1&od=0";
 					   //start();
-					   //onResume();
-				//}, 200);
+					   onResume();
+				}, 200);
 			
-			    //e.stopImmediatePropagation();
+			    e.stopImmediatePropagation();
 			
-			    //e.preventDefault();
+			    e.preventDefault();
 			
-			    //return false;
+			    return false;
 			
 			    //clearInterval(refreshIntervalId33);
 				//resetta1(1);
@@ -2062,14 +1881,12 @@ function start() {
 
 
 function palla1() {
-	//chiamo e leggo=1
 	if(localStorage.getItem("exit")=="0"){
 	  $("#blob").show();
-    }
+	}
 	$("#btninizia").hide();
 	
-	
-	$("#btnpass").show();
+	 $("#btnpass").show();
 	
 	localStorage.setItem("palla1", "1")
 	localStorage.setItem("exit", "1")
@@ -2094,7 +1911,11 @@ function resetta22() {
 }
 
 function richiesta1(id) {
-
+	localStorage.setItem("clicco", "1")
+	
+	if(localStorage.getItem("clicco")=="1"){
+	//alert(id)
+	
 	$("#risp1").show();
 	$("#risp2").hide();
 	$("#gps22").hide();
@@ -2125,7 +1946,7 @@ function richiesta1(id) {
 				  
 				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ item.partenza +"</font>");
 				  
-				  $("#Ad").html("<b>Ad:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
+				  $("#Ad").html("<b>A:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
 				  
 				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ item.distanza +"</font>");
 				  
@@ -2140,15 +1961,7 @@ function richiesta1(id) {
 				  
 				  $(document).on("tap", "#gps1", function(e){
 						//clearInterval(refreshIntervalId);
-						
-						//alert(item.lat+","+item.lng);
-						
-						var addressLongLat = item.lat+","+item.lng;
-	
-	//var refff = window.open("http://www.google.com/maps?q=220, Via Zoe Fontana, Roma", '_system');
-	//"http://maps.google.com/maps?daddr=41.929622,12.608878&dirflg=r"
-	window.open("google.navigation:q="+ addressLongLat +"&mode=d" , '_system');
-						
+						alert(item.lat+","+item.lng);
 						$("#blob2").hide();
 								 
 						e.stopImmediatePropagation();
@@ -2198,7 +2011,7 @@ function richiesta1(id) {
 	
 	
 	$(document).on("tap", "#xchiudi1", function(e){
-		clearInterval(refreshIntervalId);
+		//clearInterval(refreshIntervalId);
 		magia(1,id)
 		$("#blob2").hide();
 				   
@@ -2236,7 +2049,11 @@ function richiesta1(id) {
 				   return false;
 				   
 	});
+		
 	
+	localStorage.setItem("clicco", "0")
+
+  }
 }
 
 function richiesta2(id) {
@@ -2272,7 +2089,7 @@ function richiesta2(id) {
 				  
 				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ item.partenza +"</font>");
 				  
-				  $("#Ad").html("<b>Ad:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
+				  $("#Ad").html("<b>A:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
 				  
 				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ item.distanza +"</font>");
 				  
@@ -2284,12 +2101,7 @@ function richiesta2(id) {
 				  
 				  $(document).on("tap", "#gps22", function(e){
 								 //clearInterval(refreshIntervalId);
-								 var addressLongLat = item.lat+","+item.lng;
-	
-	//var refff = window.open("http://www.google.com/maps?q=220, Via Zoe Fontana, Roma", '_system');
-	//"http://maps.google.com/maps?daddr=41.929622,12.608878&dirflg=r"
-	window.open("google.navigation:q="+ addressLongLat +"&mode=d" , '_system');
-	
+								 alert(item.lat+","+item.lng);
 								 $("#blob2").hide();
 								 
 								 e.stopImmediatePropagation();
@@ -2360,6 +2172,7 @@ function richiesta2(id) {
 				   $("#blob2").hide();
 				   window.location.href = "#home3";
 				   
+
 				   });
 	
 }
@@ -2397,7 +2210,7 @@ function richiesta3(id) {
 				  
 				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ item.partenza +"</font>");
 				  
-				  $("#Ad").html("<b>Ad:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
+				  $("#Ad").html("<b>A:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
 				  
 				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ item.distanza +"</font>");
 				  
@@ -2411,12 +2224,7 @@ function richiesta3(id) {
 				  
 				  $(document).on("tap", "#gps3", function(e){
 								 //clearInterval(refreshIntervalId);
-								 var addressLongLat = item.lat+","+item.lng;
-	
-	//var refff = window.open("http://www.google.com/maps?q=220, Via Zoe Fontana, Roma", '_system');
-	//"http://maps.google.com/maps?daddr=41.929622,12.608878&dirflg=r"
-	window.open("google.navigation:q="+ addressLongLat +"&mode=d" , '_system');
-	
+								 alert(item.lat+","+item.lng);
 								 $("#blob2").hide();
 								 
 								 e.stopImmediatePropagation();
@@ -2535,7 +2343,9 @@ function inviopasseggero(come){
 				  
 				  if(item.Token==1){
 
-					onResume();
+				  //onResume();
+				  window.location.href = "map.html?id=1";
+				  
 				  
 				  }
 				  else{

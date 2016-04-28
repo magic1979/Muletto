@@ -80,7 +80,7 @@ var app = {
 		
 		//----------GEO ---------------
 		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {frequency: 3000, enableHighAccuracy: true});
-		//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+		//var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 		
 		var lat = "41.8337871";  //  "41.783780"  "41.783780" localStorage.getItem("lat")  41.770447
 		var lng = "12.4757278";  //  "12.364947"  "12.364947" localStorage.getItem("lng")  12.373529
