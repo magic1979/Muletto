@@ -89,6 +89,7 @@ var app = {
 		localStorage.setItem("lng", lng);
 		
 		localStorage.setItem("geostory", "SI")
+		localStorage.setItem("exitto", "0")
 		
 		//-----------------------------
 		

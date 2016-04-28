@@ -12,9 +12,28 @@ function onDeviceReady() {
 		
 	}
 	
+	IDPage = getParameterByName('id');
+	ODPage = getParameterByName('od');
+	
+	
+	/*if(localStorage.getItem("exitto")==1){
+		
+		localStorage.setItem("exit", "1")
+		
+		localStorage.setItem("exitto", "0")
+		
+		resetta1(1);
+		
+	}*/
+	
+	
 	localStorage.setItem("palla1", "0")
 	localStorage.setItem("palla2", "0")
-	localStorage.setItem("exit", "0")
+	
+	if(IDPage!=1){
+	  localStorage.setItem("exit", "0")
+	}
+
 	
 	//alert(localStorage.getItem("id_autista"))
 	
@@ -39,8 +58,6 @@ function onDeviceReady() {
 	
 	isTabHolded=false;
 	
-	IDPage = getParameterByName('id');
-	ODPage = getParameterByName('od');
 	
 	//var markers = [];
 	var map;
@@ -97,10 +114,17 @@ function onDeviceReady() {
 		inviopasseggero(2);
 	});
 	
+
 	
-	//$(document).on("touchend", "#XXX", function(e){
-				  // window.location.href = "index.html";
-	//});
+	
+	if(IDPage==1){
+		window.location.href = "#win2";
+		resetta1(1);
+	}
+	
+	
+	
+	
     
     $(".spinner").show();
     var connectionStatus = false;
@@ -380,46 +404,23 @@ function onDeviceReady() {
 }
     
     else{
-        $('#noconn').show();
-        
-        var tabella = '<table align="center" border="0" width="310px" height="60px" class="conn">';
-        tabella = tabella + '<tr><td align="center" width="50px"><img src="images/wire.png" width="32px"></td><td align="left"><font color="white" size="2">Nessuna connessione attiva</font></td><td><a href="javascript:verificawifi()"><div width="40px" class="home"></div></a></td></tr>';
-        tabella = tabella + '</table>';
-        
-        $('#noconn').html(tabella);
-        
-        $("#verifica").bind ("click", function (event)
-                             {
-                             var connectionStatus = false;
-                             connectionStatus = navigator.onLine ? 'online' : 'offline';
-                             
-                             if(connectionStatus=='online'){
-                             onDeviceReady();
-                             }
-                             else{
-                             navigator.notification.alert(
-                                                          'Nessuna connessione ad internet rilevata',  // message
-                                                          alertDismissed,         // callback
-                                                          'Attenzione',            // title
-                                                          'OK'                  // buttonName
-                                                          );
-                             }
-                             
-                             
-                             });
-
-        
-        $("#mappa5").attr("href", "");
-        $("#gps5").attr("href", "");
-        
-        $(".spinner").hide();
-        
+		navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		
+		
+		window.location.href = "index.html";
+		
+		
     }
-	  
 	
-	if(IDPage==1){
+	
+	if(IDPage==2){
 		window.location.href = "#win2";
-		resetta1(1);
+		resetta2();
 	}
 }
 
@@ -782,8 +783,7 @@ function resetta1(focus) {
 				  }
 				  }
 
-				  
-				  
+
 				posizione = (posizione+1);
 				  
 			});
@@ -937,6 +937,7 @@ function resetta1(focus) {
 	   
 	if(focus==1){
 		$("#btninizia").hide();
+		$("#loading").show();
 		
 		refreshIntervalId = setInterval(function() {
 					//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
@@ -1002,7 +1003,9 @@ function resetta1(focus) {
 								  }
 								  else
 								  {
+									$("#loading").hide();
 								    $("#esci").show();
+								  
 								  }
 								  
 								  if(item.Token==1){
@@ -1015,6 +1018,19 @@ function resetta1(focus) {
 								  
 
 								  if(posizione==1){
+								  
+								  $(document).on("tap", "#pass1", function(e){
+												 //window.location.href = "#index3";
+												 
+												 
+													//localStorage.setItem("geostory", "NO")
+													clearInterval(refreshIntervalId);
+												 
+													richiesta1(item.id_richiesta);
+												 
+												 });
+								  
+								  
 								  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 								  
 								  marker1.setMap(null);
@@ -1077,20 +1093,21 @@ function resetta1(focus) {
 								  }
 
 								  
-								  $(document).on("tap", "#pass1", function(e){
-												 //window.location.href = "#index3";
-
-											
-													//localStorage.setItem("geostory", "NO")
-													clearInterval(refreshIntervalId);
-															
-													richiesta1(item.id_richiesta);
-
-												 });
 
 								  }
 								  
 								  if(posizione==2){
+								  $(document).on("tap", "#pass2", function(e){
+												 //window.location.href = "#index3";
+												 
+												 //localStorage.setItem("geostory", "NO")
+												 clearInterval(refreshIntervalId);
+												 
+												 richiesta2(item.id_richiesta);
+												 
+												 
+												 });
+								  
 								  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 								  
 								  marker3.setMap(null);
@@ -1138,21 +1155,19 @@ function resetta1(focus) {
 								  
 
 								  
-								  
-								    $(document).on("tap", "#pass2", function(e){
-												 //window.location.href = "#index3";
-
-												//localStorage.setItem("geostory", "NO")
-											    clearInterval(refreshIntervalId);
-															  
-												richiesta2(item.id_richiesta);
-
-
-												 });
-								  
 								  }
 								  
 								  if(posizione==3){
+								  $(document).on("tap", "#pass3", function(e){
+												 //window.location.href = "#index3";
+												 
+												 //localStorage.setItem("geostory", "NO")
+												 clearInterval(refreshIntervalId);
+												 
+												 richiesta3(item.id_richiesta);
+												 
+												 });
+								  
 								  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 								  
 								  marker4.setMap(null);
@@ -1197,17 +1212,8 @@ function resetta1(focus) {
 								  $("#pass3").removeClass("custom-pass3").addClass("custom-pass2");
 								  }
 
-
+ 
 								  
-								  $(document).on("tap", "#pass3", function(e){
-										//window.location.href = "#index3";
-
-															//localStorage.setItem("geostory", "NO")
-															clearInterval(refreshIntervalId);
-															
-															richiesta3(item.id_richiesta);
-
-									});
 								  
 								  }
 								  
@@ -1508,7 +1514,6 @@ function magia(utente,pass) {
 															 //label: ''+ beach[1] +','+ beach[2] +'',
 															 zIndex: beach[3]
 															 });*/
-						   
 
 							 }
 						   
@@ -1518,6 +1523,11 @@ function magia(utente,pass) {
 						   
 						      marker3.setVisible(true);
 						      marker3.setIcon(icon2);
+						   
+						     var isVisible4 = marker4.getVisible();
+						      if(isVisible4){
+							  marker4.setVisible(false);
+						     }
 						   
 							 
 						    }
@@ -1595,7 +1605,7 @@ refreshIntervalId33 = setInterval(function() {
 												
 												beaches.push(["<h2>"+item.nick+"</h2><br>"+item.partenza,item.lat,item.lng,posizione,item.rating,item.distanza,item.id_richiesta])
 												
-												alert(utente + item.stato)
+												//alert(utente + item.stato)
 												
 											if(utente==1){
 												if(item.stato==1){
@@ -1835,9 +1845,11 @@ refreshIntervalId33 = setInterval(function() {
 				   //$("#btninizia").show();
 				   //$("#esci").hide();
 				   
-				   localStorage.setItem("palla1", "1")
-				   localStorage.setItem("palla2", "0")
-				   localStorage.setItem("exit", "1")
+				   //localStorage.setItem("palla1", "1")
+				   //localStorage.setItem("palla2", "0")
+				   //localStorage.setItem("exit", "1")
+				   
+				   localStorage.setItem("exitto", "1")
 				   
 				   clearInterval(refreshIntervalId33);
 				   
@@ -1849,7 +1861,9 @@ refreshIntervalId33 = setInterval(function() {
 				   //}, 200);
 				   
 				   //window.location.href = "#win2";
-				   resetta1(1);
+				   //onDeviceReady();
+				   
+				   window.location.href = "map.html?id=1";
 	});
 	
 	
@@ -1903,36 +1917,30 @@ function cancella(id){
 			if(item.Token==1){
 			   // window.location.href = "map.html?id=1";
 			
-			   $("#pass1").hide();
+			   /*$("#pass1").hide();
 			   $("#pass2").hide();
 			   $("#pass3").hide();
 			   $("#esci").hide();
 
 			
-			    $("#btninizia").show();
+			$("#btninizia").show();*/
 			
-					//localStorage.setItem("geostory", "NO")
-				     //clearInterval(refreshIntervalId33);
-					//window.location.href = "map.html?id=1&od=1";
-					onResume();
-
-			    //resetta1();
-			    //setTimeout(function() {
-					   //localStorage.setItem("geostory", "NO")
-					   //clearInterval(refreshIntervalId33);
-					   //window.location.href = "map.html?id=1&od=0";
-					   //start();
-					   //onResume();
-				//}, 200);
+			localStorage.setItem("exitto", "1")
 			
-			    //e.stopImmediatePropagation();
+			clearInterval(refreshIntervalId33);
 			
-			    //e.preventDefault();
+			//setTimeout(function() {
+			//localStorage.setItem("geostory", "NO")
+			//clearInterval(refreshIntervalId33);
+			//window.location.href = "map.html?id=1";
+			//onResume();
+			//}, 200);
 			
-			    //return false;
+			//window.location.href = "#win2";
+			//onDeviceReady();
 			
-			    //clearInterval(refreshIntervalId33);
-				//resetta1(1);
+			window.location.href = "map.html?id=1";
+			
 			}
 			else{
 			 navigator.notification.alert(
@@ -2055,6 +2063,7 @@ function start() {
 	//chiamo e setto a 1 lo stato dell'autista (ok lavoro)
 	
 	$("#btninizia").hide();
+	$("#loading").show();
 	
 	resetta1(1);
 	
@@ -2227,7 +2236,7 @@ function richiesta1(id) {
 	
 	$(document).on("tap", "#risp1", function(e){
 				   $("#blob2").hide();
-				   window.location.href = "#home3";
+				   window.location.href = "map3.html";
 				   
 				   e.stopImmediatePropagation();
 				   
@@ -2358,7 +2367,7 @@ function richiesta2(id) {
 	
 	$(document).on("tap", "#risp2", function(e){
 				   $("#blob2").hide();
-				   window.location.href = "#home3";
+				    window.location.href = "map3.html";
 				   
 				   });
 	
@@ -2485,7 +2494,7 @@ function richiesta3(id) {
 	
 	$(document).on("tap", "#risp3", function(e){
 				   $("#blob2").hide();
-				   window.location.href = "#home3";
+				    window.location.href = "map3.html";
 
 				   });
 	
@@ -2566,7 +2575,6 @@ function inviopasseggero(come){
 }
 
 
-
 function chiudix() {
 	
 	$("#blob2").hide();
@@ -2577,6 +2585,8 @@ function chiudi22(id) {
 	
 		$("#blob").hide();
 }
+
+
 
 function getParameterByName(name) {
 	name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
