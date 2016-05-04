@@ -1023,7 +1023,7 @@ function timer(){
 												  
 												  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 												  
-												  marker3.setMap(null);
+												  //marker3.setMap(null);
 												  
 												  marker3 = new google.maps.Marker ({
 																					map : map,
@@ -1083,7 +1083,7 @@ function timer(){
 												  
 												  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 												  
-												  marker4.setMap(null);
+												  //marker4.setMap(null);
 												  
 												  marker4 = new google.maps.Marker ({
 																					map : map,
@@ -1277,6 +1277,8 @@ function magia(utente,pass) {
 				var centromap = new google.maps.LatLng(lat, lng, posizione);
 				
 				beaches.push(['Tua Posizione',lat,lng,1,0,0,0,0])
+		
+
 									  
 				
 				$.ajax({
@@ -1524,6 +1526,8 @@ function magia(utente,pass) {
 										  
 										  
 										  var centromap = new google.maps.LatLng(lat, lng, posizione);
+										  
+										alert(posizione)
 										  
 										  $.ajax({
 												 type:"GET",

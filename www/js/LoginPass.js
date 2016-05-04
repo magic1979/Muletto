@@ -125,7 +125,7 @@ function LoginVera(email,pin){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://purplemiles.com/www2/check_login.php?email="+ email +"&password="+ pin +"",
+		   url:"http://purplemiles.com/www2/check_login_pass.php?email="+ email +"&password="+ pin +"",
 		   contentType: "application/json",
 		   //data: {email:email,pin:pin},
 		   timeout: 7000,
@@ -137,12 +137,11 @@ function LoginVera(email,pin){
 				//alert(item.Token);
 				  
 				if (item.Token == 1){
-				  localStorage.setItem("email", email);
-				  localStorage.setItem("email2", email);
-				  localStorage.setItem("id_autista", item.id);
-				  localStorage.setItem("nick", item.nickname);
+				  localStorage.setItem("emailpass", email);
+				  localStorage.setItem("id_pass", item.id);
+				  localStorage.setItem("nickpass", item.nickname);
 
-				  window.location.href = "map.html";
+				  window.location.href = "mappass.html?id=1";
 				  
 				}
 				else{
@@ -234,7 +233,7 @@ function iscriviti(){
 	$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://purplemiles.com/www2/check_reg_autista.php?email="+ emailreg +"&password="+ pinreg +"&nickname="+ nomereg +"",
+		   url:"http://purplemiles.com/www2/check_reg_pass.php?email="+ emailreg +"&password="+ pinreg +"&nickname="+ nomereg +"",
 		   contentType: "application/json",
 		   //data: {email:emailreg,nickname:nomereg,pin:pinreg},
 		   timeout: 7000,

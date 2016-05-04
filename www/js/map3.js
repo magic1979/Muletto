@@ -13,6 +13,11 @@ function onDeviceReady() {
 		inviopasseggero(2);
 	});
 	
+	$(document).on("tap", "#back4", function(e){
+		inviopasseggero(3);
+				   
+	});
+	
 	
 	$(document).on("tap", "#back3", function(e){
 		inviopasseggero(3);
