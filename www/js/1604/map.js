@@ -110,10 +110,6 @@ function onDeviceReady() {
 		window.location.href = "index.html";
 	});
 	
-	$(document).on("touchstart", "#mappa7", function(e){
-		window.location.href = "mappass.html";
-	});
-	
 	$(document).on("touchstart", "#mappa6", function(e){
 				   
 	var connectionStatus = false;
@@ -336,6 +332,8 @@ function onSuccess5(position) {
 	marker2.setPosition(latlng);
 	map.setCenter(latlng);
 	
+	//localStorage.setItem("lat", ciao)
+	//localStorage.setItem("lng", ciao1)
 }
 
 
@@ -590,21 +588,9 @@ function resetta1(focus) {
 
 	//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
-	var lat = localStorage.getItem("lat");
-	var lng = localStorage.getItem("lng");
+	centragps()
 	
 
-	//$("#btn").click();
-	//marker.setMap(null);
-	//ido.setVisible(false);
-	
-	//var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
-	//var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
-	
-	//localStorage.setItem("lat", lat)
-    //localStorage.setItem("lng", lng)
-
-	
 	var latlng = new google.maps.LatLng(lat, lng, 1);
 	
 	var $content = $("#win2 div:jqmData(role=content)");
@@ -654,8 +640,6 @@ function resetta1(focus) {
 		var myLatLng = new google.maps.LatLng(lat, lng, 1);
 		
 		var icon = new google.maps.MarkerImage("img/autista.png", null, null, null, new google.maps.Size(50,50));
-		//alert(myLatLng + beach[0])
-		
 		
 		marker2 = new google.maps.Marker ({
 										  map : map,
@@ -833,6 +817,13 @@ function resetta1(focus) {
 													zIndex: -1
 													});
 				  
+				  google.maps.event.addListener(marker1, 'click', function() {
+												
+												infowindow.setContent(this.content);
+												infowindow.open(map, this);
+												
+												});
+				  
 				}
 				  
 				if(posizione==2){
@@ -890,6 +881,14 @@ function resetta1(focus) {
 														  //label: ''+ beach[1] +','+ beach[2] +'',
 														  zIndex: -10
 														  });
+				  
+				  google.maps.event.addListener(marker3, 'click', function() {
+												
+												infowindow.setContent(this.content);
+												infowindow.open(map, this);
+												
+												});
+				  
 
 				  
 				}
@@ -946,6 +945,14 @@ function resetta1(focus) {
 													//label: ''+ beach[1] +','+ beach[2] +'',
 													zIndex: -100
 													});
+				  
+				  google.maps.event.addListener(marker4, 'click', function() {
+												
+												infowindow.setContent(this.content);
+												infowindow.open(map, this);
+												
+												});
+				  
 				  
 				  }
 
@@ -1488,7 +1495,7 @@ function magia2C(utente,pass) {
 				  var icon2 = new google.maps.MarkerImage("img/pin.png", null, null, null, new google.maps.Size(30,40));
 				  
 				  if(utente==1){
-				  stato1 = item.stato
+				  
 				  localStorage.setItem("id_richietaP1",item.id_richiesta)
 				  
 				  $("#pass2").hide();
@@ -1536,7 +1543,6 @@ function magia2C(utente,pass) {
 				  }
 				  
 				  if(utente==2){
-				  stato2 = item.stato
 				  localStorage.setItem("id_richietaP2",item.id_richiesta)
 				  $("#pass1").hide();
 				  $("#pass3").hide();
@@ -1577,7 +1583,6 @@ function magia2C(utente,pass) {
 				  }
 				  
 				  if(utente==3){
-				  stato3 = item.stato
 				  localStorage.setItem("id_richietaP3",item.id_richiesta)
 				  $("#pass1").hide();
 				  $("#pass2").hide();
@@ -1673,7 +1678,7 @@ function magia2C(utente,pass) {
 													
 													
 													if(utente==1){
-													stato1 = item.stato
+													
 													localStorage.setItem("id_richietaP1",item.id_richiesta)
 													
 													$("#pass2").hide();
@@ -1702,7 +1707,6 @@ function magia2C(utente,pass) {
 													}
 													
 													if(utente==2){
-													stato2 = item.stato
 													localStorage.setItem("id_richietaP2",item.id_richiesta)
 													$("#pass1").hide();
 													$("#pass3").hide();
@@ -1731,7 +1735,6 @@ function magia2C(utente,pass) {
 													}
 													
 													if(utente==3){
-													stato3 = item.stato
 													localStorage.setItem("id_richietaP3",item.id_richiesta)
 													$("#pass1").hide();
 													$("#pass2").hide();
@@ -1923,7 +1926,7 @@ function cancella(id){
 			//window.location.href = "#win2";
 			//onDeviceReady();
 			
-			onResume();
+			resetta1(1);
 			//window.location.href = "map2.html?id=1";
 			
 			}
