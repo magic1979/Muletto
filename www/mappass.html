@@ -338,7 +338,7 @@
 					  }
 					  .custom-pass11 {
 						  background-color: #FFA500;
-						  width: 100px;
+						  width: 90px;
 						  font-size: 18px;
 						  
 						  color: #FFF;
@@ -348,7 +348,7 @@
 						  
 						  font-family: ubuntu, helvetica, arial;
 						  
-						  padding: 5 5 5 5;
+						  padding: 5 1 5 1;
 						  
 						  border-radius: 5px;
 						  -moz-border-radius: 5px; /* firefox */
@@ -375,10 +375,10 @@
 					  }
 					  .custom-pass2 {
 						  background-color: #00A86B;
-						  width: 25px;
+						  width: 100px;
 						  font-size: 18px;
 						  
-						  color: #000;
+						  color: #fff;
 						  
 						  text-decoration: none;
 						  text-shadow:0 0 0;
@@ -438,6 +438,7 @@
 						  text-decoration: none;
 						  text-shadow:0 0 0;
 						  
+						  padding: 5 5 5 5;
 						  color:#FFF;
 						  
 						  font-family: ubuntu, helvetica, arial;
@@ -465,6 +466,7 @@
 					  }
 						
 						.tabella {
+							top:100px;
 							background-color: #FFF;
 							border: 1px solid #000;
 							border-color: #cc33cc;
@@ -512,6 +514,12 @@
 
 <table border="0" valign="center" align="center" class="transbox">
 	<tr>
+		<td align="left" colspan="5">
+			<a id="XX3" href="#" rel="external"><img src="img/xx.png" width="25px"></a>
+		</td>
+
+	</tr>
+	<tr>
 		<td align="center" >
 			<a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass11"><font color="#fff">Quando</font></a>
 		</td>
@@ -525,7 +533,7 @@
 			<a data-role="button" id="piu" href="#" data-theme="b" class="custom-pass1"><font color="#fff">&nbsp;+&nbsp;</font></a>
 		</td>
 		<td align="right" >
-			<a id="XX3" href="#" rel="external"><img src="img/xx.png" width="25px"></a>
+			<a data-role="button" id="offerte" href="#" data-theme="b" class="custom-pass11">Offerta</a>
 		</td>
 	</tr>
 </table>
@@ -537,7 +545,7 @@
  <div class="spinner" id="spinner"></div>
 
   <form name="formia" action="entra.asp" method="post">
-	
+	<table id="spazioipad" height="60px"><tr><td></td></tr></table>
 	<table id="tblhome" width="90%" height="400px" border="0" valign="center" align="center" class="tabella">
 		<tr>
 			<td width="100%" align="center" colspan="3">
@@ -664,10 +672,10 @@
 
 			<table id="btninizia" width="100%" border="0" align="center" valign="center" class="div55" >
 				<tr>
-					<td width="100%" align="center">
-						<table align="center" width="200px" class="tabella"><tr><td width="100px" align="center">
-						  <input id="viale" name="viale" type="text" value="">
-					      <input id="destinazione" name="destinazione" type="text" value="" placeholder="destinazione" style="display:none">
+					<td width="100%" align="left">
+						<table align="center" width="220px" class="tabella"><tr><td width="220px" align="center">
+						  <input id="viale" name="viale" type="text" value="" class="scrivo">
+					      <input id="destinazione" name="destinazione" type="text" class="scrivo" value="" placeholder="destinazione" style="display:none">
 						</td></tr>
 					   </table>
 					</td>
@@ -687,7 +695,6 @@
 			
 			<!--Iconcoine-->
 			
-
         </div>
 		
 		<div data-role=page id=home3 class="div2">
@@ -697,7 +704,8 @@
 					<td align="center">
 						<a data-role="button" id="annulla" href="#" data-theme="b" class="custom-pass11">Annulla</a>
 					</td>
-					<td align="center" id="btnofferte" style="display:none">
+					<!-- style="display:none" -->
+					<td align="center" id="btnofferte" >
 						<a data-role="button" id="offerte" href="#" data-theme="b" class="custom-pass">Offerte</a>
 					</td>
 				</tr>
@@ -730,17 +738,37 @@
 				</tr>
 				<tr>
 					<td width="80%" align="center" >
-						Cani, Gatti
+						<input id="passeggeri" name="passeggeri" type="text" value="" placeholder="passeggeri">
 					</td>
 				</tr>
 				<tr>
 					<td width="80%" align="center" >
-						Note varie
+						<input id="fumatori" name="fumatori" type="text" value="" placeholder="fumatori">
 					</td>
 				</tr>
 				<tr>
 					<td width="80%" align="center" >
-						Accessori
+						<input id="animali" name="animali" type="text" value="" placeholder="animali">
+					</td>
+				</tr>
+				<tr>
+					<td width="80%" align="center" >
+						<input id="meno18" name="meno18" type="text" value="" placeholder="meno 18 anni">
+				   </td>
+				</tr>
+				<tr>
+					<td width="80%" align="center" >
+						<input id="disabili" name="disabili" type="text" value="" placeholder="disabili">
+					</td>
+				</tr>
+				<tr>
+					<td width="80%" align="center" >
+						<input id="bambini" name="bambini" type="text" value="" placeholder="bambini">
+							</td>
+				</tr>
+				<tr>
+					<td width="80%" align="center" >
+						<input id="wifi" name="wifi" type="text" value="" placeholder="wifi">
 					</td>
 				</tr>
 				
@@ -757,6 +785,37 @@
 				 <a href="index.html" rel="external" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Back</a>
 				 </div>-->
 				
+		</div>
+		
+		<div data-role=page id=home4 class="div2">
+			<!--<div data-role="header" rel="external" align="center" data-theme="b" data-id="head1" data-tap-toggle="false" data-position="fixed" class="div3"></div>-->
+			<table border="0" valign="center" align="center" class="transbox">
+				<tr>
+					<td align="center">
+						<a data-role="button" id="indietro4" href="#" data-theme="b" class="custom-pass11">Indietro</a>
+					</td>
+				</tr>
+			</table>
+			
+			<div data-role=content class="div2">
+				
+			</div>
+			
+			<div class="spinner" id="spinner"></div>
+			
+			<form name="formia4" action="entra.asp" method="post">
+				<table id="spazioipad" height="30px"><tr><td></td></tr></table>
+				
+				<div id="offerte4" >
+					
+					
+               </div>
+			</form>
+			
+			<!--<div id="footer" data-role="footer" align="left" data-theme="b" data-position="fixed" data-tap-toggle="false" class="div3">
+			 <a href="index.html" rel="external" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-back">Back</a>
+			 </div>-->
+			
 		</div>
 		
 

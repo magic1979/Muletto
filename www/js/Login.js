@@ -120,7 +120,7 @@ function login() {
 }
 
 function LoginVera(email,pin){
-	alert(email+pin);
+	//alert(email+pin);
 	var lat = localStorage.getItem("lat");
 	var lng = localStorage.getItem("lng");
 	

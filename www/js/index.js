@@ -89,6 +89,7 @@ var app = {
 		//----------GEO ---------------
 
 		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
+		
 		//var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 		
 		var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
@@ -98,6 +99,9 @@ var app = {
 		localStorage.setItem("lng", lng);
 		
 		localStorage.setItem("geostory", "SI")
+		
+
+		var lat = parseFloat(lati);
 		//localStorage.setItem("exitto", "0")
 		
 		//-----------------------------
@@ -255,14 +259,26 @@ function gpsonSuccess(position){
 	
 	var ciao = position.coords.latitude;
 	var ciao1 = position.coords.longitude;
-	
-	//$("#distanza").html("<span style = 'font-size: 18px;'>"+ ciao +","+ ciao1 +"</span>");
-	
+	var gradi = position.coords.heading;
 	
 	localStorage.setItem("lat", ciao)
-    localStorage.setItem("lng", ciao1)
-            
-    localStorage.setItem("geostory", "SI")
+	localStorage.setItem("lng", ciao1)
+	localStorage.setItem("gradi", gradi)
+	
+	localStorage.setItem("geostory", "SI")
+	
+	alert('Latitude: '          + position.coords.latitude          + '\n' +
+		  'Longitude: '         + position.coords.longitude         + '\n' +
+		  'Altitude: '          + position.coords.altitude          + '\n' +
+		  'Accuracy: '          + position.coords.accuracy          + '\n' +
+		  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+		  'Heading: '           + position.coords.heading           + '\n' +
+		  'Speed: '             + position.coords.speed             + '\n' +
+		  'Timestamp: '         + position.timestamp                + '\n');
+	
+	
+	$("#distanza").html("<span style = 'font-size: 18px;'>"+ position.coords.speed +","+ position.coords.heading  +"</span>");
+
 	
 }
 

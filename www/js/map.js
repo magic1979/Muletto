@@ -250,18 +250,17 @@ function onDeviceReady() {
     }
 		
 		
-								  var lat = localStorage.getItem("lat");
-								  var lng = localStorage.getItem("lng");
+			var lat = localStorage.getItem("lat");
+			var lng = localStorage.getItem("lng");
 		
+			//var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
+			//var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
 		
-								  //var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
-								  //var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
-		
-								  localStorage.setItem("lat", lat)
-								  localStorage.setItem("lng", lng)
+			localStorage.setItem("lat", lat)
+			localStorage.setItem("lng", lng)
 		
 
-								  codeLatLng(lat,lng);
+			codeLatLng(lat,lng);
     
 }
     
@@ -366,9 +365,9 @@ function onError5(error) {
 function centragps(){
 	muoviti = 1;
 
-	//var watchID = navigator.geolocation.getCurrentPosition(onSuccess5, onError5, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+	var watchID = navigator.geolocation.getCurrentPosition(onSuccess5, onError5, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
-	//onSuccess5()
+	onSuccess5()
 
 }
 
@@ -662,7 +661,6 @@ function resetta1(focus) {
 	});
 
 		
-	
 	var beaches = [];
 	var markers = [];//some array
 	var posizione = 1;
@@ -674,6 +672,10 @@ function resetta1(focus) {
 	//alert("http://purplemiles.com/www2/check_richiesta_autista.php?email="+ localStorage.getItem("email") +"&lat="+ localStorage.getItem("lat") +"&lng="+ localStorage.getItem("lng") +"&id_autista="+ localStorage.getItem("id_autista") +"");
 		
 		var myLatLng = new google.maps.LatLng(lat, lng, 1);
+		
+		var gradi = localStorage.getItem("gradi");
+		
+		//alert(gradi);
 		
 		var icon = new google.maps.MarkerImage("img/autista.png", null, null, new google.maps.Point(25, 25), new google.maps.Size(50,50));
 		//alert(myLatLng + beach[0])
@@ -1055,14 +1057,14 @@ function resetta1(focus) {
 			
 			marker2.setIcon(iconn);
 			
-            //var lat = position.coords.latitude;
-            //var lng = position.coords.longitude;
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
 			
-			//localStorage.setItem("lat", lat)
-			//localStorage.setItem("lng", lng)
+			localStorage.setItem("lat", lat)
+			localStorage.setItem("lng", lng)
 			
-			var lat = localStorage.getItem("lat");
-			var lng = localStorage.getItem("lng");
+			//var lat = localStorage.getItem("lat");
+			//var lng = localStorage.getItem("lng");
 			var latlng = new google.maps.LatLng(lat, lng);
 			
 			marker2.setIcon(icon);
@@ -1094,8 +1096,8 @@ function posizionegps(){
 
 	refreshPos = setInterval(function() {
 
-		//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
-		onSuccess2();
+		var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+		//onSuccess2();
 	}, 3000);
 }
 	
@@ -1940,8 +1942,8 @@ function magia2C(utente,pass) {
 	function posizionegps2(){
 		
 		refreshPos = setInterval(function() {
-			//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
-			onSuccess2();
+			var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+			//onSuccess2();
 		}, 3000);
 	}
 	
@@ -1981,14 +1983,14 @@ function magia2C(utente,pass) {
 			
 			marker2.setIcon(iconn);
 			
-            //var lat = position.coords.latitude;
-            //var lng = position.coords.longitude;
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
 			
-			//localStorage.setItem("lat", lat)
-			//localStorage.setItem("lng", lng)
+			localStorage.setItem("lat", lat)
+			localStorage.setItem("lng", lng)
 			
-			var lat = localStorage.getItem("lat");
-			var lng = localStorage.getItem("lng");
+			//var lat = localStorage.getItem("lat");
+			//var lng = localStorage.getItem("lng");
 			var latlng = new google.maps.LatLng(lat, lng);
 			
 			marker2.setIcon(icon);

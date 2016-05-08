@@ -3,9 +3,12 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
     document.addEventListener("resume", onResume, false);
 	
-	var height = getRealContentHeight();
+	var destination;
+	
+	var height = getRealContentHeight()-60;
 	$("#tblhome").attr("height",height);
 	$("#tblhome3").attr("height",height);
+	//$("#tblhome4").attr("height",height);
 	
 	var emailpass = localStorage.getItem("emailpass");
 	
@@ -34,6 +37,14 @@ function onDeviceReady() {
 	});
 	
 	$(document).on("touchstart", "#da", function(e){
+		localStorage.setItem("destination", "0")
+				   
+		$("#viale").show();
+		$("#destinazione").hide();
+				   
+		$("#da").removeClass("custom-pass1").addClass("custom-pass11");
+		$("#a").removeClass("custom-pass11").addClass("custom-pass1");
+				   
 		onResume();
 		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
@@ -53,13 +64,29 @@ function onDeviceReady() {
 		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
-	$(document).on("touchstart", "#offerte", function(e){
-		alert("in costruzione")
+	$(document).on("touchstart", "#indietro4", function(e){
+		$.mobile.changePage ($("#home"));
 		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
-	$(document).on("tap", "#a", function(e){
-				   
+	$(document).on("touchstart", "#offerte", function(e){
+		$.mobile.changePage ($("#home4"));
+		vediofferte()
+		//alert("in costruzione")
+		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+	});
+	
+	$(document).on("touchstart", "#piu", function(e){
+		$.mobile.changePage ($("#home4"));
+		vediofferte()
+		//alert("in costruzione")
+	if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+	});
+	
+	$(document).on("touchstart", "#a", function(e){
+	
+	localStorage.setItem("destination", "1")
+	
 	$("#viale").hide();
 	$("#destinazione").show();
 				   
@@ -71,19 +98,33 @@ function onDeviceReady() {
 	
 	$(document).on("touchstart", "#a1", function(e){
 				   
+				   localStorage.setItem("destination", "1");
+				   
 				   $("#viale").hide();
 				   $("#destinazione").show();
 				   
 				   $("#da").removeClass("custom-pass11").addClass("custom-pass1");
 				   $("#a1").removeClass("custom-pass1").addClass("custom-pass11");
 				   
+				   
+				   resetta(1);
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
-				   });
+		});
+	
 	
 	$(document).on("touchstart", "#ad", function(e){
 				   
-		onResume();
-		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   localStorage.setItem("destination", "1");
+				   
+				   $("#viale").hide();
+				   $("#destinazione").show();
+				   
+				   $("#da").removeClass("custom-pass11").addClass("custom-pass1");
+				   $("#a1").removeClass("custom-pass1").addClass("custom-pass11");
+				   
+				   
+				   resetta(1);
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
 	
@@ -103,7 +144,7 @@ function onDeviceReady() {
 		
 		$.ajax({
 			   type:"GET",
-			   url:"http://purplemiles.com/www2/check_richiesta.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"",
+			   url:"http://purplemiles.com/www2/check_richiesta2.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"",
 			   contentType: "application/json",
 			   //data: {ID: "Lazio"}, LIMIT 10
 			   timeout: 7000,
@@ -285,7 +326,7 @@ function onDeviceReady() {
 								  localStorage.setItem("lng", lng)
 		
 
-								  codeLatLng(lat,lng);
+								  //codeLatLng(lat,lng);
     
 }
     
@@ -340,7 +381,7 @@ function CenterControl(controlDiv, map) {
 	controlText.style.paddingLeft = '5px';
 	controlText.style.paddingRight = '5px';
 	//controlText.innerHTML = '<br><table width="100%"><tr><td align="right"><a id="XXX" href="index.html" rel="external"><img src="img/xx.png" width="25px"></a></td></tr></table><table width="100%" align="center"><tr><td align="center" width="50%">DA</td><td align="center" width="50%">A</td></tr><tr><td align="center" width="50%"><input id="viale" name="viale" type="text" value="'+ localStorage.getItem("Via") +'"></td></tr><tr><td align="center" width="50%"><input id="citta" name="citta" type="text" value="Roma"></td></tr></table>';
-	controlText.innerHTML = '<br><table width="100%"><tr><td align="right"><a id="XX3" href="index.html" rel="external"><img src="img/xx.png" width="25px"></a></td></tr></table><table border="0" valign="center" align="center" ><tr><td align="center" ><a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass1"><font color="#fff">Quando</font></a></td><td align="center" ><a data-role="button" id="da" href="#" data-theme="b" class="custom-pass11">Da</a></td><td align="center" ><a data-role="button" id="a1" href="#" data-theme="b" class="custom-pass1"><font color="#fff">A</font></a></td><td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="custom-pass1"><font color="#fff">+</font></a></td><td align="center" ><a data-role="button" id="anteprima" href="#" data-theme="b" class="custom-pass1"><font color="#fff">Anteprima</font></a></td></tr></table>';
+	controlText.innerHTML = '<br><table width="100%"><tr><td align="right"><a id="XX3" href="index.html" rel="external"><img src="img/xx.png" width="25px"></a></td></tr></table><table width="100%" border="0" valign="center" align="center" ><tr><td align="center" ><a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass1"><font color="#fff">Quando</font></a></td><td align="center" ><a data-role="button" id="da" href="#" data-theme="b" class="custom-pass11">&nbsp;Da&nbsp;</a></td><td align="center" ><a data-role="button" id="a1" href="#" data-theme="b" class="custom-pass1"><font color="#fff">&nbsp;A&nbsp;</font></a></td><td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="custom-pass1"><font color="#fff">+</font></a></td><td align="center" ><a data-role="button" id="anteprima" href="#" data-theme="b" class="custom-pass1"><font color="#fff">Anteprima</font></a></td></tr></table>';
 	controlUI.appendChild(controlText);
 	
 	//var g = document.createElement('div');
@@ -472,7 +513,19 @@ function codeLatLng(lati,lngi) {
 						
 					 }
 					 
-					 document.getElementById("viale").value = indirizzo;
+					 
+					 
+					 if(localStorage.getItem("destination")==0){
+					   document.getElementById("viale").value = indirizzo;
+					 localStorage.setItem("viale", indirizzo)
+					 }
+					 else{
+						document.getElementById("destinazione").value = indirizzo;
+					   localStorage.setItem("destinazione", indirizzo)
+					 }
+					 
+					   //localStorage.setItem("viale", indirizzo)
+					 
 					 
 			});
 	
@@ -544,7 +597,14 @@ function codeLatLng2(posizione) {
 						
 					 }
 					 
-					 document.getElementById("viale").value = indirizzo;
+					    if(localStorage.getItem("destination")==0){
+					     document.getElementById("viale").value = indirizzo;
+					     localStorage.setItem("viale", indirizzo)
+					    }
+					    else{
+						 document.getElementById("destinazione").value = indirizzo;
+					     localStorage.setItem("destinazione", indirizzo)
+					    }
 					 
 					 });
 	
@@ -703,8 +763,12 @@ function resetta1(focus) {
 												});
 	
 
-
-	var icon = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
+    if(localStorage.getItem("destination")==0){
+	  var icon = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
+	}
+	else{
+	  var icon = new google.maps.MarkerImage("img/pin.png", null, null, null, new google.maps.Size(30,50));
+	}
 					
 					
 			marker2 = new google.maps.Marker ({
@@ -723,6 +787,9 @@ function resetta1(focus) {
 						infowindow.open(map, this);
 												  
 					});
+		
+		
+		codeLatLng(lat,lng);
 
 
 	   var centerControlDiv = document.createElement('div');
@@ -751,7 +818,10 @@ function resetta1(focus) {
 		if(localStorage.getItem("tappato")=="0"){
 		if (isTabHolded){
 			var icon = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
-			marker4 = new google.maps.Marker({
+			
+			marker2.setMap(null);
+			
+			marker2 = new google.maps.Marker({
 											position: position,
 											map: map,
 											icon: icon,
@@ -1338,6 +1408,116 @@ function inviopasseggero(come){
 		   dataType:"jsonp"});
 	
 }
+
+function vediofferte(){
+	$("#offerte4").html("");
+	
+	$.ajax({
+		   type:"GET",
+		   url:"http://purplemiles.com/www2/check_richiesta_passeggero.php?email="+ localStorage.getItem("emailpass") +"&id_passeggero="+ localStorage.getItem("id_pass") +"&latitudine="+ localStorage.getItem("lat") +"&longitudine="+ localStorage.getItem("lng") +"",
+		   contentType: "application/json",
+		   //data: {ID: "Lazio"}, LIMIT 10
+		   timeout: 7000,
+		   jsonp: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   $.each(result, function(i,item){
+				  
+				  if(item.Token==1){
+				  
+				  if(item.stato==2){
+				  
+				    $("#offerte4").append("<br><table height='100%' width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass2'>"+ item.nick +"</div><br>"+ item.id_richiesta +"</td></tr><tr><td align='center'><a id='accetta"+ item.id_richiesta +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>ACCETTA</font></a>&nbsp;&nbsp;<a id='rifiuta"+ item.id_richiesta +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr><tr><td align='center'><br></td></tr></table>");
+				  }
+				   if(item.stato==1){
+					 $("#offerte4").append("<br><table height='100%' width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass11'>"+ item.nick +"</div><br>"+ item.id_richiesta +"</td></tr><tr><td align='center'><a id='accetta"+ item.id_richiesta +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>ACCETTA</font></a>&nbsp;&nbsp;<a id='rifiuta"+ item.id_richiesta +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr><tr><td align='center'><br></td></tr></table>");
+				  }
+				  
+				  if(item.stato==0){
+					 $("#offerte4").append("<br><table height='100%' width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass'>"+ item.nick +"</div><br>"+ item.id_richiesta +"</td></tr><tr><td align='center'><a id='accetta"+ item.id_richiesta +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>ACCETTA</font></a>&nbsp;&nbsp;<a id='rifiuta"+ item.id_richiesta +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr><tr><td align='center'><br></td></tr></table>");
+				  }
+
+				  
+				    $(document).on("touchstart", "#accetta"+ item.id_richiesta +"", function(e){
+					   accettaofferta(2,item.id_richiesta,item.id_autista)
+					   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+					});
+				  
+				    $(document).on("touchstart", "#rifiuta"+ item.id_richiesta +"", function(e){
+				       accettaofferta(3,item.id_richiesta,item.id_autista)
+				       if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+					});
+
+				  }
+				  
+			});
+		   
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		   
+		   onResume();
+		   
+		   },
+		   dataType:"jsonp"});
+}
+
+function accettaofferta(id,id_richiesta,id_autista){
+	
+	//alert("http://purplemiles.com/www2/check_confermapasseggero.php?conferma="+ id +"&id_richiesta="+ id_richiesta +"&id_autista="+ id_autista +"")
+	
+	$.ajax({
+		   type:"GET",
+		   url:"http://purplemiles.com/www2/check_confermapasseggero.php?conferma="+ id +"&id_richiesta="+ id_richiesta +"&id_autista="+ id_autista +"",
+		   contentType: "application/json",
+		   //data: {ID: "Lazio"}, LIMIT 10
+		   timeout: 7000,
+		   jsonp: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   $.each(result, function(i,item){
+				  
+				  if(item.Token==1){
+				  
+				    navigator.notification.alert(
+											   'Richiesta Elaborata.',  // message
+											   alertDismissed,         // callback
+											   'OK',           // title
+											   'Done'                  // buttonName
+											   );
+				  
+				  
+				  vediofferte()
+				  }
+				  
+			});
+		   
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		   
+		   onResume();
+		   
+		   },
+		   dataType:"jsonp"});
+}
+
 
 
 
