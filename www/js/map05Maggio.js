@@ -110,6 +110,10 @@ function onDeviceReady() {
 		window.location.href = "index.html";
 	});
 	
+	$(document).on("touchstart", "#mappa7", function(e){
+		window.location.href = "mappass.html";
+	});
+	
 	$(document).on("touchstart", "#mappa6", function(e){
 				   
 	var connectionStatus = false;
@@ -319,21 +323,19 @@ function onSuccess5(position) {
 	
 	//alert("timer")
 	
-	//var lat = position.coords.latitude;
-	//var lng = position.coords.longitude;
+	var lat = position.coords.latitude;
+	var lng = position.coords.longitude;
 	
-	//localStorage.setItem("lat", lat)
-	//localStorage.setItem("lng", lng)
+	localStorage.setItem("lat", lat)
+	localStorage.setItem("lng", lng)
 	
-	var lat = localStorage.getItem("lat");
-	var lng = localStorage.getItem("lng");
+	//var lat = localStorage.getItem("lat");
+	//var lng = localStorage.getItem("lng");
 	var latlng = new google.maps.LatLng(lat, lng);
 	
 	marker2.setPosition(latlng);
 	map.setCenter(latlng);
 	
-	//localStorage.setItem("lat", ciao)
-	//localStorage.setItem("lng", ciao1)
 }
 
 
@@ -351,9 +353,9 @@ function onError5(error) {
 
 function centragps(){
 
-	//var watchID = navigator.geolocation.getCurrentPosition(onSuccess5, onError5, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+	var watchID = navigator.geolocation.getCurrentPosition(onSuccess5, onError5, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
-	onSuccess5()
+	//onSuccess5()
 
 }
 
@@ -978,7 +980,7 @@ function resetta1(focus) {
 		
 		timer()
 		
-		//posizionegps()
+		posizionegps()
 
 	}
 	
@@ -1086,7 +1088,7 @@ function posizionegps(){
 	refreshPos = setInterval(function() {
 		var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 		//onSuccess2();
-	}, 2000);
+	}, 3000);
 }
 	
 	
@@ -1456,7 +1458,7 @@ function magia2C(utente,pass) {
 		window.clearInterval(i);
 	}
 	
-	//posizionegps2();
+	posizionegps2();
 	
 	//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
@@ -1486,7 +1488,7 @@ function magia2C(utente,pass) {
 				  var icon2 = new google.maps.MarkerImage("img/pin.png", null, null, null, new google.maps.Size(30,40));
 				  
 				  if(utente==1){
-				  
+				  stato1 = item.stato
 				  localStorage.setItem("id_richietaP1",item.id_richiesta)
 				  
 				  $("#pass2").hide();
@@ -1534,6 +1536,7 @@ function magia2C(utente,pass) {
 				  }
 				  
 				  if(utente==2){
+				  stato2 = item.stato
 				  localStorage.setItem("id_richietaP2",item.id_richiesta)
 				  $("#pass1").hide();
 				  $("#pass3").hide();
@@ -1574,6 +1577,7 @@ function magia2C(utente,pass) {
 				  }
 				  
 				  if(utente==3){
+				  stato3 = item.stato
 				  localStorage.setItem("id_richietaP3",item.id_richiesta)
 				  $("#pass1").hide();
 				  $("#pass2").hide();
@@ -1669,7 +1673,7 @@ function magia2C(utente,pass) {
 													
 													
 													if(utente==1){
-													
+													stato1 = item.stato
 													localStorage.setItem("id_richietaP1",item.id_richiesta)
 													
 													$("#pass2").hide();
@@ -1698,6 +1702,7 @@ function magia2C(utente,pass) {
 													}
 													
 													if(utente==2){
+													stato2 = item.stato
 													localStorage.setItem("id_richietaP2",item.id_richiesta)
 													$("#pass1").hide();
 													$("#pass3").hide();
@@ -1726,6 +1731,7 @@ function magia2C(utente,pass) {
 													}
 													
 													if(utente==3){
+													stato3 = item.stato
 													localStorage.setItem("id_richietaP3",item.id_richiesta)
 													$("#pass1").hide();
 													$("#pass2").hide();
@@ -1803,7 +1809,7 @@ function magia2C(utente,pass) {
 		refreshPos = setInterval(function() {
 			var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 				//onSuccess2();
-			}, 2000);
+			}, 3000);
 	}
 	
 	function onSuccess22(position) {

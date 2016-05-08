@@ -76,20 +76,28 @@ var app = {
 		    if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 			//carica2()
 		});
+		
+		$(document).on("touchstart", "#esci", function(e){
+			localStorage.setItem("email", "");
+			localStorage.setItem("emailpass", "");
+			window.location.href = "login.html";
+			if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+			//carica2()
+		});
 
 		
 		//----------GEO ---------------
 
-		navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
+		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
 		//var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 		
-		//var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
-		//var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
+		var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
+		var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
 		
-		//localStorage.setItem("lat", lat);
-		//localStorage.setItem("lng", lng);
+		localStorage.setItem("lat", lat);
+		localStorage.setItem("lng", lng);
 		
-		//localStorage.setItem("geostory", "SI")
+		localStorage.setItem("geostory", "SI")
 		//localStorage.setItem("exitto", "0")
 		
 		//-----------------------------

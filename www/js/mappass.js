@@ -11,7 +11,7 @@ function onDeviceReady() {
 	
 	if (localStorage.getItem("emailpass") === null || localStorage.getItem("emailpass")=="null" || typeof(localStorage.getItem("emailpass")) == 'undefined' || localStorage.getItem("emailpass")==0 || localStorage.getItem("emailpass")=="") {
 		
-		window.location.href = "LoginPass.html";
+		window.location.href = "Login.html";
 		
 	}
 	
@@ -416,49 +416,140 @@ function codeLatLng(lati,lngi) {
     //var latlngStr = input.split(',', 2);
     var lat = parseFloat(lati);
     var lng = parseFloat(lngi);
+
+	
     var latlng = new google.maps.LatLng(lat, lng);
+	var indirizzo;
+	var Citta;
     
-    geocoder.geocode({'latLng': latlng}, function(results, status) {
-	 if (status == google.maps.GeocoderStatus.OK) {
-	 if (results[1]) {
-	 
-		/*var tabella = '<table align="center" border="0" width="310px" height="60px">';
-		tabella = tabella + '<tr><td align="center" width="50px"><a href="maps:daddr=41.913010,12.442009&saddr=41.875094,12.478151"><img src="images/pin.png" width="32px"></a></td><td align="left"><font color="white" size="2">'+ results[1].formatted_address +'</font></td></tr>';
-		tabella = tabella + '</table>';*/
-	 
-		var viadotto = results[1].formatted_address;
-	 
-		localStorage.setItem("Via", viadotto)
+	geocoder.geocode({'latLng': latlng}, function(results, status) {
+					 if (status == google.maps.GeocoderStatus.OK) {
 					 
-		document.getElementById("viale").value = viadotto;
-	 
-		$('#classifica').html('');
-		$(".spinner").hide();
-		//funzioneradar();
-	 
-	 } else {
-	  /*navigator.notification.alert(
-	   'Non riesco a rilevare la tua posizione',  // message
-		alertDismissed,         // callback
-		'Attenzione',            // title
-		'OK'                  // buttonName
-	  );*/
-		$(".spinner").hide();
-		//funzioneradar();
-	 }
-	 } else {
-	  /*navigator.notification.alert(
-	   'Non riesco a rilevare la tua posizione',  // message
-		 alertDismissed,         // callback
-		 'Attenzione',            // title
-		 'OK'                  // buttonName
-	 );*/
-	 
-		$(".spinner").hide();
-		//funzioneradar();
-	 }
-	 });
+					 
+					 if (results[0]) {
+					 
+					 var viadotto = results[0].formatted_address;
+					 
+					 var mySplitResult = viadotto.split(",");
+					 
+					 localStorage.setItem("Via", mySplitResult[0].replace(/[0-9]/g, '').replace('-', ''))
+					 
+					 indirizzo = results[0].formatted_address
+					 
+					 //self.document.formia.via.value = mySplitResult[0].replace(/[0-9]/g, '').replace('-', '');
+					 
+					 
+					 $(".spinner").hide();
+					 
+					 
+					 }
+					 
+					 } else {
+					 navigator.notification.alert(
+												  'Non riesco a rilevare la tua posizione',  // message
+												  alertDismissed,         // callback
+												  'Attenzione',            // title
+												  'OK'                  // buttonName
+												  );
+					 
+					 $(".spinner").hide();
+					 
+					 
+					 }
+					 
+					 if(results[1]){
+					 
+						var cittaa = results[1].formatted_address;
+						var mySplitResult1 = cittaa.split(",");
+					 
+						localStorage.setItem("Citta", mySplitResult1[1].replace(/[0-9]/g, ''))
+						
+						//self.document.formia.citta.value = mySplitResult1[1].replace(/[0-9]/g, '').trim();
+						
+						citta = mySplitResult1[1].replace(/[0-9]/g, '')
+					 
+						//return;
+						
+					 }
+					 
+					 document.getElementById("viale").value = indirizzo;
+					 
+			});
+	
 }
+
+function codeLatLng2(posizione) {
+	var geocoder;
+	geocoder = new google.maps.Geocoder();
+	//var input = "41.875094, 12.478151";
+	//var latlngStr = input.split(',', 2);
+	
+	alert(posizione)
+	
+	 var mySplitResult = posizione.split(",");
+	
+	alert(posizione[0] + "--" + posizione[1])
+	
+	var latlng = new google.maps.LatLng(posizione);
+	var indirizzo;
+	var Citta;
+	
+	geocoder.geocode({'latLng': latlng}, function(results, status) {
+					 if (status == google.maps.GeocoderStatus.OK) {
+					 
+					 
+					 if (results[0]) {
+					 
+					 var viadotto = results[0].formatted_address;
+					 
+					 var mySplitResult = viadotto.split(",");
+					 
+					 localStorage.setItem("Via", mySplitResult[0].replace(/[0-9]/g, '').replace('-', ''))
+					 
+					 indirizzo = results[0].formatted_address
+					 
+					 //self.document.formia.via.value = mySplitResult[0].replace(/[0-9]/g, '').replace('-', '');
+					 
+					 
+					 $(".spinner").hide();
+					 
+					 
+					 }
+					 
+					 } else {
+					 navigator.notification.alert(
+												  'Non riesco a rilevare la tua posizione',  // message
+												  alertDismissed,         // callback
+												  'Attenzione',            // title
+												  'OK'                  // buttonName
+												  );
+					 
+					 $(".spinner").hide();
+					 
+					 
+					 }
+					 
+					 if(results[1]){
+					 
+						var cittaa = results[1].formatted_address;
+						var mySplitResult1 = cittaa.split(",");
+					 
+						localStorage.setItem("Citta", mySplitResult1[1].replace(/[0-9]/g, ''))
+						
+						//self.document.formia.citta.value = mySplitResult1[1].replace(/[0-9]/g, '').trim();
+						
+						citta = mySplitResult1[1].replace(/[0-9]/g, '')
+					 
+						//return;
+						
+					 }
+					 
+					 document.getElementById("viale").value = indirizzo;
+					 
+					 });
+	
+}
+
 
 
 function getRealContentHeight() {
@@ -548,6 +639,7 @@ function resetta1(focus) {
 	  function tapholdHandler( event ){
 	    $( event.target ).addClass( "taphold" );
 	    isTabHolded=true;
+	    localStorage.setItem("tappato", "0")
 	  }
 	  });	//----------------
 	
@@ -557,7 +649,7 @@ function resetta1(focus) {
 	
 	if(connectionStatus=='online'){
 
-	var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+	//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
 	var lat = localStorage.getItem("lat");
 	var lng = localStorage.getItem("lng");
@@ -648,7 +740,8 @@ function resetta1(focus) {
 	google.maps.event.addListener(map, 'click', function(e) {
 		placeMarker(e.latLng, map);
 								  
-		//alert(e.latLng);
+								  
+		//codeLatLng2(e.latLng)
 								  
 	});
 
@@ -665,6 +758,13 @@ function resetta1(focus) {
 											content:'<div class="popup">ORA</div>',
 											optimized: false
 											});
+			
+		   var myLatLng = position;
+		   var lat = myLatLng.lat();
+		   var lng = myLatLng.lng();
+			
+		   codeLatLng(lat,lng);
+			
 			
 			/*setTimeout(function() {
 
@@ -1238,8 +1338,6 @@ function inviopasseggero(come){
 		   dataType:"jsonp"});
 	
 }
-
-
 
 
 
