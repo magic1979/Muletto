@@ -120,6 +120,13 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.clipboard"
         ]
+    },
+    {
+        "file": "plugins/com.sharinglabs.cordova.plugin.datepicker/www/ios/DatePicker.js",
+        "id": "com.sharinglabs.cordova.plugin.datepicker.DatePicker",
+        "clobbers": [
+            "datePicker"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -135,7 +142,8 @@ module.exports.metadata =
     "org.apache.cordova.device": "0.3.0",
     "de.appplant.cordova.plugin.background-mode": "0.6.3",
     "uk.co.workingedge.phonegap.plugin.LaunchNavigator": "2.9.2",
-    "com.verso.cordova.clipboard": "0.1.0"
+    "com.verso.cordova.clipboard": "0.1.0",
+    "com.sharinglabs.cordova.plugin.datepicker": "1.1.3"
 }
 // BOTTOM OF METADATA
 });

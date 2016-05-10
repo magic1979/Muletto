@@ -71,7 +71,7 @@ var app = {
 		}*/
 			
 		$(document).on("touchstart", "#inizia", function(e){
-			//$.mobile.changePage( "#page3", { transition: "slide", changeHash: false });
+			//$.mobile.changePage( "map.html", { transition: "slide", changeHash: false });
 			window.location.href = "map.html";
 		    if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 			//carica2()
@@ -80,7 +80,7 @@ var app = {
 		$(document).on("touchstart", "#esci", function(e){
 			localStorage.setItem("email", "");
 			localStorage.setItem("emailpass", "");
-			window.location.href = "login.html";
+			window.location.href = "Login.html";
 			if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 			//carica2()
 		});
@@ -90,18 +90,18 @@ var app = {
 
 		//navigator.geolocation.watchPosition(gpsonSuccess, gpsonError, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
 		
-		//var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+		var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 		
-		var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
-		var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
+		//var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
+		//var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
 		
-		localStorage.setItem("lat", lat);
-		localStorage.setItem("lng", lng);
+		//localStorage.setItem("lat", lat);
+		//localStorage.setItem("lng", lng);
 		
-		localStorage.setItem("geostory", "SI")
+		//localStorage.setItem("geostory", "SI")
 		
 
-		var lat = parseFloat(lati);
+		//var lat = parseFloat(lati);
 		//localStorage.setItem("exitto", "0")
 		
 		//-----------------------------
@@ -267,17 +267,17 @@ function gpsonSuccess(position){
 	
 	localStorage.setItem("geostory", "SI")
 	
-	alert('Latitude: '          + position.coords.latitude          + '\n' +
+	/*alert('Latitude: '          + position.coords.latitude          + '\n' +
 		  'Longitude: '         + position.coords.longitude         + '\n' +
 		  'Altitude: '          + position.coords.altitude          + '\n' +
 		  'Accuracy: '          + position.coords.accuracy          + '\n' +
 		  'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
 		  'Heading: '           + position.coords.heading           + '\n' +
 		  'Speed: '             + position.coords.speed             + '\n' +
-		  'Timestamp: '         + position.timestamp                + '\n');
+		  'Timestamp: '         + position.timestamp                + '\n');*/
 	
 	
-	$("#distanza").html("<span style = 'font-size: 18px;'>"+ position.coords.speed +","+ position.coords.heading  +"</span>");
+	//$("#distanza").html("<span style = 'font-size: 18px;'>"+ position.coords.speed +","+ position.coords.heading  +"</span>");
 
 	
 }

@@ -143,9 +143,9 @@ function LoginVera(email,pin){
 				  localStorage.setItem("email2", email);
 				  localStorage.setItem("emailpass", email);
 				  localStorage.setItem("id_autista", item.id_autista);
-				  localStorage.setItem("nick", item.nickname);
+				  localStorage.setItem("nick", item.nick);
 				  localStorage.setItem("id_pass", item.id_passeggero);
-				  localStorage.setItem("nickpass", item.nickname);
+				  localStorage.setItem("nickpass", item.nick);
 
 				  window.location.href = "map.html";
 				  
