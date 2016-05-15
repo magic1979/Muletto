@@ -3,6 +3,10 @@ document.addEventListener('deviceready', onDeviceReady, false);
 function onDeviceReady() {
     document.addEventListener("resume", onResume, false);
 	
+	document.addEventListener('DOMContentLoaded', function() {
+		FastClick.attach(document.body);
+	}, false);
+	
 	var destination;
 	
 	var item;
@@ -22,6 +26,8 @@ function onDeviceReady() {
 		
 	}
 	
+	$("#tblhome").fadeIn("slow")
+	
 	IDPage = getParameterByName('id');
 	ODPage = getParameterByName('od');
 	
@@ -31,6 +37,11 @@ function onDeviceReady() {
 	});
 	
 	$(document).on("tap", "#XXX", function(e){
+		for(i=0; i<10000; i++)
+		{
+		   window.clearInterval(i);
+		}
+				   
 		window.location.href = "index.html";
 		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
@@ -65,9 +76,9 @@ function onDeviceReady() {
 				   $("#destinazione").hide();
 				   
 				   $("#da1").removeClass("bottoni").addClass("bottoni1");
-				   $("#a").removeClass("bottoni1").addClass("bottoni");
+				   $("#a1").removeClass("bottoni1").addClass("bottoni");
 				   
-				   onResume();
+				   resetta(1);
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				   });
 	
@@ -77,6 +88,14 @@ function onDeviceReady() {
 	});
 	
 	$(document).on("touchstart", "#quando", function(e){
+		for(i=0; i<10000; i++)
+		{
+			window.clearInterval(i);
+		}
+				   
+		localStorage.setItem("viale", document.getElementById("viale").value);
+		localStorage.setItem("destinazione", document.getElementById("destinazione").value);
+				   
 		window.location.href = "#home";
 		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
@@ -88,7 +107,13 @@ function onDeviceReady() {
 	
 	$(document).on("touchstart", "#indietro4", function(e){
 		$.mobile.changePage ($("#home"));
-		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
 	$(document).on("touchstart", "#offerte", function(e){
@@ -96,7 +121,13 @@ function onDeviceReady() {
 		//$.mobile.changePage ($("#home4"));
 		vediofferte()
 		//alert("in costruzione")
-		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
 	$(document).on("touchstart", "#piu", function(e){
@@ -117,7 +148,13 @@ function onDeviceReady() {
 	//$("#da").removeClass("custom-pass11").addClass("custom-pass1");
 	//$("#a").removeClass("custom-pass1").addClass("custom-pass11");
 				   
-	if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
 	$(document).on("touchstart", "#a1", function(e){
@@ -132,6 +169,12 @@ function onDeviceReady() {
 				   
 				   
 				   resetta(1);
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 		});
 	
@@ -148,6 +191,12 @@ function onDeviceReady() {
 				   
 				   
 				   resetta(1);
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
@@ -168,7 +217,7 @@ function onDeviceReady() {
 		
 		$.ajax({
 			   type:"GET",
-			   url:"http://purplemiles.com/www2/check_richiesta2.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"",
+			   url:"http://purplemiles.com/www2/check_richiesta3.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"",
 			   contentType: "application/json",
 			   //data: {ID: "Lazio"}, LIMIT 10
 			   timeout: 7000,
@@ -188,9 +237,16 @@ function onDeviceReady() {
 					   );
 					  
 					  $("#btnofferte").show();
-					  $.mobile.changePage( "#home4", { transition: "slide", changeHash: false });
-					  vediofferte()
-					  return;
+					  $.mobile.changePage( "#home", { transition: "slide", changeHash: false });
+					  
+					  //vediofferte()
+					  e.stopImmediatePropagation();
+				   
+				      e.preventDefault();
+				   
+				      return false;
+				   
+				      if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				  }
 					  
 				});
@@ -216,6 +272,8 @@ function onDeviceReady() {
 
 	
 	$(document).on("tap", "#anteprima", function(e){
+		localStorage.setItem("viale", document.getElementById("viale").value);
+		localStorage.setItem("destinazione", document.getElementById("destinazione").value);
 		document.getElementById("viale3").value = document.getElementById("viale").value;
 		document.getElementById("destinazione3").value = document.getElementById("destinazione").value;
 				   
@@ -244,7 +302,13 @@ function onDeviceReady() {
 				   
 		$.mobile.changePage ($("#home3"));
 		
-		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 
 	
@@ -289,69 +353,26 @@ function onDeviceReady() {
     });
 	
 
-    $(".spinner").show();
+    $(".spinner").hide();
     var connectionStatus = false;
     connectionStatus = navigator.onLine ? 'online' : 'offline';
     
     if(connectionStatus=='online'){
         $('#noconn').hide();
 		
-        var geostory = localStorage.getItem("geostory");
-		
-        
-    if (geostory == 'NO'){
-		navigator.geolocation.getCurrentPosition(onSuccess, onError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
-        
-        function onSuccess(position) {
-            var ciao = position.coords.latitude;
-            var ciao1 = position.coords.longitude;
-            
-            localStorage.setItem("lat", ciao)
-            localStorage.setItem("lng", ciao1)
-            
-            localStorage.setItem("geostory", "SI")
-        }
-        
-        
-        function onError(error) {
-			navigator.geolocation.getCurrentPosition(onSuccess, onError1, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
-        }
-        
-        function onError1(error) {
-            localStorage.setItem("geostory", "NO")
-            
-            navigator.notification.alert(
-               'Non riesco a rilevare la tua posizione',
-                alertDismissed,
-                'Attenzione',
-                'OK'
-               );
-        
-            $(".spinner").hide();
-        }
-    }
-    else{
-        var latitudine = localStorage.getItem("lat");
-        var longitudine = localStorage.getItem("lng");
-        
-        localStorage.setItem("geostory", "SI")
-        
-        $(".spinner").hide();
-    }
+
+			var lat = localStorage.getItem("lat");
+			var lng = localStorage.getItem("lng");
 		
 		
-								  var lat = localStorage.getItem("lat");
-								  var lng = localStorage.getItem("lng");
+			 //var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
+			 //var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
 		
-		
-								  //var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
-								  //var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
-		
-								  localStorage.setItem("lat", lat)
-								  localStorage.setItem("lng", lng)
+			 localStorage.setItem("lat", lat)
+			 localStorage.setItem("lng", lng)
 		
 
-								  //codeLatLng(lat,lng);
+			 //codeLatLng(lat,lng);
     
 }
     
@@ -406,7 +427,7 @@ function CenterControl(controlDiv, map) {
 	controlText.style.paddingLeft = '5px';
 	controlText.style.paddingRight = '5px';
 	//controlText.innerHTML = '<br><table width="100%"><tr><td align="right"><a id="XXX" href="index.html" rel="external"><img src="img/xx.png" width="25px"></a></td></tr></table><table width="100%" align="center"><tr><td align="center" width="50%">DA</td><td align="center" width="50%">A</td></tr><tr><td align="center" width="50%"><input id="viale" name="viale" type="text" value="'+ localStorage.getItem("Via") +'"></td></tr><tr><td align="center" width="50%"><input id="citta" name="citta" type="text" value="Roma"></td></tr></table>';
-	controlText.innerHTML = '<br><table width="100%"><tr><td align="right"><a id="XX3" href="index.html" rel="external"><img src="img/xx.png" width="25px"></a></td></tr></table><table width="100%" border="0" valign="center" align="center" ><tr><td align="center" ><a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass"><font color="#fff">Quando</font></a></td><td align="center" ><a data-role="button" id="da1" href="#" data-theme="b" class="bottoni1"><font color="#fff">&nbsp;Da&nbsp;</font></a></td><td align="center" ><a data-role="button" id="a1" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;A&nbsp;</font></a></td><td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;+&nbsp;</font></a></td><td align="center" ><a data-role="button" id="anteprima" href="#" data-theme="b" class="custom-pass"><font color="#fff">Anteprima</font></a></td></tr></table>';
+	controlText.innerHTML = '<br><table width="100%"><tr><td align="right"><a id="XX3" href="index.html" rel="external"><img src="img/xx.png" width="35px"></a><br></td></tr></table><table width="100%" border="0" valign="center" align="center" ><tr><td align="center" ><a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass"><font color="#fff">Quando</font></a></td><td align="center" ><a data-role="button" id="da1" href="#" data-theme="b" class="bottoni1"><font color="#fff">&nbsp;Da&nbsp;</font></a></td><td align="center" ><a data-role="button" id="a1" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;A&nbsp;</font></a></td><td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;+&nbsp;</font></a></td><td align="center" ><a data-role="button" id="anteprima" href="#" data-theme="b" class="custom-pass"><font color="#fff">Anteprima</font></a></td></tr></table>';
 	controlUI.appendChild(controlText);
 	
 	//var g = document.createElement('div');
@@ -542,11 +563,13 @@ function codeLatLng(lati,lngi) {
 					 
 					 if(localStorage.getItem("destination")==0){
 					   document.getElementById("viale").value = indirizzo;
-					 localStorage.setItem("viale", indirizzo)
+					   localStorage.setItem("viale", indirizzo)
+					   localStorage.setItem("vialeDA", latlng)
 					 }
 					 else{
 						document.getElementById("destinazione").value = indirizzo;
 					   localStorage.setItem("destinazione", indirizzo)
+					   localStorage.setItem("vialeA", latlng)
 					 }
 					 
 					   //localStorage.setItem("viale", indirizzo)
@@ -714,6 +737,10 @@ function deg2rad(deg) {
 
 function resetta1(focus) {
 	
+	var lat = localStorage.getItem("lat");
+	var lng = localStorage.getItem("lng");
+	
+	
 	//PRESS TO MARKER
 	$(function(){
    $(document).bind( "taphold", tapholdHandler );
@@ -736,7 +763,7 @@ function resetta1(focus) {
 		
 	$("#da").removeClass("bottoni").addClass("bottoni1");
 
-	//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+	var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
 	var lat = localStorage.getItem("lat");
 	var lng = localStorage.getItem("lng");
@@ -816,9 +843,33 @@ function resetta1(focus) {
 					});
 		
 		
-		codeLatLng(lat,lng);
+	if(localStorage.getItem("destination")==0){
 
-
+		
+		if (localStorage.getItem("viale") === null || localStorage.getItem("viale")=="null" || typeof(localStorage.getItem("viale")) == 'undefined' || localStorage.getItem("viale")==0 || localStorage.getItem("viale")=="") {
+			
+			codeLatLng(lat,lng);
+			
+		}
+		else{
+			 document.getElementById("viale").value = localStorage.getItem("viale");
+		}
+		
+	}
+	else{
+		
+		if (localStorage.getItem("destinazione") === null || localStorage.getItem("destinazione")=="null" || typeof(localStorage.getItem("destinazione")) == 'undefined' || localStorage.getItem("destinazione")==0 || localStorage.getItem("destinazione")=="") {
+			
+			codeLatLng(lat,lng);
+			
+		}
+		else{
+			document.getElementById("destinazione").value = localStorage.getItem("destinazione");
+		}
+	}
+		
+		
+		
 	   var centerControlDiv = document.createElement('div');
 	   centerControlDiv.setAttribute('id', 'sopra');
 	   var centerControl = new CenterControl(centerControlDiv, map);
@@ -940,412 +991,6 @@ function start() {
 
 
 
-function richiesta1() {
-	id = item1
-
-	$("#risp1").show();
-	$("#risp2").hide();
-	$("#gps22").hide();
-	$("#risp3").hide();
-	$("#gps3").hide();
-	
-	localStorage.setItem("id_richiesta", id)
-	
-	$("#blob2").show();
-	
-	$.ajax({
-		   type:"GET",
-		   url:"http://purplemiles.com/www2/check_richiesta_autista_id.php?email="+ localStorage.getItem("email") +"&lat="+ localStorage.getItem("lat") +"&lng="+ localStorage.getItem("lng") +"&id_richiesta="+ id +"&id_autista="+ localStorage.getItem("id_autista") +"",
-		   contentType: "application/json",
-		   //data: {ID: "Lazio"}, LIMIT 10
-		   timeout: 7000,
-		   jsonp: 'callback',
-		   crossDomain: true,
-		   success:function(result){
-		   
-		   $.each(result, function(i,item){
-				  
-				  if(item.Token==1){
-				  
-				  $("#nickblob").html("<font color='#cc33cc'>"+ item.nick +"</font>");
-				  localStorage.setItem("id_nick", item.nick)
-				  $("#nickhome3").html(item.nick);
-				  
-				  $("#quando").html("<b>Quando:</b><font color='#cc33cc'>"+ item.quando +", "+ item.ora +"</font>");
-				  
-				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ item.partenza +"</font>");
-				  
-				  $("#Ad").html("<b>Ad:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
-				  
-				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ item.distanza +"</font>");
-				  
-				  if(item.stato!=0){
-				    //alert(id)
-					$("#risp1").hide();
-				  }
-				  
-				  if(item.stato==2){
-				  //alert(item.stato)
-				  $("#gps1").show();
-				  
-				  $(document).on("tap", "#gps1", function(e){
-						//clearInterval(refreshIntervalId);
-						
-						//alert(item.lat+","+item.lng);
-						
-						var addressLongLat = item.lat+","+item.lng;
-	
-	//var refff = window.open("http://www.google.com/maps?q=220, Via Zoe Fontana, Roma", '_system');
-	//"http://maps.google.com/maps?daddr=41.929622,12.608878&dirflg=r"
-	window.open("google.navigation:q="+ addressLongLat +"&mode=d" , '_system');
-						
-						$("#blob2").hide();
-								 
-						e.stopImmediatePropagation();
-								 
-						e.preventDefault();
-								 
-						return false;
-								 
-					});
-				  
-				  }
-				  else{
-					$("#gps1").hide();
-				  }
-				  
-				  }
-				  else{
-				  //marker1.setMap(null);
-				  }
-				  
-			});
-		   
-		   
-		   },
-		   error: function(){
-		   
-		   navigator.notification.alert(
-										'Possibile errore di rete, riprova tra qualche minuto.',  // message
-										alertDismissed,         // callback
-										'Attenzione',           // title
-										'Done'                  // buttonName
-										);
-		   
-		   $("#blob2").show();
-		   
-		   },
-		   dataType:"jsonp"});
-	
-	
-	$("#close1").show();
-	$("#close2").hide();
-	$("#close3").hide();
-	
-	$("#xchiudi1").show();
-	$("#xchiudi2").hide();
-	$("#xchiudi3").hide();
-	
-	
-	$(document).on("tap", "#xchiudi1", function(e){
-		
-		$("#blob2").hide();
-		magia(1,id)
-		
-				   
-				   e.stopImmediatePropagation();
-				   
-				   e.preventDefault();
-				   
-				   return false;
-
-	});
-
-	$(document).on("tap", "#close1", function(e){
-		$("#pass1").hide();
-				   
-		$("#blob2").hide();
-		cancella(id)
-				   
-				   e.stopImmediatePropagation();
-				   
-				   e.preventDefault();
-				   
-				   return false;
-
-	});
-	
-	$(document).on("tap", "#risp1", function(e){
-				   
-				   $("#blob2").hide();
-				   $.mobile.changePage ($("#home3"));
-				   
-				   e.stopImmediatePropagation();
-				   
-				   e.preventDefault();
-				   
-				   return false;
-				   
-	});
-	
-}
-
-function richiesta2() {
-	id = item2
-	$("#risp1").hide();
-	$("#gps1").hide();
-	$("#risp2").show();
-	$("#risp3").hide();
-	$("#gps3").hide();
-	
-	//alert(2)
-	localStorage.setItem("id_richiesta", id)
-	
-	$("#blob2").show();
-	
-	$.ajax({
-		   type:"GET",
-		   url:"http://purplemiles.com/www2/check_richiesta_autista_id.php?email="+ localStorage.getItem("email") +"&lat="+ localStorage.getItem("lat") +"&lng="+ localStorage.getItem("lng") +"&id_richiesta="+ id +"&id_autista="+ localStorage.getItem("id_autista") +"",
-		   contentType: "application/json",
-		   //data: {ID: "Lazio"}, LIMIT 10
-		   timeout: 7000,
-		   jsonp: 'callback',
-		   crossDomain: true,
-		   success:function(result){
-		   
-		   $.each(result, function(i,item){
-				  
-				  if(item.Token==1){
-				  
-				  $("#nickblob").html("<font color='#cc33cc'>"+ item.nick +"</font>");
-				  
-				  $("#quando").html("<b>Quando:</b><font color='#cc33cc'>"+ item.quando +", "+ item.ora +"</font>");
-				  
-				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ item.partenza +"</font>");
-				  
-				  $("#Ad").html("<b>Ad:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
-				  
-				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ item.distanza +"</font>");
-				  
-				  if(item.stato!=0){
-					$("#risp2").hide();
-				  if(item.stato==2){
-				  //alert(item.stato)
-				  $("#gps22").show();
-				  
-				  $(document).on("tap", "#gps22", function(e){
-								 //clearInterval(refreshIntervalId);
-								 var addressLongLat = item.lat+","+item.lng;
-	
-	//var refff = window.open("http://www.google.com/maps?q=220, Via Zoe Fontana, Roma", '_system');
-	//"http://maps.google.com/maps?daddr=41.929622,12.608878&dirflg=r"
-	window.open("google.navigation:q="+ addressLongLat +"&mode=d" , '_system');
-	
-								 $("#blob2").hide();
-								 
-								 e.stopImmediatePropagation();
-								 
-								 e.preventDefault();
-								 
-								 return false;
-								 
-								 });
-				  
-				  }
-				  }
-
-				  
-				  }
-				  else{
-				  //marker1.setMap(null);
-				  }
-				  
-						});
-		   
-		   
-		   },
-		   error: function(){
-		   
-		   navigator.notification.alert(
-										'Possibile errore di rete, riprova tra qualche minuto.',  // message
-										alertDismissed,         // callback
-										'Attenzione',           // title
-										'Done'                  // buttonName
-										);
-		   
-		   $("#blob2").show();
-		   
-		   },
-		   dataType:"jsonp"});
-	
-	$("#close2").show();
-	$("#close1").hide();
-	$("#close3").hide();
-	
-	$("#xchiudi2").show();
-	$("#xchiudi1").hide();
-	$("#xchiudi3").hide();
-	
-	
-	
-	$(document).on("tap", "#xchiudi2", function(e){
-				   clearInterval(refreshIntervalId);
-				   $("#blob2").hide();
-				   magia(2,id)
-				   
-				   });
-
-	$(document).on("tap", "#close2", function(e){
-	$("#pass2").hide();
-	$("#blob2").hide();
-	cancella(id)
-	
-		
-	e.stopImmediatePropagation();
-		
-	e.preventDefault();
-		
-	return false;
-	});
-	
-	$(document).on("tap", "#risp2", function(e){
-				   $("#blob2").hide();
-				    $.mobile.changePage ($("#home3"));
-				   
-				   });
-	
-}
-
-function richiesta3() {
-	id = item3
-	$("#risp3").show();
-	$("#risp2").hide();
-	$("#gps22").hide();
-	$("#risp1").hide();
-	$("#gps1").hide();
-	
-	//alert(2)
-	localStorage.setItem("id_richiesta", id)
-	
-	$("#blob2").show();
-	
-	$.ajax({
-		   type:"GET",
-		   url:"http://purplemiles.com/www2/check_richiesta_autista_id.php?email="+ localStorage.getItem("email") +"&lat="+ localStorage.getItem("lat") +"&lng="+ localStorage.getItem("lng") +"&id_richiesta="+ id +"&id_autista="+ localStorage.getItem("id_autista") +"",
-		   contentType: "application/json",
-		   //data: {ID: "Lazio"}, LIMIT 10
-		   timeout: 7000,
-		   jsonp: 'callback',
-		   crossDomain: true,
-		   success:function(result){
-		   
-		   $.each(result, function(i,item){
-				  
-				  if(item.Token==1){
-				  
-				  $("#nickblob").html("<font color='#cc33cc'>"+ item.nick +"</font>");
-				  
-				  $("#quando").html("<b>Quando:</b><font color='#cc33cc'>"+ item.quando +", "+ item.ora +"</font>");
-				  
-				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ item.partenza +"</font>");
-				  
-				  $("#Ad").html("<b>Ad:</b><font color='#cc33cc'>"+ item.arrivo +"</font>");
-				  
-				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ item.distanza +"</font>");
-				  
-				  if(item.stato!=0){
-				    $("#risp3").hide();
-				  }
-				  
-				  if(item.stato==2){
-				  //alert(item.stato)
-				  $("#gps3").show();
-				  
-				  $(document).on("tap", "#gps3", function(e){
-								 //clearInterval(refreshIntervalId);
-								 var addressLongLat = item.lat+","+item.lng;
-	
-	//var refff = window.open("http://www.google.com/maps?q=220, Via Zoe Fontana, Roma", '_system');
-	//"http://maps.google.com/maps?daddr=41.929622,12.608878&dirflg=r"
-	window.open("google.navigation:q="+ addressLongLat +"&mode=d" , '_system');
-	
-								 $("#blob2").hide();
-								 
-								 e.stopImmediatePropagation();
-								 
-								 e.preventDefault();
-								 
-								 return false;
-								 
-								 });
-				  
-				  }
-				  else{
-				  $("#gps2").hide();
-				  }
-				  
-				  }
-				  else{
-				  //marker1.setMap(null);
-				  }
-				  
-						});
-		   
-		   
-		   },
-		   error: function(){
-		   
-		   /*navigator.notification.alert(
-										'Possibile errore di rete, riprova tra qualche minuto.',  // message
-										alertDismissed,         // callback
-										'Attenzione',           // title
-										'Done'                  // buttonName
-										);
-		   
-		   $("#blob2").show();*/
-		   
-		   },
-		   dataType:"jsonp"});
-	
-	$("#close3").show();
-	$("#close2").hide();
-	$("#close1").hide();
-	
-	$("#xchiudi3").show();
-	$("#xchiudi2").hide();
-	$("#xchiudi1").hide();
-	
-	
-	$(document).on("tap", "#xchiudi3", function(e){
-				   clearInterval(refreshIntervalId);
-				   $("#blob2").hide();
-				   magia(3,id)
-
-				   });
-	
-	$(document).on("tap", "#close3", function(e){
-				   $("#pass3").hide();
-				   $("#blob2").hide();
-				   
-				   cancella(id)
-
-				   e.stopImmediatePropagation();
-				   
-				   e.preventDefault();
-				   
-				   return false;
-
-				   });
-	
-	$(document).on("tap", "#risp3", function(e){
-				   $("#blob2").hide();
-				   $.mobile.changePage ($("#home3"));
-
-				   });
-	
-}
-
-
 function inviopasseggero(come){
 	
 	if(come==1){
@@ -1438,6 +1083,13 @@ function inviopasseggero(come){
 
 function vediofferte(){
 	$("#offerte4").html("");
+	$("#timer2").show();
+	//alert("Vedo");
+	
+	for(i=0; i<10000; i++)
+	{
+		window.clearInterval(i);
+	}
 	
 	//alert("http://purplemiles.com/www2/check_richiesta_passeggero.php?email="+ localStorage.getItem("emailpass") +"&id_passeggero="+ localStorage.getItem("id_pass") +"&latitudine="+ localStorage.getItem("lat") +"&longitudine="+ localStorage.getItem("lng") +"")
 	
@@ -1457,19 +1109,83 @@ function vediofferte(){
 				  
 				  if(item.stato==2){
 				  
-				    $("#offerte4").append("<br><table height='100%' width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass2'>"+ item.nick +"</div><img src='img/stelle.png' width='80'><br><b>Prezzo:</b>"+ item.importo +"<br><b>Partenza:</b>"+ item.partenza +"</td></tr><tr><td align='center'><a id='accetta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>ACCETTA</font></a>&nbsp;&nbsp;<a id='rifiuta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr><tr><td align='center'><br></td></tr></table>");
 				  
-				  $(document).on("touchstart", "#accetta"+ item.id_richiesta +"_"+ item.id_autista + "", function(e){
-								 accettaofferta(2,item.id_richiesta,item.id_autista)
-								 if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
-								 });
+				  if(item.accettata==1){
+				    $("#offerte4").append("<br><table height='100%' width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass2'>"+ item.nick +"</div><img src='img/stelle.png' width='80'><br><font color='#cc33cc' size='5'><b><div id='timer2'></div></b></font><br><b>Prezzo:</b>"+ item.importo +"<br><b>Quando:</b>"+ item.quando +"<br><br><b>Partenza:</b>"+ item.partenza +"<br><b>Arrivo:</b>"+ item.arrivo +"</td></tr><tr><td align='center'><a id='rifiuta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr><tr><td align='center'><br></td></tr></table>");
+				  }
+				  else{
+				    $("#offerte4").append("<br><table height='100%' width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass11'>"+ item.nick +"</div><img src='img/stelle.png' width='80'><br><font color='#cc33cc' size='5'><b><div id='timer2'></div></b></font><br><b>Prezzo:</b>"+ item.importo +"<br><b>Quando:</b>"+ item.quando +"<br><br><b>Partenza:</b>"+ item.partenza +"<br><b>Arrivo:</b>"+ item.arrivo +"</td></tr><tr><td align='center'><a id='accetta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>ACCETTA</font></a>&nbsp;&nbsp;<a id='rifiuta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr><tr><td align='center'><br></td></tr></table>");
+				  }
 				  
-				  $(document).on("touchstart", "#rifiuta"+ item.id_richiesta +"_"+ item.id_autista + "", function(e){
-								 accettaofferta(3,item.id_richiesta,item.id_autista)
-								 if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
-								 });
+				    $(document).on("touchstart", "#accetta"+ item.id_richiesta +"_"+ item.id_autista + "", function(e){
+					  accettaofferta(2,item.id_richiesta,item.id_autista)
+					  if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				    });
+				  
+					$(document).on("touchstart", "#rifiuta"+ item.id_richiesta +"_"+ item.id_autista + "", function(e){
+						accettaofferta(3,item.id_richiesta,item.id_autista)
+						if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				    });
+				  
+				  if(item.stato==2){
+				  
+				  if(item.accettata==0){
+				  
+				  if(item.confermata==0){
+				  
+				   for(i=0; i<10000; i++)
+				   {
+				    window.clearInterval(i);
+				   }
+				  
+				   localStorage.setItem("accettato","0")
+				  
+				   refreshPos = setInterval(function() {
+										   
+					 controllaseautistaaccetta(item.id_richiesta,item.id_autista);
+										   
+				   }, 5000);
 
+
+				   function countdown2(minutes) {
+				   var seconds = 40;
+				   var mins = minutes
+				   function tick() {
+				   var counter = document.getElementById("timer2");
+				   var current_minutes = 0;
+				   seconds--;
+				   counter.innerHTML =
+				   current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+				   if( seconds > 0 ) {
+				   setTimeout(tick, 1000);
+				   } else {
 				  
+				     $("#timer2").hide();
+				     //vediofferte()
+				  
+				     for(i=0; i<10000; i++)
+				    {
+				     window.clearInterval(i);
+				    }
+
+				     scadutaofferta(0,item.id_richiesta,item.id_autista)
+					 return false;
+
+					 // countdown(mins-1);   never reach “00″ issue solved:Contributed by Victor Streithorst
+					 //setTimeout(function () { countdown(mins - 1); }, 1000);
+				  
+				   //}
+				   }
+				   }
+				   tick();
+				   }
+				  
+				   countdown2(0);
+				  }
+				  
+				  }
+				  
+				  }
 				  
 				  }
 				   if(item.stato==1){
@@ -1512,7 +1228,62 @@ function vediofferte(){
 		   
 		   },
 		   dataType:"jsonp"});
+	
+	
+	refreshPos = setInterval(function() {
+		vediofferte()
+	}, 5000);
+	
+	//setTimeout( function() {
+		//vediofferte()
+	//}, 5000 );
+
+	
 }
+
+function controllaseautistaaccetta(id_richiesta,id_autista){
+	
+	$.ajax({
+		   type:"GET",
+		   url:"http://purplemiles.com/www2/check_controllaseaccettata.php?id_richiesta="+ id_richiesta +"&id_autista="+ id_autista +"",
+		   contentType: "application/json",
+		   //data: {ID: "Lazio"}, LIMIT 10
+		   timeout: 7000,
+		   jsonp: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   $.each(result, function(i,item){
+				  
+				if(item.accettata==1){
+				  
+				  for(i=0; i<10000; i++)
+				  {
+				     window.clearInterval(i);
+				  }
+				  
+				  vediofferte()
+				}
+				  
+			});
+		   
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		   
+		   onResume();
+		   
+		   },
+		   dataType:"jsonp"});
+}
+
 
 function accettaofferta(id,id_richiesta,id_autista){
 	
@@ -1532,15 +1303,7 @@ function accettaofferta(id,id_richiesta,id_autista){
 				  
 				  if(item.Token==1){
 				  
-				    navigator.notification.alert(
-											   'Richiesta Elaborata.',  // message
-											   alertDismissed,         // callback
-											   'OK',           // title
-											   'Done'                  // buttonName
-											   );
-				  
-				  
-				  vediofferte()
+				    vediofferte()
 				  }
 				  
 			});
@@ -1562,13 +1325,54 @@ function accettaofferta(id,id_richiesta,id_autista){
 		   dataType:"jsonp"});
 }
 
+function scadutaofferta(id,id_richiesta,id_autista){
+	
+	//alert("http://purplemiles.com/www2/check_confermapasseggero.php?conferma="+ id +"&id_richiesta="+ id_richiesta +"&id_autista="+ id_autista +"")
+	
+	$.ajax({
+		   type:"GET",
+		   url:"http://purplemiles.com/www2/check_confermapasseggeroS1A.php?conferma="+ id +"&id_richiesta="+ id_richiesta +"&id_autista="+ id_autista +"",
+		   contentType: "application/json",
+		   //data: {ID: "Lazio"}, LIMIT 10
+		   timeout: 7000,
+		   jsonp: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   $.each(result, function(i,item){
+				  
+				  if(item.Token==1){
+
+				  vediofferte()
+				  }
+				  
+				  });
+		   
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		   
+		   onResume();
+		   
+		   },
+		   dataType:"jsonp"});
+}
+
+
 function mostracal(){
 	
 	var options = {
 		
 	date: new Date(),
 		
-	mode: 'date',
+	mode: 'datetime',
 		
 	doneButtonLabel: 'OK',
 	doneButtonColor: '#000000',

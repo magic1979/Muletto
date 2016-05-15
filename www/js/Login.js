@@ -18,6 +18,11 @@ function onDeviceReady() {
 				   
 				   });
 	
+	$(document).keydown(function (eventObj){
+		getKey(eventObj);
+	});
+	
+	
 
 		document.addEventListener("showkeyboard", function(){ $("[data-role=footer]").hide();}, false);
 		document.addEventListener("hidekeyboard", function(){ $("[data-role=footer]").show();}, false);
@@ -43,6 +48,8 @@ function onDeviceReady() {
 			//document.getElementById("email").value = "F10620"
 			//document.getElementById("password").value = "ivQ0MQ4N"
 			
+			var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+			
 			document.getElementById("email").value = localStorage.getItem("email2")
 			
 			$(".spinner").hide();
@@ -58,7 +65,25 @@ function onDeviceReady() {
                  );
 		}
     }
-	
+
+function getKey(key){
+ if ( key == null ) {
+ keycode = event.keyCode;
+ 
+ } else {
+ keycode = key.keyCode;
+ }
+ 
+ if (keycode ==13){
+	 
+   setTimeout(function() {
+	 login();
+   }, 1300);
+ 
+ }
+ 
+ }
+
 
 function verificawifi(){
 	$("#verifica").click();
@@ -293,6 +318,54 @@ function iscriviti(){
 function alertDismissed() {
 	
 }
+
+
+function gpsonSuccess(position){
+	
+	
+	var ciao = position.coords.latitude;
+	var ciao1 = position.coords.longitude;
+	var gradi = position.coords.heading;
+	
+	localStorage.setItem("lat", ciao)
+	localStorage.setItem("lng", ciao1)
+	localStorage.setItem("gradi", gradi)
+	
+	localStorage.setItem("geostory", "SI")
+	
+	/*alert('Latitude: '          + position.coords.latitude          + '\n' +
+	 'Longitude: '         + position.coords.longitude         + '\n' +
+	 'Altitude: '          + position.coords.altitude          + '\n' +
+	 'Accuracy: '          + position.coords.accuracy          + '\n' +
+	 'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+	 'Heading: '           + position.coords.heading           + '\n' +
+	 'Speed: '             + position.coords.speed             + '\n' +
+	 'Timestamp: '         + position.timestamp                + '\n');*/
+	
+	
+	//$("#distanza").html("<span style = 'font-size: 18px;'>"+ position.coords.speed +","+ position.coords.heading  +"</span>");
+	
+	
+}
+
+
+function gpsonError(){
+	
+	var lat = "41.889191";
+	var lng = "12.492475";
+	
+	localStorage.setItem("lat", lat)
+	localStorage.setItem("lng", lng)
+	
+	navigator.notification.alert(
+								 'Possibile errore GPS, assicurati di avere il gps del telefono attivato.',  // message
+								 alertDismissed,         // callback
+								 'Attenzione',           // title
+								 'Done'                  // buttonName
+								 );
+	
+}
+
 
 
 

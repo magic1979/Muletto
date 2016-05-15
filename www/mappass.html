@@ -567,6 +567,8 @@
     <body>
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/mappass.js"></script>
+		<script type='application/javascript' src='js/fastclick.js'></script>
+		
         <div id="geolocation"></div>
         
 <div data-role=page id=home class="div2">
@@ -600,10 +602,10 @@
 
   <form name="formia" action="entra.asp" method="post">
 	<table id="spazioipad" height="30px"><tr><td></td></tr></table>
-	<table id="tblhome" width="90%" height="" border="0" valign="center" align="center" class="tabella">
+	<table id="tblhome" width="90%" height="" border="0" valign="center" align="center" class="tabella" style="display:none">
 		<tr>
 			<td width="100%" align="right" colspan="4">
-				<a id="XX3" href="#" rel="external"><img src="img/xx.png" width="25px"></a>
+				<a id="XX3" href="#" rel="external"><img src="img/xx.png" width="35px"></a>
 			</td>
 		</tr>
 		<tr>
@@ -734,7 +736,7 @@
 				<tr>
 					<td width="100%" align="left">
 						<table align="center" width="220px" class="tabella"><tr><td width="220px" align="center">
-						  <input id="viale" name="viale" type="text" value="" class="scrivo">
+						  <input id="viale" name="viale" type="text" value="" class="scrivo" placeholder="partenza">
 					      <input id="destinazione" name="destinazione" type="text" class="scrivo" value="" placeholder="destinazione" style="display:none">
 						</td></tr>
 					   </table>
@@ -877,6 +879,8 @@
 			 </div>-->
 			
 		</div>
+		
+		
 		
 
     </body>
