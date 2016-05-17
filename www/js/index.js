@@ -285,6 +285,10 @@ receivedEvent: function(id) {
 				   $("#btnGPS").removeClass("custom-btn3").addClass("custom-btnGPS");
 				   $("#Modifica").removeClass("custom-btnModifica").addClass("custom-btn3");
 				   
+				   
+				   buttongps();
+				   
+				   
 				   e.stopImmediatePropagation();
 				   
 				   e.preventDefault();
@@ -299,6 +303,8 @@ receivedEvent: function(id) {
 				   setGPS = 1;
 				   localStorage.setItem("setGPS","1")
 				   
+				   
+				   document.getElementById("modificastart").value = "";
 				   $("#modificastart").show();
 				   
 				   $("#btnGPS").removeClass("custom-btnGPS").addClass("custom-btn3");
@@ -417,6 +423,21 @@ receivedEvent: function(id) {
 	});
 	
 	$(document).on("touchstart", "#inizia", function(e){
+				   
+				   if(localStorage.getItem("setGPS") == 1){
+				   
+				     if (document.getElementById("modificastart").value == "") {
+				         navigator.notification.alert(
+												'inserire Indirizzo Valido o usare il GPS',  // message
+												alertDismissed,         // callback
+												'Indirizzo',            // title
+												'OK'                  // buttonName
+												);
+				   
+				         return;
+				       }
+				   }
+				   
 				   start();
 				   e.stopImmediatePropagation();
 				   
@@ -425,7 +446,7 @@ receivedEvent: function(id) {
 				   return false;
 				   
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
-				   });
+	});
 	
 	$(document).on("touchstart", "#back3", function(e){
 		inviopasseggero(3);
@@ -641,6 +662,42 @@ function CenterControl2(controlDiv, map) {
 	//alert();
 	//map.setCenter(chicago);
 	//});
+	
+}
+
+
+
+function onSuccess555(position) {
+	
+	var lat = position.coords.latitude;
+	var lng = position.coords.longitude;
+	
+	localStorage.setItem("lat", lat)
+	localStorage.setItem("lng", lng)
+	
+	var latlng = new google.maps.LatLng(lat, lng);
+	
+	marker2.setPosition(latlng);
+	
+	map.panTo(latlng);
+	
+}
+
+
+function onError555(error) {
+	//var watchID = navigator.geolocation.watchPosition(onSuccess2, onError3, { timeout: 80000 });
+	//navigator.geolocation.watchPosition(onSuccess555, onError565, {timeout: 50000, enableHighAccuracy: false, maximumAge: 0 });
+}
+
+function onError565(error) {
+	
+	//window.location.href = "index.html";
+}
+
+
+function buttongps(){
+	
+	var watchID15 = navigator.geolocation.getCurrentPosition(onSuccess555, onError555, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
 }
 
@@ -1361,7 +1418,7 @@ function resetta1(focus) {
 				if(localStorage.getItem("tappato")=="0"){
 				  if(localStorage.getItem("setGPS") == 1){
 					if (isTabHolded){
-						var icon = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
+						var icon = new google.maps.MarkerImage("img/autista.png", null, null, new google.maps.Point(25, 25), new google.maps.Size(50,50));
 						
 						marker2.setMap(null);
 						
@@ -3206,6 +3263,7 @@ function casa(){
 
 function start() {
 	//chiamo e setto a 1 lo stato dell'autista (ok lavoro)
+	
 	$("#setGPS").hide();
 	$("#Modifica").hide();
 	

@@ -620,6 +620,13 @@
 			</td>
 		</tr>
 		<tr>
+			<td width="100%" align="center" colspan="4"> o
+				<!--<a data-role="button" id="oggi" href="#" data-theme="b" class="custom-pass">Oggi</a><br>-->
+				<!--<a data-role="button" id="domani" href="#" data-theme="b" class="custom-pass">Domani</a>-->
+			</td>
+		</tr>
+		
+		<tr>
 			<td width="25%" align="center" >
 				<font size="4">Alle</font>
 			</td>
@@ -633,15 +640,10 @@
 				<img src="img/clock.png" width="30">
 			</td>
 		</tr>
-		<tr>
-			<td width="100%" align="center" colspan="4">
-				<a data-role="button" id="oggi" href="#" data-theme="b" class="custom-pass">Oggi</a><br>
-				<a data-role="button" id="domani" href="#" data-theme="b" class="custom-pass">Domani</a>
-			</td>
-		</tr>
+
 		<tr>
 			<td width="75%" align="center" colspan="3">
-				<input id="datacal" name="datacal" type="text" value="" placeholder="data">
+				<input id="datacal" name="datacal" type="text" value="" placeholder="data" readonly>
 			</td>
 			<td width="25%" align="center" colspan="1">
 				<img id="imgcalendario" src="img/calendar.png" width="30">
@@ -772,7 +774,7 @@
 					</td>
 				</tr>
 			</table>
-			
+			<table id="spazioipad" height="30px"><tr><td></td></tr></table>
 			<div data-role=content class="div2">
 
 			</div>
@@ -783,60 +785,64 @@
 			
 			<table id="tblhome3" width="90%" height="" border="0" valign="center" align="center" class="tabella">
 				<tr>
-					<td width="80%" align="center" colspan="2">
-						<br><b>ANTEPRIMA</b><br>
-					</td>
-				</tr>
-				
-				<tr>
-					<td width="80%" align="center" colspan="2">
-						<input id="viale3" name="viale3" type="text" value="">
+					<td width="100%" align="center" colspan="2">
+						<br><!--<b>ANTEPRIMA</b>-->
 					</td>
 				</tr>
 				<tr>
-					<td width="80%" align="center" >
-						<input id="destinazione3" name="destinazione3" type="text" value="" placeholder="destinazione" >
+					<td width="100%" align="left" colspan="2">
+						<input id="datacal3" name="datacal3" type="hidden" value="" readonly><input id="orario3" name="orario3" type="hidden" value="" readonly><input id="minuti3" name="minuti3" type="hidden" value="" readonly>
+						<div id="posticipata"></div>
 					</td>
 				</tr>
 				<tr>
-					<td width="80%" align="center" >
+					<td width="100%" align="left" colspan="2">
+						Partenza<br><input id="viale3" name="viale3" type="text" value="">
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="left" colspan="2">
+						Arrivo<br><input id="destinazione3" name="destinazione3" type="text" value="" placeholder="destinazione" >
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="center" >
 						<input id="passeggeri" name="passeggeri" type="text" value="" placeholder="passeggeri">
 					</td>
-				</tr>
-				<tr>
-					<td width="80%" align="center" >
+					<td width="50%" align="center" >
 						<input id="fumatori" name="fumatori" type="text" value="" placeholder="fumatori">
 					</td>
 				</tr>
+
 				<tr>
-					<td width="80%" align="center" >
+					<td width="50%" align="center" >
 						<input id="animali" name="animali" type="text" value="" placeholder="animali">
 					</td>
-				</tr>
-				<tr>
-					<td width="80%" align="center" >
+					<td width="50%" align="center" >
 						<input id="meno18" name="meno18" type="text" value="" placeholder="meno 18 anni">
 				   </td>
 				</tr>
-				<tr>
-					<td width="80%" align="center" >
-						<input id="disabili" name="disabili" type="text" value="" placeholder="disabili">
-					</td>
-				</tr>
-				<tr>
-					<td width="80%" align="center" >
-						<input id="bambini" name="bambini" type="text" value="" placeholder="bambini">
-							</td>
-				</tr>
-				<tr>
-					<td width="80%" align="center" >
-						<input id="wifi" name="wifi" type="text" value="" placeholder="wifi">
-					</td>
-				</tr>
-				
-				
+
 				<tr>
 					<td width="50%" align="center" >
+						<input id="disabili" name="disabili" type="text" value="" placeholder="disabili">
+					</td>
+					<td width="50%" align="center" >
+						<input id="bambini" name="bambini" type="text" value="" placeholder="bambini">
+					</td>
+				</tr>
+				<tr>
+					<td width="50%" align="center" >
+						<input id="wifi" name="wifi" type="text" value="" placeholder="wifi">
+					</td>
+					<td width="50%" align="center" >
+						
+					</td>
+				</tr>
+				
+				
+				<tr>
+					<td width="100%" align="center" colspan="2">
 						<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4">Invia</a>
 					</td>
 				</tr>

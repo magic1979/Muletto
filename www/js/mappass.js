@@ -83,8 +83,24 @@ function onDeviceReady() {
 				   });
 	
 	$(document).on("tap", "#adesso", function(e){
-	 onResume();
-	 if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   localStorage.setItem("destination", "0")
+				   
+				   $("#viale").show();
+				   $("#destinazione").hide();
+				   
+				   $("#da").removeClass("bottoni").addClass("bottoni1");
+				   $("#a").removeClass("bottoni1").addClass("bottoni");
+				   
+	               onResume();
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
 	});
 	
 	$(document).on("touchstart", "#quando", function(e){
@@ -211,15 +227,15 @@ function onDeviceReady() {
 		
 	}
 	
+	
 	$(document).on("touchstart", "#back3", function(e){
-		//alert("http://purplemiles.com/www2/check_richiesta.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"")
 		
-		
+		if(document.getElementById("datacal3").value == "ORA"){
+
 		$.ajax({
 			   type:"GET",
 			   url:"http://purplemiles.com/www2/check_richiesta3.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"",
 			   contentType: "application/json",
-			   //data: {ID: "Lazio"}, LIMIT 10
 			   timeout: 7000,
 			   jsonp: 'callback',
 			   crossDomain: true,
@@ -230,16 +246,15 @@ function onDeviceReady() {
 				  if(item.Token==1){
 					  
 					  navigator.notification.alert(
-					   'Richiesta Inviata',  // message
-					   alertDismissed,         // callback
-					   'OK',           // title
-					   'Done'                  // buttonName
+					   'Richiesta Inviata',
+					   alertDismissed,
+					   'OK',
+					   'Done'
 					   );
 					  
 					  $("#btnofferte").show();
 					  $.mobile.changePage( "#home", { transition: "slide", changeHash: false });
 					  
-					  //vediofferte()
 					  e.stopImmediatePropagation();
 				   
 				      e.preventDefault();
@@ -256,24 +271,132 @@ function onDeviceReady() {
 			   error: function(){
 			   
 			   navigator.notification.alert(
-				'Possibile errore di rete, riprova tra qualche minuto.',  // message
-				alertDismissed,         // callback
-				'Attenzione',           // title
-				'Done'                  // buttonName
+				'Possibile errore di rete, riprova tra qualche minuto.',
+				alertDismissed,
+				'Attenzione',
+				'Done'
 				);
 				
 				onResume();
 			   
 			   },
 			   dataType:"jsonp"});
+			}
+			else{
+				   //alert("http://purplemiles.com/www2/check_richiesta_pos.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"&data="+ document.getElementById("datacal3").value +"&ora="+ document.getElementById("orario3").value +"&minuti="+ document.getElementById("minuti3").value +"")
+				   
+				   //alert(document.getElementById("datacal3").value)
+				   
+				   
+				   $.ajax({
+						  type:"GET",
+						  url:"http://purplemiles.com/www2/check_richiesta_pos.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"&data="+ document.getElementById("datacal3").value +"&ora=08&minuti=00",
+						  contentType: "application/json",
+						  timeout: 7000,
+						  jsonp: 'callback',
+						  crossDomain: true,
+						  success:function(result){
+						  
+						  $.each(result, function(i,item){
+								 
+								 if(item.Token==1){
+								 
+								 navigator.notification.alert(
+															  'Richiesta Inviata',
+															  alertDismissed,
+															  'OK',
+															  'Done'
+															  );
+								 
+								 $("#btnofferte").show();
+								 $.mobile.changePage( "#home", { transition: "slide", changeHash: false });
+								 
+								 e.stopImmediatePropagation();
+								 
+								 e.preventDefault();
+								 
+								 return false;
+								 
+								 if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+								 }
+								 
+								 });
+						  
+						  
+						  },
+						  error: function(){
+						  
+						  navigator.notification.alert(
+													   'Possibile errore di rete, riprova tra qualche minuto.',
+													   alertDismissed,
+													   'Attenzione',
+													   'Done'
+													   );
+						  
+						  onResume();
+						  
+						  },
+						  dataType:"jsonp"});
+				   
+			}
 		
 	});
 	
+	
+	
+	$(document).on("touchstart", "#inviarichiesta", function(e){
+				   
+				   if (document.getElementById("datacal").value == "") {
+				    navigator.notification.alert(
+							'inserire una data valida',  // message
+							alertDismissed,         // callback
+							'Data',            // title
+							'OK'                  // buttonName
+					);
+				   return;
+				   }
+				   
+				   localStorage.setItem("destination", "0")
+				   
+				   $("#viale").show();
+				   $("#destinazione").hide();
+				   
+				   $("#da").removeClass("bottoni").addClass("bottoni1");
+				   $("#a").removeClass("bottoni1").addClass("bottoni");
+				   
+				   onResume();
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+	});
+
 
 	
 	$(document).on("tap", "#anteprima", function(e){
 		localStorage.setItem("viale", document.getElementById("viale").value);
 		localStorage.setItem("destinazione", document.getElementById("destinazione").value);
+				   
+		localStorage.setItem("datacal", document.getElementById("datacal").value);
+		localStorage.setItem("orario", document.getElementById("Orario").value);
+		localStorage.setItem("minuti", document.getElementById("Minuti").value);
+				   
+				  
+				   
+				   if(document.getElementById("datacal").value==""){
+				     document.getElementById("datacal3").value = "ORA";
+				   }
+				   else{
+				     document.getElementById("datacal3").value = document.getElementById("datacal").value;
+				     document.getElementById("orario3").value = document.getElementById("Orario").value;
+				     document.getElementById("minuti3").value = document.getElementById("Minuti").value;
+				   }
+				   
+				   
 		document.getElementById("viale3").value = document.getElementById("viale").value;
 		document.getElementById("destinazione3").value = document.getElementById("destinazione").value;
 				   
@@ -298,6 +421,9 @@ function onDeviceReady() {
 		    
 				   return;
 		}
+				   
+	    
+		$("#posticipata").html(" <b>Quando:</b> " + document.getElementById("datacal3").value + "<br> <b>Ora:</b>" + document.getElementById("orario3").value + " " + document.getElementById("minuti3").value);
 
 				   
 		$.mobile.changePage ($("#home3"));
@@ -765,9 +891,6 @@ function resetta1(focus) {
 
 	var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
-	var lat = localStorage.getItem("lat");
-	var lng = localStorage.getItem("lng");
-	
 	//$("#btn").click();
 	//marker.setMap(null);
 	//ido.setVisible(false);
@@ -778,6 +901,9 @@ function resetta1(focus) {
 	//localStorage.setItem("lat", lat)
     //localStorage.setItem("lng", lng)
 	//ido.setPosition(latlng);
+		
+	var lat = localStorage.getItem("lat");
+	var lng = localStorage.getItem("lng");
 
 	
 	var latlng = new google.maps.LatLng(lat, lng, 1);
@@ -1372,7 +1498,7 @@ function mostracal(){
 		
 	date: new Date(),
 		
-	mode: 'datetime',
+	mode: 'date',
 		
 	doneButtonLabel: 'OK',
 	doneButtonColor: '#000000',
@@ -1398,7 +1524,9 @@ function mostracal(){
 					var datta11 = datta10.replace("Jul","Luglio")
 					var datta12 = datta11.replace("Aug","Agosto")
 					
-		document.getElementById("datacal").value = datta12
+		//document.getElementById("datacal").value = datta12
+		
+		document.getElementById("datacal").value = datta
 					
 	});
 }
