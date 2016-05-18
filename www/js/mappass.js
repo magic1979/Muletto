@@ -302,7 +302,7 @@ function onDeviceReady() {
 				   
 				   $.ajax({
 						  type:"GET",
-						  url:"http://purplemiles.com/www2/check_richiesta_pos.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"&data="+ document.getElementById("datacal3").value +"&ora=08&minuti=00&passeggeri="+ passeggeri +"&animali="+ animali +"&fumatori="+ fumatori +"&meno18="+ meno18 +"&disabili="+ disabili +"&bambini="+ bambini +"&wifi="+ wifi +"&portapacchi="+ portapacchi +"",
+						  url:"http://purplemiles.com/www2/check_richiesta_pos.php?email="+ localStorage.getItem("emailpass") +"&indirizzo="+ document.getElementById("viale3").value +"&indirizzo2="+ document.getElementById("destinazione3").value +"&data="+ document.getElementById("datacal3").value +"&ora="+ document.getElementById("Orario").value +"&minuti="+ document.getElementById("Minuti").value +"&passeggeri="+ passeggeri +"&animali="+ animali +"&fumatori="+ fumatori +"&meno18="+ meno18 +"&disabili="+ disabili +"&bambini="+ bambini +"&wifi="+ wifi +"&portapacchi="+ portapacchi +"",
 						  contentType: "application/json",
 						  timeout: 7000,
 						  jsonp: 'callback',
@@ -409,7 +409,7 @@ function onDeviceReady() {
 
 
 	
-	$(document).on("tap", "#anteprima", function(e){
+		$(document).on("tap", "#anteprima", function(e){
 		localStorage.setItem("viale", document.getElementById("viale").value);
 		localStorage.setItem("destinazione", document.getElementById("destinazione").value);
 				   
@@ -585,7 +585,7 @@ function CenterControl(controlDiv, map) {
 	controlText.style.paddingLeft = '5px';
 	controlText.style.paddingRight = '5px';
 	//controlText.innerHTML = '<br><table width="100%"><tr><td align="right"><a id="XXX" href="index.html" rel="external"><img src="img/xx.png" width="25px"></a></td></tr></table><table width="100%" align="center"><tr><td align="center" width="50%">DA</td><td align="center" width="50%">A</td></tr><tr><td align="center" width="50%"><input id="viale" name="viale" type="text" value="'+ localStorage.getItem("Via") +'"></td></tr><tr><td align="center" width="50%"><input id="citta" name="citta" type="text" value="Roma"></td></tr></table>';
-	controlText.innerHTML = '<table width="100%" class="xalto"><tr><td align="right">&nbsp;</td></tr><tr><td align="right"><a id="XX3" href="index.html" rel="external"><img src="img/xx.png" width="35px"></a><br></td></tr></table><br><table width="100%" border="0" valign="center" align="center" ><tr><td align="center" ><a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass"><font color="#fff">Quando</font></a></td><td align="center" ><a data-role="button" id="da1" href="#" data-theme="b" class="bottoni1"><font color="#fff">&nbsp;Da&nbsp;</font></a></td><td align="center" ><a data-role="button" id="a1" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;A&nbsp;</font></a></td><td align="center" ><a data-role="button" id="anteprima" href="#" data-theme="b" class="custom-pass"><font color="#fff">Anteprima</font></a></td></tr></table>';
+	controlText.innerHTML = '<table width="100%" class="xalto"><tr><td align="right">&nbsp;</td></tr><tr><td align="right"><a id="XX3" href="index.html" rel="external"><img src="img/xx.png" width="35px"></a><br></td></tr></table><br><table width="100%" border="0" valign="center" align="center" ><tr><td align="center" ><a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass"><font color="#fff">Quando</font></a></td><td align="center" ><a data-role="button" id="da1" href="#" data-theme="b" class="bottoni1"><font color="#fff">&nbsp;Da&nbsp;</font></a></td><td align="center" ><a data-role="button" id="a1" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;A&nbsp;</font></a></td><td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;+&nbsp;</font></a></td><td align="center" ><a data-role="button" id="anteprima" href="#" data-theme="b" class="custom-pass"><font color="#fff">Anteprima</font></a></td></tr></table>';
 	controlUI.appendChild(controlText);
 	
 	//<td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;+&nbsp;</font></a></td>
@@ -923,17 +923,17 @@ function resetta1(focus) {
 		
 	$("#da").removeClass("bottoni").addClass("bottoni1");
 
-	var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+	//var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
 	//$("#btn").click();
 	//marker.setMap(null);
 	//ido.setVisible(false);
 	
-	//var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
-	//var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
+	var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
+	var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
 	
-	//localStorage.setItem("lat", lat)
-    //localStorage.setItem("lng", lng)
+	localStorage.setItem("lat", lat)
+    localStorage.setItem("lng", lng)
 	//ido.setPosition(latlng);
 		
 	var lat = localStorage.getItem("lat");

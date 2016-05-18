@@ -26,6 +26,8 @@ receivedEvent: function(id) {
 	}, false);
 	
 	
+	window.plugins.insomnia.keepAwake();
+	
 	//navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	
 	//ANDROID -------------------------------------------------------
@@ -56,7 +58,7 @@ receivedEvent: function(id) {
 	}
 	
 	
-	window.plugins.insomnia.keepAwake();*/
+	*/
 	
 	//----------------------------------------------------------------
 	
@@ -78,7 +80,7 @@ receivedEvent: function(id) {
 		$('#noconn').hide();
 		
 		
-		startgps();
+		//startgps();
 		
 		//var lat = localStorage.getItem("lat");
 		//var lng = localStorage.getItem("lng");
@@ -325,6 +327,7 @@ receivedEvent: function(id) {
 				   localStorage.setItem("setGPS","0")
 				   
 				   $("#modificastart").hide();
+				   $("#modificastart2").hide();
 				   
 				   $("#btnGPS").removeClass("custom-btn3").addClass("custom-btnGPS");
 				   $("#Modifica").removeClass("custom-btnModifica").addClass("custom-btn3");
@@ -350,6 +353,7 @@ receivedEvent: function(id) {
 				   
 				   document.getElementById("modificastart").value = "";
 				   $("#modificastart").show();
+				   $("#modificastart2").show();
 				   
 				   $("#btnGPS").removeClass("custom-btnGPS").addClass("custom-btn3");
 				   $("#Modifica").removeClass("custom-btn3").addClass("custom-btnModifica");
@@ -1329,13 +1333,13 @@ function resetta1(focus) {
 	if(connectionStatus=='online'){
 
 	 if(localStorage.getItem("setGPS") == 0){
-	   var watchID11 = navigator.geolocation.getCurrentPosition(onSuccess55, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+	   //var watchID11 = navigator.geolocation.getCurrentPosition(onSuccess55, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 		 
-		//var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
-		//var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
+		var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
+		var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
 		 
-		//localStorage.setItem("lat", lat)
-		//localStorage.setItem("lng", lng)
+		localStorage.setItem("lat", lat)
+		localStorage.setItem("lng", lng)
 	 }
 	
 	var lat = localStorage.getItem("lat");
@@ -1839,7 +1843,7 @@ function resetta1(focus) {
 		
 	  if(localStorage.getItem("setGPS") == 0){
 
-	   var watchID = navigator.geolocation.watchPosition(onSuccess2, onError2, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
+	   //var watchID = navigator.geolocation.watchPosition(onSuccess2, onError2, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
 		  
 	   var lat = localStorage.getItem("lat");
 	   var lng = localStorage.getItem("lng");
@@ -2317,7 +2321,7 @@ function timer(){
 												  var current_minutes = 0;
 												  seconds--;
 												  counter.innerHTML =
-												  current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
+												  "<font size='5'>"+current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds)+"</font>";
 												  if( seconds > 0 ) {
 												  setTimeout(tick, 1000);
 												  } else {
@@ -3432,7 +3436,7 @@ function richiesta1() {
 
 				  if(stato1==2){
 				   $("#gps1").show();
-				   $("#rif1").html("Annulla");
+				   $("#risp1").hide();
 				   $("#4img").html("<img src='img/1_verde.png' width='30'>");
 				  
 				   $(document).on("tap", "#gps1", function(e){
@@ -3572,7 +3576,7 @@ function richiesta2() {
 				  if(stato2==2){
 					  
 				   $("#gps22").show();
-				   $("#rif2").html("Annulla");
+				   $("#risp2").hide();
 				   $("#4img").html("<img src='img/2_verde.png' width='30'>");
 				  
 					  $(document).on("tap", "#gps22", function(e){
@@ -3685,7 +3689,7 @@ function richiesta3() {
 	
 				  if(stato3==2){
 				  $("#gps3").show();
-				  $("#rif3").html("Annulla");
+				  $("#risp3").hide();
 				  $("#4img").html("<img src='img/3_verde.png' width='30'>");
 				  
 				  $(document).on("tap", "#gps3", function(e){

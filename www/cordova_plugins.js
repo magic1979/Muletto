@@ -127,6 +127,13 @@ module.exports = [
         "clobbers": [
             "datePicker"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-insomnia/www/Insomnia.js",
+        "id": "cordova-plugin-insomnia.Insomnia",
+        "clobbers": [
+            "window.plugins.insomnia"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -143,7 +150,8 @@ module.exports.metadata =
     "de.appplant.cordova.plugin.background-mode": "0.6.3",
     "uk.co.workingedge.phonegap.plugin.LaunchNavigator": "2.9.2",
     "com.verso.cordova.clipboard": "0.1.0",
-    "com.sharinglabs.cordova.plugin.datepicker": "1.1.3"
+    "com.sharinglabs.cordova.plugin.datepicker": "1.1.3",
+    "cordova-plugin-insomnia": "4.2.0"
 }
 // BOTTOM OF METADATA
 });
