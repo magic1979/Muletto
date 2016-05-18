@@ -2,6 +2,7 @@ document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
 	//document.addEventListener("resume", onResume, false);
+	$("body").bind('touchmove', function(e){e.preventDefault()})
 	
 	
 	$(document).on("touchend", "#accedi", function(e){
@@ -17,6 +18,34 @@ function onDeviceReady() {
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				   
 				   });
+	
+	$(document).on("tap", "#recuperopsw", function(e){
+				   
+		  var ref = window.open('http://www.purplemiles.com/www/rec_pw.php?lang=it', '_system', 'location=no');
+
+	   	  e.stopImmediatePropagation();
+				   
+		  e.preventDefault();
+				   
+		  return false;
+				   
+		  if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+		
+	});
+	
+	$(document).on("tap", "#regsito", function(e){
+				   
+		var ref = window.open('http://www.purplemiles.com/www/enter.php?lang=it', '_system', 'location=no');
+
+		e.stopImmediatePropagation();
+				   
+		e.preventDefault();
+				   
+		return false;
+				   
+		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+	});
 	
 	$(document).keydown(function (eventObj){
 		getKey(eventObj);
@@ -78,7 +107,7 @@ function getKey(key){
 	 
    setTimeout(function() {
 	 login();
-   }, 1300);
+   }, 200);
  
  }
  
@@ -113,9 +142,9 @@ function login() {
 	
 	if (pin2 == "") {
 		navigator.notification.alert(
-									 'inserire un Pin',  // message
+									 'inserire una Password',  // message
 									 alertDismissed,         // callback
-									 'Pin',            // title
+									 'Password',            // title
 									 'OK'                  // buttonName
 									 );
 		return;

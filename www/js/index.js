@@ -47,7 +47,11 @@ receivedEvent: function(id) {
 			
 			navigator.app.exitApp();
 			
-			return;
+			e.stopImmediatePropagation();
+	 
+			e.preventDefault();
+	 
+			return false;
 		}
 	}
 	
@@ -138,7 +142,7 @@ receivedEvent: function(id) {
 	  localStorage.setItem("exit", "0")
 	}
 	
-	$("#tblhome").html('<table id="tblhome" width="90%" height="'+ altezzatbl +'" border="0" valign="center" align="center" class="tabella"><tr height="48%"><td width="100%" align="center"><a id="mappa6" href="#" rel="external"><img src="img/Volante.png" width="120px"></a><br><b>Voglio essere autista</b><br><table><tr><td><table class="tabella1"><tr><td><font color="#FFF">Profilo</font></td></tr></table></td><td> <img src="img/stelle.png" width="80"></td></tr></table></td></tr><tr height="2%"><td width="100%" align="center"> </td></tr><tr height="48%"> <td width="100%" align="center"><a id="mappa7" href="#" rel="external"><img src="img/Valigia.png" width="120px"></a><br><b>Voglio essere passeggero</b><br><table><tr><td><table class="tabella1"><tr><td><font color="#FFF">Profilo</font></td></tr></table></td><td> <img src="img/stelle.png" width="80"></td></tr></table></td> </tr><tr height="10%"> <td width="100%" align="center"></td></tr></table>')
+	$("#tblhome").html('<table id="tblhome" width="90%" height="'+ altezzatbl +'" border="0" valign="center" align="center" class="tabella"><tr height="48%"><td width="100%" align="center"><a id="mappa6" href="#" rel="external"><img src="img/Volante.png" width="120px"></a><br><b>Voglio essere autista</b><br><table><tr><td><table id="profiloperc" class="tabella1"><tr><td><font color="#FFF" size="4">Profilo 19%</font></td></tr></table></td><td> <img src="img/stelle.png" width="90"></td></tr></table></td></tr><tr height="2%"><td width="100%" align="center"> </td></tr><tr height="48%"> <td width="100%" align="center"><a id="mappa7" href="#" rel="external"><img src="img/Valigia.png" width="120px"></a><br><b>Voglio essere passeggero</b><br><table><tr><td><table id="profiloperc2" class="tabella1"><tr><td><font color="#FFF" size="4">Profilo 46%</font></td></tr></table></td><td> <img src="img/stelle.png" width="90"></td></tr></table></td> </tr><tr height="10%"> <td width="100%" align="center"></td></tr></table>')
 	
 	$("#nickhome").html(localStorage.getItem("nick"));
 	$("#nickhome3").html(localStorage.getItem("nick"));
@@ -197,6 +201,46 @@ receivedEvent: function(id) {
 	var watchID = null;
 	var watchID2 = null;
 	var watchID5 = null;
+	
+	$(document).on("tap", "#profiloperc", function(e){
+				   
+		  var ref = window.open('http://www.purplemiles.com/www/profile.php?id=19&pm=96e79218965eb72c92a549dd5a330112', '_system', 'location=no');
+				   
+	   	  e.stopImmediatePropagation();
+				   
+		  e.preventDefault();
+				   
+		  return false;
+				   
+		   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+	});
+	
+	$(document).on("tap", "#profiloperc2", function(e){
+				   
+		  var ref = window.open('http://www.purplemiles.com/www/profile.php?id=19&pm=96e79218965eb72c92a549dd5a330112', '_system', 'location=no');
+				   
+	   	  e.stopImmediatePropagation();
+				   
+		  e.preventDefault();
+				   
+		  return false;
+				   
+		  if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+	});
+	
+	$(document).on("touchstart", "#lista", function(e){
+				   lista5();
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+	});
 	
 	
 	$(document).on("touchstart", "#pass1", function(e){
@@ -333,6 +377,19 @@ receivedEvent: function(id) {
 		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				   
 	});
+	
+	$(document).on("touchstart", "#ritorna5", function(e){
+				   $.mobile.changePage( "#win2", { transition: "slide", changeHash: false, reverse: true });
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+	});
     
 	$(document).on("touchstart", "#resetta", function(e){
 		window.location.href = "index.html";
@@ -375,13 +432,22 @@ receivedEvent: function(id) {
 				   
 	});
 	
-	$(document).on("touchstart", "#ChiudiXX", function(e){
+	$(document).on("tap", "#ChiudiXX", function(e){
 				   navigator.notification.confirm(
-								'Confermi di voler fare logout',  // message
+								'Vuoi disconnetterti come utente '+ localStorage.getItem("nick") +'',  // message
 								onConfirm,              // callback to invoke with index of button pressed
 								'Logout',            // title
-								'Conferma,No'      // buttonLabels
+								'Conferma,Annulla'      // buttonLabels
 								);
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
 	});
 	
 	function onConfirm(button) {
@@ -406,7 +472,14 @@ receivedEvent: function(id) {
 	
 	$(document).on("tap", "#XXX", function(e){
 		window.location.href = "index.html";
-		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
 	$(document).on("tap", "#XX3", function(e){
@@ -448,7 +521,7 @@ receivedEvent: function(id) {
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
-	$(document).on("touchstart", "#back3", function(e){
+	$(document).on("tap", "#back3", function(e){
 		inviopasseggero(3);
 				   e.stopImmediatePropagation();
 				   
@@ -459,7 +532,7 @@ receivedEvent: function(id) {
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
-	$(document).on("touchstart", "#back4", function(e){
+	$(document).on("tap", "#back4", function(e){
 		inviopasseggero(3);
 				   e.stopImmediatePropagation();
 				   
@@ -482,8 +555,9 @@ receivedEvent: function(id) {
 	});
 	
 	
-	$(document).on("touchstart", "#gratis", function(e){
-		inviopasseggero(1);
+	$(document).on("tap", "#gratis", function(e){
+		          inviopasseggero(1);
+				   
 				   e.stopImmediatePropagation();
 				   
 				   e.preventDefault();
@@ -493,8 +567,9 @@ receivedEvent: function(id) {
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
-	$(document).on("touchstart", "#offerta", function(e){
-		inviopasseggero(2);
+	$(document).on("tap", "#offerta", function(e){
+		           inviopasseggero(2);
+				   
 				   e.stopImmediatePropagation();
 				   
 				   e.preventDefault();
@@ -610,7 +685,7 @@ function CenterControl(controlDiv, map) {
 	controlText.style.lineHeight = '30px';
 	controlText.style.paddingLeft = '5px';
 	controlText.style.paddingRight = '5px';
-	controlText.innerHTML = '<br><table width="100%" border="0"><tr><td align="right" colspan="2"><a id="XXX" href="index.html" rel="external"><img src="img/xx.png" width="35px"></a></td></tr><tr><td align="center" width="25%"><a id="btnGPS" href="#" data-role="button" data-theme="b" class="custom-btnGPS"><font color="#fff"><b>GPS</b></font></a></td><td align="left" width="75%"><a id="Modifica" href="#" data-role="button" data-theme="b" class="custom-btn3"><font color="#fff"><b>Modifica<b></font></a></td></tr></table>';
+	controlText.innerHTML = '<br><table width="100%" border="0"><tr><td align="right" colspan="2"><a id="XXX" href="#" rel="external"><img src="img/xx.png" width="35px"></a></td></tr><tr><td align="center" width="25%"><a id="btnGPS" href="#" data-role="button" data-theme="b" class="custom-btnGPS"><font color="#fff"><b>GPS</b></font></a></td><td align="left" width="75%"><a id="Modifica" href="#" data-role="button" data-theme="b" class="custom-btn3"><font color="#fff"><b>Modifica<b></font></a></td></tr></table>';
 	controlUI.appendChild(controlText);
 	
 	//<input id="viale" name="viale" type="text" value="'+ localStorage.getItem("Via") +'">
@@ -987,7 +1062,7 @@ function getKey(key){
  
      setTimeout(function() {
 		inviopasseggero(3);
-	 }, 1300);
+	 }, 200);
 	
 	}
 	
@@ -3335,13 +3410,13 @@ function richiesta1() {
 				  localStorage.setItem("id_nick", nick1)
 				  $("#nickhome3").html(nick1);
 				  
-				  $("#quando").html("<b>Quando:</b><font color='#cc33cc'>"+ quando1 +", "+ ora1 +"</font>");
+				  $("#quando").html("<b>Data: </b><font color='#cc33cc'>"+ quando1 +"</font>, <b>Ora: </b><font color='#cc33cc'>"+ ora1 +"</font>");
 				  
-				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ partenza1 +"</font>");
+				  $("#Da").html("<b>Da: </b><font color='#cc33cc'>"+ partenza1 +"</font>");
 				  
-				  $("#Ad").html("<b>A:</b><font color='#cc33cc'>"+ arrivo1 +"</font>");
+				  $("#Ad").html("<b>A: </b><font color='#cc33cc'>"+ arrivo1 +"</font>");
 				  
-				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ distanza1 +"</font>");
+				  $("#distanza").html("<b>Distanza: </b><font color='#cc33cc'>"+ distanza1 +"</font>");
 	
 	              if(stato1==0){
 		            $("#4img").html("<img src='img/1_viola.png' width='30'>");
@@ -3474,13 +3549,13 @@ function richiesta2() {
 				  
 				  $("#nickblob").html("<font color='#cc33cc'>"+ nick2 +"</font>");
 				  
-				  $("#quando").html("<b>Quando:</b><font color='#cc33cc'>"+ quando2 +", "+ ora2 +"</font>");
+				   $("#quando").html("<b>Data: </b><font color='#cc33cc'>"+ quando2 +"</font>, <b>Ora: </b><font color='#cc33cc'>"+ ora2 +"</font>");
 				  
-				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ partenza2 +"</font>");
+				  $("#Da").html("<b>Da: </b><font color='#cc33cc'>"+ partenza2 +"</font>");
 				  
-				  $("#Ad").html("<b>A:</b><font color='#cc33cc'>"+ arrivo2 +"</font>");
+				  $("#Ad").html("<b>A: </b><font color='#cc33cc'>"+ arrivo2 +"</font>");
 				  
-				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ distanza2 +"</font>");
+				  $("#distanza").html("<b>Distanza: </b><font color='#cc33cc'>"+ distanza2 +"</font>");
 	
 				  if(stato2==0){
 					 $("#4img").html("<img src='img/2_viola.png' width='30'>");
@@ -3588,13 +3663,13 @@ function richiesta3() {
 
 				  $("#nickblob").html("<font color='#cc33cc'>"+ nick3 +"</font>");
 				  
-				  $("#quando").html("<b>Quando:</b><font color='#cc33cc'>"+ quando3 +", "+ ora3 +"</font>");
+				   $("#quando").html("<b>Data: </b><font color='#cc33cc'>"+ quando3 +"</font>, <b>Ora: </b><font color='#cc33cc'>"+ ora3 +"</font>");
 				  
-				  $("#Da").html("<b>Da:</b><font color='#cc33cc'>"+ partenza3 +"</font>");
+				  $("#Da").html("<b>Da: </b><font color='#cc33cc'>"+ partenza3 +"</font>");
 				  
-				  $("#Ad").html("<b>A:</b><font color='#cc33cc'>"+ arrivo3 +"</font>");
+				  $("#Ad").html("<b>A: </b><font color='#cc33cc'>"+ arrivo3 +"</font>");
 				  
-				  $("#Note").html("<b>Note:</b><font color='#cc33cc'>"+ distanza3 +"</font>");
+				  $("#distanza").html("<b>Distanza: </b><font color='#cc33cc'>"+ distanza3 +"</font>");
 	
 	if(stato3==0){
 		$("#4img").html("<img src='img/3_viola.png' width='30'>");
@@ -3681,6 +3756,55 @@ function richiesta3() {
 
 				   });
 	
+}
+
+function lista5() {
+	
+	$.mobile.changePage( "#home5", { transition: "slide", changeHash: false });
+
+	$("#nickhome5").html(localStorage.getItem("nick"));
+	
+	$.ajax({
+		   type:"GET",
+		   url:"http://purplemiles.com/www2/check_stato2.php?id_autista="+ localStorage.getItem("id_autista") +"",
+		   contentType: "application/json",
+		   //data: {ID: "Lazio"}, LIMIT 10
+		   timeout: 7000,
+		   jsonp: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   $.each(result, function(i,item){
+				  
+				  if(item.Token==1){
+				  
+				  $("#offerte5").html("<br><table width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass22'><font color='#fff' size='4'>"+ item.nick +"</font></div></tr><tr><td align='left'><font color='#cc33cc' size='5'><b><div id='timer2'></div></b></font><br><b>Prezzo: </b>"+ item.importo +"<br><b>Quando: </b>"+ item.quando +"<br><b>Ora: </b>"+ item.ora +"<br><br><b>Partenza: </b>"+ item.partenza +"<br><b>Arrivo: </b>"+ item.arrivo +"</td></tr></table>");
+				  }
+				  else{
+					 $("#offerte5").html("<br><table width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><img src='img/Logo.png' width='160px'><br></td></tr><tr><td align='center'>Nessuna Richiesta Posticipata<br></td></tr></table>")
+				  }
+			});
+		   
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		   
+		   onResume();
+		   
+		   },
+		   dataType:"jsonp"});
+	
+	
+	
+	
+
 }
 
 // ACCETTA - RIFIUTA
@@ -3926,6 +4050,14 @@ function inviopasseggero(come){
 				  //onDeviceReady();
 				  
 				  $.mobile.changePage( "#win2", { transition: "slide", changeHash: false, reverse: true });
+				  
+				  e.stopImmediatePropagation();
+				  
+				  e.preventDefault();
+				  
+				  alert("ok");
+				  
+				  
 				  
 				  //window.location.href = "map2.html?id=1";
 				  
