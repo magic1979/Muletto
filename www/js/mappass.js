@@ -146,13 +146,67 @@ function onDeviceReady() {
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
-	$(document).on("touchstart", "#piu", function(e){
-		alert("in costruzione")
-		//$.mobile.changePage ($("#home4"));
-		//vediofferte()
-		//alert("in costruzione")
-	if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+	
+	$(document).on("tap", "#piu", function(e){
+				   localStorage.setItem("viale", document.getElementById("viale").value);
+				   localStorage.setItem("destinazione", document.getElementById("destinazione").value);
+				   
+				   localStorage.setItem("datacal", document.getElementById("datacal").value);
+				   localStorage.setItem("orario", document.getElementById("Orario").value);
+				   localStorage.setItem("minuti", document.getElementById("Minuti").value);
+				   
+				   
+				   
+				   if(document.getElementById("datacal").value==""){
+				   document.getElementById("datacal3").value = "ORA";
+				   }
+				   else{
+				   document.getElementById("datacal3").value = document.getElementById("datacal").value;
+				   document.getElementById("orario3").value = document.getElementById("Orario").value;
+				   document.getElementById("minuti3").value = document.getElementById("Minuti").value;
+				   }
+				   
+				   
+				   document.getElementById("viale3").value = document.getElementById("viale").value;
+				   document.getElementById("destinazione3").value = document.getElementById("destinazione").value;
+				   
+				   if (document.getElementById("viale").value == "") {
+				   navigator.notification.alert(
+												'inserire un Indirizzo di partenza',  // message
+												alertDismissed,         // callback
+												'Attenzione',            // title
+												'OK'                  // buttonName
+												);
+				   
+				   return;
+				   }
+				   
+				   if (document.getElementById("destinazione3").value == "") {
+				   navigator.notification.alert(
+												'inserire un Indirizzo di destinazione',  // message
+												alertDismissed,         // callback
+												'Attenzione',            // title
+												'OK'                  // buttonName
+												);
+				   
+				   return;
+				   }
+				   
+				   
+				   $("#posticipata").html(" <b>Quando:</b> " + document.getElementById("datacal3").value + "<br> <b>Ora:</b>" + document.getElementById("orario3").value + " " + document.getElementById("minuti3").value);
+				   
+				   
+				   $.mobile.changePage ($("#home3"));
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
+	
 	
 	$(document).on("touchstart", "#a", function(e){
 	
@@ -409,7 +463,8 @@ function onDeviceReady() {
 
 
 	
-		$(document).on("tap", "#anteprima", function(e){
+	$(document).on("tap", "#anteprima", function(e){
+				   
 		localStorage.setItem("viale", document.getElementById("viale").value);
 		localStorage.setItem("destinazione", document.getElementById("destinazione").value);
 				   
@@ -456,7 +511,7 @@ function onDeviceReady() {
 				   
 	    
 		$("#posticipata").html(" <b>Quando:</b> " + document.getElementById("datacal3").value + "<br> <b>Ora:</b>" + document.getElementById("orario3").value + " " + document.getElementById("minuti3").value);
-
+				   
 				   
 		$.mobile.changePage ($("#home3"));
 		
@@ -1270,7 +1325,8 @@ function vediofferte(){
 				  
 				  
 				  if(item.accettata==1){
-				    $("#offerte4").append("<br><table width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass2'>"+ item.nick +"</div><img src='img/stelle.png' width='80'></tr><tr><td align='left'><font color='#cc33cc' size='5'><b><div id='timer2'></div></b></font><br><b>Prezzo: </b>"+ item.importo +"<br><b>Quando: </b>"+ item.quando +"<br><b>Ora: </b>"+ item.ora +"<br><br><b>Partenza: </b>"+ item.partenza +"<br><b>Arrivo: </b>"+ item.arrivo +"</td></tr><tr><td align='center'><a id='rifiuta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr><tr><td align='center'><br></td></tr></table>");
+				    $("#offerte4").append("<br><table width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass2'>"+ item.nick +"</div><img src='img/stelle.png' width='80'></tr><tr><td align='left'><font color='#cc33cc' size='5'><b><div id='timer2'></div></b></font><br><b>Prezzo: </b>"+ item.importo +"<br><b>Quando: </b>"+ item.quando +"<br><b>Ora: </b>"+ item.ora +"<br><br><b>Partenza: </b>"+ item.partenza +"<br><b>Arrivo: </b>"+ item.arrivo +"</td></tr><tr><td align='center'><br><a id='chat"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>Chat</font></a></td></tr><tr><td align='center'><br><b>CODICE: "+ item.cod_passeggero +"</b></td></tr><tr><td align='center'><br></td></tr></table>");
+				  //<tr><td align='center'><a id='rifiuta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr>
 				  }
 				  else{
 				    $("#offerte4").append("<br><table width='90%' border='0' valign='center' align='center' class='tabella'><tr><td align='center'><div class='custom-pass11'>"+ item.nick +"</div><img src='img/stelle.png' width='80'></tr><tr><td align='left'><font color='#cc33cc' size='5'><b><div id='timer2'></div></b></font><br><b>Prezzo: </b>"+ item.importo +"<br><b>Quando: </b>"+ item.quando +"<br><b>Ora: </b>"+ item.ora +"<br><br><b>Partenza: </b>"+ item.partenza +"<br><b>Arrivo: </b>"+ item.arrivo +"</td></tr><tr><td align='center'><a id='accetta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>ACCETTA</font></a>&nbsp;&nbsp;<a id='rifiuta"+ item.id_richiesta +"_"+ item.id_autista +"' href='#' data-role='button' data-theme='b' class='custom-btn4'><font color='#fff'>RIFIUTA</font></a></td></tr><tr><td align='center'><br></td></tr></table>");
