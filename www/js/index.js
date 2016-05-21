@@ -80,7 +80,7 @@ receivedEvent: function(id) {
 		$('#noconn').hide();
 		
 		
-		//startgps();
+		startgps();
 		
 		//var lat = localStorage.getItem("lat");
 		//var lng = localStorage.getItem("lng");
@@ -480,6 +480,33 @@ receivedEvent: function(id) {
 	 return false;
 				   
 	 if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+				   
+	});
+	
+	$(document).on("tap", "#tornareset", function(e){
+				   
+				   var connectionStatus = false;
+				   connectionStatus = navigator.onLine ? 'online' : 'offline';
+				   
+				   if(connectionStatus=='online'){
+				   
+				   $("#magia").hide();
+				   
+				   resetta1(1);
+				   }
+				   else
+				   {
+				   window.location.href = "index.html";
+				   }
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				   
 				   
 	});
@@ -1381,13 +1408,13 @@ function resetta1(focus) {
 	if(connectionStatus=='online'){
 
 	 if(localStorage.getItem("setGPS") == 0){
-	   //var watchID11 = navigator.geolocation.getCurrentPosition(onSuccess55, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+	   var watchID11 = navigator.geolocation.getCurrentPosition(onSuccess55, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 		 
-		var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
-		var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
+		//var lat = "41.770447";  //  "41.783780"  "41.783780" localStorage.getItem("lat")
+		//var lng = "12.373529";  //  "12.364947"  "12.364947" localStorage.getItem("lng")
 		 
-		localStorage.setItem("lat", lat)
-		localStorage.setItem("lng", lng)
+		//localStorage.setItem("lat", lat)
+		//localStorage.setItem("lng", lng)
 	 }
 	
 	var lat = localStorage.getItem("lat");
@@ -1587,6 +1614,8 @@ function resetta1(focus) {
 		$("#btninizia").hide();
 		$("#setGPS").hide();
 		$("#Modifica").hide();
+		$("#lista").hide();
+		
 		
 		var centerControlDiv2 = document.createElement('div');
 		centerControlDiv2.setAttribute('id', 'sopra');
@@ -1602,7 +1631,7 @@ function resetta1(focus) {
 		$("#esci").hide();
 		$("#blob2").hide();
 		
-		//$("#loading").show();
+		$("#loading").show();
 	
 	$.ajax({
 		   type:"GET",
@@ -1671,6 +1700,9 @@ function resetta1(focus) {
 				  
 				  //$("#pass1").show();
 				  //$("#esci").show();
+				  if(item.posticipata==1){
+					$("#lista").show();
+				  }
 				  
 				  if(item.stato==3){
 				  $("#pass1").removeClass("custom-pass").addClass("custom-pass3");
@@ -1739,6 +1771,10 @@ function resetta1(focus) {
 				  
 				  //$("#pass2").show();
 				  
+				  if(item.posticipata==1){
+				    $("#lista").show();
+				  }
+				  
 				  if(item.stato==3){
 				  $("#pass2").removeClass("custom-pass").addClass("custom-pass3");
 				  $("#pass2").removeClass("custom-pass1").addClass("custom-pass3");
@@ -1806,6 +1842,10 @@ function resetta1(focus) {
 				  lat3 = item.lat
 				  
 				  //$("#pass3").show();
+				  
+				  if(item.posticipata==1){
+				    $("#lista").show();
+				  }
 				  
 				  if(item.stato==3){
 				  $("#pass3").removeClass("custom-pass").addClass("custom-pass3");
@@ -1891,7 +1931,7 @@ function resetta1(focus) {
 		
 	  if(localStorage.getItem("setGPS") == 0){
 
-	   //var watchID = navigator.geolocation.watchPosition(onSuccess2, onError2, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
+	   var watchID = navigator.geolocation.watchPosition(onSuccess2, onError2, {maximumAge:600000, timeout:80000, enableHighAccuracy: true});
 		  
 	   var lat = localStorage.getItem("lat");
 	   var lng = localStorage.getItem("lng");
@@ -2248,6 +2288,10 @@ function timer(){
 												  
 												  }
 												  
+												  if(item.Token==11){
+													 $("#lista").show();
+												  }
+												  
 												  
 												  if(item.Token==1){
 												  
@@ -2293,6 +2337,10 @@ function timer(){
 																 richiesta1(item.id_richiesta);
 																 
 																 });*/
+												  
+												  if(item.posticipata==1){
+												    $("#lista").show();
+												  }
 												  
 												  
 												  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
@@ -2432,6 +2480,10 @@ function timer(){
 																 
 																 
 																 });*/
+												  
+												  if(item.posticipata==1){
+												    $("#lista").show();
+												  }
 												  
 												  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
 												  
@@ -2574,6 +2626,11 @@ function timer(){
 																				infowindow.open(map, this);
 																				
 																				});
+												  
+												  if(item.posticipata==1){
+												    $("#lista").show();
+												  }
+												  
 												  
 												  $("#pass3").show();
 												  
@@ -2726,12 +2783,18 @@ function scadutaofferta(id,id_richiesta,id_autista){
 }
 
 
+
 function magia2C(utente,pass) {
 	
 	for(i=0; i<10000; i++)
 	{
 		window.clearInterval(i);
 	}
+	
+	$("#magia").show();
+	$("#btninizia").hide();
+	$("#btnpass").hide();
+	
 	
 	//posizionegps2();
 	
@@ -2742,7 +2805,6 @@ function magia2C(utente,pass) {
 	
 	var posizione = 1;
 	var distanza = "";
-	
 	
 	var centromap = new google.maps.LatLng(lat, lng, posizione);
 	
@@ -2916,11 +2978,8 @@ function magia2C(utente,pass) {
 	localStorage.setItem("fatto","1")
 	
 	
-	refreshIntervalId33 = setInterval(function() {
+	/*refreshIntervalId33 = setInterval(function() {
 									  
-									  //var watchID = navigator.geolocation.getCurrentPosition(onSuccess22, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
-									  
-									  //onSuccess22();
 									  
 									  var lat = localStorage.getItem("lat");
 									  var lng = localStorage.getItem("lng");
@@ -2934,9 +2993,7 @@ function magia2C(utente,pass) {
 									  $.ajax({
 											 type:"GET",
 											 url:"http://purplemiles.com/www2/check_richiesta_autista_id.php?email="+ localStorage.getItem("email") +"&lat="+ localStorage.getItem("lat") +"&lng="+ localStorage.getItem("lng") +"&id_richiesta="+ pass +"&id_autista="+ localStorage.getItem("id_autista") +"",
-											 //url:"http://purplemiles.com/www2/check_richiesta_autista.php?email="+ localStorage.getItem("email") +"&latitudine="+ localStorage.getItem("lat") +"&longitudine="+ localStorage.getItem("lng") +"&id_autista="+ localStorage.getItem("id_autista") +"",
 											 contentType: "application/json",
-											 //data: {ID: "Lazio"}, LIMIT 10
 											 timeout: 7000,
 											 jsonp: 'callback',
 											 crossDomain: true,
@@ -3041,7 +3098,7 @@ function magia2C(utente,pass) {
 													
 													}
 													else{
-													//marker1.setMap(null);
+
 													}
 													
 													});
@@ -3050,31 +3107,18 @@ function magia2C(utente,pass) {
 											 },
 											 error: function(){
 											 
-											 /*navigator.notification.alert(
-											  'Possibile errore di rete, riprova tra qualche minuto.',  // message
-											  alertDismissed,         // callback
-											  'Attenzione',           // title
-											  'Done'                  // buttonName
-											  );*/
+
 											 
 											 },
 											 dataType:"jsonp"});
 									  
 									  
-									  //var lat = localStorage.getItem("lat");
-									  //var lng = localStorage.getItem("lng");
-									  
-									  //var lat = parseFloat("41.8337871");
-									  //var lng = parseFloat("12.4757278" );
-									  
-									  //map.setCenter(centromap);
 									  
 									  localStorage.setItem("fatto","1")
 									  
 									  
 									  
-									  }, 10000);
-	
+								}, 10000);*/
 	
 	
 	//---------------------------
@@ -3459,6 +3503,10 @@ function richiesta1() {
 	$("#close2").hide();
 	$("#close1").show();
 	
+	$("#xchiudi2").hide();
+	$("#xchiudi3").hide();
+	$("#xchiudi1").show();
+	
 	$("#code1").hide();
 	$("#code1").html("");
 	$("#code2").hide();
@@ -3475,7 +3523,8 @@ function richiesta1() {
 	$("#blob2").show();
 	
 				  
-				  $("#nickhome4").html("<font color='#fff'>"+ nick1 +"</font>");
+				  $("#nickhome4").html("<a id='linknick1' href='#'><font color='#fff'>"+ nick1 +"</font></a>");
+	
 				  localStorage.setItem("id_nick", nick1)
 				  $("#nickhome3").html("<font color='#fff'>"+ nick1 +"</font>");
 				  
@@ -3532,6 +3581,7 @@ function richiesta1() {
 						return false;
 								 
 				   });
+					  
 				  
 				  }
 				  else{
@@ -3557,12 +3607,28 @@ function richiesta1() {
 	$("#xchiudi33").hide();
 	
 	
-	$(document).on("touchstart", "#xchiudi1", function(e){
-		
-		$("#blob2").hide();
-		magia2C(1,id)
-		
+	$(document).on("tap", "#linknick1", function(e){
 				   
+				   //http://www.purplemiles.com/www/profilo_passeggero.php?idp=19&ida="+localStorage.getItem("id_autista")+"&pm="+localStorage.getItem("md5")+"
+				   
+				   var ref = window.open('http://www.purplemiles.com/www/profilo_passeggero.php?idp=19&ida='+localStorage.getItem("id_autista")+'&pm='+localStorage.getItem("md5")+'', '_system', 'location=no');
+				   
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   });
+
+	
+	
+	$(document).on("touchstart", "#xchiudi1", function(e){
+				   $.mobile.changePage( "#win2", { transition: "slide", changeHash: false, reverse: true });
+		           $("#blob2").hide();
+				   magia2C(1,id)
+		
 				   e.stopImmediatePropagation();
 				   
 				   e.preventDefault();
@@ -3636,6 +3702,10 @@ function richiesta2() {
 	$("#chat1").hide();
 	$("#chat2").hide();
 	$("#chat3").hide();
+	
+	$("#xchiudi1").hide();
+	$("#xchiudi3").hide();
+	$("#xchiudi2").show();
 	
 	localStorage.setItem("id_richiesta", id)
 	
@@ -3719,9 +3789,15 @@ function richiesta2() {
 	$("#xchiudi33").hide();
 	
 	$(document).on("touchstart", "#xchiudi2", function(e){
-
+				   $.mobile.changePage( "#win2", { transition: "slide", changeHash: false, reverse: true });
 				   $("#blob2").hide();
 				   magia2C(2,id)
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
 				   
 				   });
 	
@@ -3778,6 +3854,10 @@ function richiesta3() {
 	$("#chat1").hide();
 	$("#chat2").hide();
 	$("#chat3").hide();
+	
+	$("#xchiudi2").hide();
+	$("#xchiudi1").hide();
+	$("#xchiudi3").show();
 	
 	//alert(2)
 	localStorage.setItem("id_richiesta", id)
@@ -3858,11 +3938,18 @@ function richiesta3() {
 	$("#xchiudi11").hide();
 	
 	
-	$(document).on("tap", "#xchiudi3", function(e){
-		$("#blob2").hide();
-		magia2C(3,id)
-
-	});
+	$(document).on("touchstart", "#xchiudi3", function(e){
+				   $.mobile.changePage( "#win2", { transition: "slide", changeHash: false, reverse: true });
+				   $("#blob2").hide();
+				   magia2C(3,id)
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   });
 	
 	$(document).on("tap", "#xchiudi33", function(e){
 			$("#blob2").hide();
@@ -3896,6 +3983,8 @@ function lista5() {
 	$.mobile.changePage( "#home5", { transition: "slide", changeHash: false });
 
 	$("#nickhome5").html(localStorage.getItem("nick"));
+	
+	//alert("http://purplemiles.com/www2/check_stato2.php?id_autista="+ localStorage.getItem("id_autista") +"")
 	
 	$.ajax({
 		   type:"GET",

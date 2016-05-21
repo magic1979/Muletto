@@ -141,7 +141,7 @@ function onDeviceReady() {
 			
 			//prendifuso()
 			
-			//var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
+			var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 			
 			document.getElementById("email").value = localStorage.getItem("email2")
 			
