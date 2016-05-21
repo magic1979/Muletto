@@ -79,6 +79,7 @@ receivedEvent: function(id) {
 	if(connectionStatus=='online'){
 		$('#noconn').hide();
 		
+		localStorage.setItem("chatpass", "")
 		
 		startgps();
 		
@@ -149,8 +150,11 @@ receivedEvent: function(id) {
 	$("#nickhome").html(localStorage.getItem("nick"));
 	$("#nickhome3").html(localStorage.getItem("nick"));
 	
-	$("#tblhome").fadeIn("slow")
 	
+	setTimeout(function() {
+	  $("#tblhome").fadeIn("slow")
+	}, 500);
+
 	
 	//STELLE
 	
@@ -442,6 +446,26 @@ receivedEvent: function(id) {
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				   
 	});
+	
+	$(document).on("touchstart", "#indietro6", function(e){
+				   $.mobile.changePage( "#win2", { transition: "slide", changeHash: false, reverse: true });
+				   
+				   for(i=0; i<10000; i++)
+				   {
+				   window.clearInterval(i);
+				   }
+				   
+				   resetta1(1);
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+	});
     
 	$(document).on("touchstart", "#resetta", function(e){
 		window.location.href = "index.html";
@@ -459,13 +483,14 @@ receivedEvent: function(id) {
 		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
-	$(document).on("touchstart", "#mappa6", function(e){
+	$(document).on("tap", "#mappa6", function(e){
 				   
 	  var connectionStatus = false;
 	  connectionStatus = navigator.onLine ? 'online' : 'offline';
 				   
 	  if(connectionStatus=='online'){
-				   
+		//$.mobile.changePage ($("#win2"));
+		
 		resetta1();
 	  }
 	  else
@@ -500,13 +525,13 @@ receivedEvent: function(id) {
 				   window.location.href = "index.html";
 				   }
 				   
-				   e.stopImmediatePropagation();
+	    e.stopImmediatePropagation();
 				   
-				   e.preventDefault();
+	    e.preventDefault();
 				   
-				   return false;
+		return false;
 				   
-				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				   
 				   
 	});
@@ -611,6 +636,8 @@ receivedEvent: function(id) {
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
 	
+
+	
 	$(document).on("tap", "#back4", function(e){
 		inviopasseggero(3);
 				   e.stopImmediatePropagation();
@@ -620,6 +647,21 @@ receivedEvent: function(id) {
 				   return false;
 				   
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+	});
+	
+	$(document).on("tap", "#back6", function(e){
+				   $("#spinner").show();
+				   
+				   inviachat()
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
 	});
 	
 	$(document).on("tap", "#xchiudi", function(e){
@@ -1441,7 +1483,7 @@ function resetta1(focus) {
 	  setTimeout(function() {
 		 google.maps.event.trigger(map, "resize");
 		 map.setCenter(latlng);
-	  }, 600);
+	  }, 1000);
 
 	
 	var contentString1 =
@@ -3582,6 +3624,20 @@ function richiesta1() {
 								 
 				   });
 					  
+					  $(document).on("tap", "#chat1", function(e){
+									 
+							chatting(1,id)
+									 
+							$("#blob2").hide();
+									 
+							e.stopImmediatePropagation();
+									 
+							e.preventDefault();
+									 
+							return false;
+									 
+						});
+					  
 				  
 				  }
 				  else{
@@ -3606,21 +3662,6 @@ function richiesta1() {
 	$("#xchiudi22").hide();
 	$("#xchiudi33").hide();
 	
-	
-	$(document).on("tap", "#linknick1", function(e){
-				   
-				   //http://www.purplemiles.com/www/profilo_passeggero.php?idp=19&ida="+localStorage.getItem("id_autista")+"&pm="+localStorage.getItem("md5")+"
-				   
-				   var ref = window.open('http://www.purplemiles.com/www/profilo_passeggero.php?idp=19&ida='+localStorage.getItem("id_autista")+'&pm='+localStorage.getItem("md5")+'', '_system', 'location=no');
-				   
-				   
-				   e.stopImmediatePropagation();
-				   
-				   e.preventDefault();
-				   
-				   return false;
-				   
-				   });
 
 	
 	
@@ -3712,7 +3753,7 @@ function richiesta2() {
 	$("#blob2").show();
 	
 				  
-				  $("#nickhome4").html("<font color='#fff'>"+ nick2 +"</font>");
+				  $("#nickhome4").html("<font color='#fff'><a id='linknick2' href='#'>"+ nick2 +"</a></font>");
 				  $("#nickhome3").html("<font color='#fff'>"+ nick2 +"</font>");
 				  
 				   $("#quando").html("<b>Data: </b><font color='#cc33cc'>"+ quando2 +"</font>, <b>Ora: </b><font color='#cc33cc'>"+ ora2 +"</font>");
@@ -3767,6 +3808,20 @@ function richiesta2() {
 								 return false;
 								 
 						});
+					  
+					  $(document).on("tap", "#chat2", function(e){
+									 
+									 chatting(2,id)
+									 
+									 $("#blob2").hide();
+									 
+									 e.stopImmediatePropagation();
+									 
+									 e.preventDefault();
+									 
+									 return false;
+									 
+									 });
 				  
 				  }
 				  else{
@@ -3787,6 +3842,22 @@ function richiesta2() {
 	$("#xchiudi22").show();
 	$("#xchiudi11").hide();
 	$("#xchiudi33").hide();
+	
+	$(document).on("tap", "#linknick2", function(e){
+				   
+				   //http://www.purplemiles.com/www/profilo_passeggero.php?idp=19&ida="+localStorage.getItem("id_autista")+"&pm="+localStorage.getItem("md5")+"
+				   
+				   var ref = window.open('http://www.purplemiles.com/www/profilo_passeggero.php?idp=19&ida='+localStorage.getItem("id_autista")+'&pm='+localStorage.getItem("md5")+'', '_system', 'location=no');
+				   
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   });
+
 	
 	$(document).on("touchstart", "#xchiudi2", function(e){
 				   $.mobile.changePage( "#win2", { transition: "slide", changeHash: false, reverse: true });
@@ -3865,7 +3936,7 @@ function richiesta3() {
 	$("#blob2").show();
 	
 
-				  $("#nickhome4").html("<font color='#fff'>"+ nick3 +"</font>");
+				  $("#nickhome4").html("<font color='#fff'><a id='linknick3' href='#'>"+ nick3 +"</a></font>");
 				  $("#nickhome3").html("<font color='#fff'>"+ nick3 +"</font>");
 				  
 				   $("#quando").html("<b>Data: </b><font color='#cc33cc'>"+ quando3 +"</font>, <b>Ora: </b><font color='#cc33cc'>"+ ora3 +"</font>");
@@ -3919,6 +3990,20 @@ function richiesta3() {
 								 return false;
 								 
 						 });
+					  
+					  $(document).on("tap", "#chat3", function(e){
+									 
+									 chatting(3,id)
+									 
+									 $("#blob2").hide();
+									 
+									 e.stopImmediatePropagation();
+									 
+									 e.preventDefault();
+									 
+									 return false;
+									 
+									 });
 				  
 				  }
 				  else{
@@ -3936,6 +4021,23 @@ function richiesta3() {
 	$("#xchiudi33").show();
 	$("#xchiudi22").hide();
 	$("#xchiudi11").hide();
+	
+	
+	$(document).on("tap", "#linknick3", function(e){
+				   
+				   //http://www.purplemiles.com/www/profilo_passeggero.php?idp=19&ida="+localStorage.getItem("id_autista")+"&pm="+localStorage.getItem("md5")+"
+				   
+				   var ref = window.open('http://www.purplemiles.com/www/profilo_passeggero.php?idp=19&ida='+localStorage.getItem("id_autista")+'&pm='+localStorage.getItem("md5")+'', '_system', 'location=no');
+				   
+				   
+				   e.stopImmediatePropagation();
+				   
+				   e.preventDefault();
+				   
+				   return false;
+				   
+				   });
+
 	
 	
 	$(document).on("touchstart", "#xchiudi3", function(e){
@@ -4028,6 +4130,133 @@ function lista5() {
 	
 
 }
+
+function chatting(pass,id) {
+	$("#nickhome6").html(localStorage.getItem("nick"));
+	
+	
+	for(i=0; i<10000; i++)
+	{
+		window.clearInterval(i);
+	}
+	
+	
+	$("#spinner").show();
+	
+	
+	$.mobile.changePage( "#home6", { transition: "slide", changeHash: false });
+	
+	
+	//alert("http://purplemiles.com/www2/check_stato2.php?id_autista="+ localStorage.getItem("id_autista") +"")
+	
+	$.ajax({
+		   type:"GET",
+		   url:"http://purplemiles.com/www2/leggi_chat.php?id_richiesta=1&last_id=5",
+		   contentType: "application/json",
+		   //data: {ID: "Lazio"}, LIMIT 10
+		   timeout: 7000,
+		   jsonp: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   if(localStorage.getItem("chatpass")==JSON.stringify(result)){
+		   //alert("Uguali")
+		   }
+		   else{
+		   $("#offerta6").html("");
+		   $("#spinner").hide();
+		   
+		   $.each(result, function(i,item){
+				  
+			   localStorage.setItem("chatpass", JSON.stringify(result))
+				  
+			   if(item.Token==1){
+				  
+				  if(item.nick==localStorage.getItem("nick")){
+				    //$("#offerta6").append("<br><br><table width='70%' border='0' valign='center' align='left' class='tabella'><tr><td align='center'><div class='custom-pass33'><font color='#fff' size='4'>"+ item.nick +"</font></div></tr><tr><td align='left'><br><b>Mesaggio: </b>"+ item.messaggio +"<br><b>Data: </b>"+ item.data +"</td></tr></table>");
+				       $("#offerta6").append("<div class='bubbledLeft'>"+ item.messaggio +"</div>")
+				    }
+				  else{
+					   //$("#offerta6").append("<br><br><table width='70%' border='0' valign='center' align='right' class='tabella'><tr><td align='center'><div class='custom-pass22'><font color='#fff' size='4'>"+ item.nick +"</font></div></tr><tr><td align='left'><br><b>Mesaggio: </b>"+ item.messaggio +"<br><b>Data: </b>"+ item.data +"</td></tr></table>");
+				        $("#offerta6").append("<div class='bubbledRight'>"+ item.messaggio +"</div>")
+				    }
+				  
+				}
+				  
+			});
+		   
+		   }
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		   
+		   onResume();
+		   
+		   },
+		   dataType:"jsonp"});
+	
+	
+	refreshPos = setInterval(function() {
+		chatting(pass,id)
+	}, 5000);
+	
+	
+	
+}
+
+
+function inviachat() {
+	var indirizzo = document.getElementById("chattext").value.replace("'", "")
+	
+	//alert(localStorage.getItem("id_richiesta"))
+	
+	
+	$.ajax({
+		   type:"GET",
+		   url:"http://purplemiles.com/www2/pubblica_chat.php?id_messaggio=1&nick="+ localStorage.getItem("nick") +"&messaggio="+ indirizzo +"",
+		   contentType: "application/json",
+		   //data: {ID: "Lazio"}, LIMIT 10
+		   timeout: 7000,
+		   jsonp: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   
+		   $.each(result, function(i,item){
+				  
+				  if(item.Token==1){
+				    document.getElementById("chattext").value="";
+					
+				  }
+				  
+				  });
+		   
+		   
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		   
+		   onResume();
+		   
+		   },
+		   dataType:"jsonp"});
+
+}
+
 
 // ACCETTA - RIFIUTA
 

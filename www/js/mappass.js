@@ -78,7 +78,8 @@ function onDeviceReady() {
 				   $("#da1").removeClass("bottoni").addClass("bottoni1");
 				   $("#a1").removeClass("bottoni1").addClass("bottoni");
 				   
-				   resetta(1);
+				    $("#ricarica").click();
+				   //resetta1(1);
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 				   });
 	
@@ -145,6 +146,7 @@ function onDeviceReady() {
 				   
 				   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 	});
+	
 	
 	
 	$(document).on("tap", "#piu", function(e){
@@ -237,8 +239,8 @@ function onDeviceReady() {
 				   $("#da1").removeClass("bottoni1").addClass("bottoni");
 				   $("#a1").removeClass("bottoni").addClass("bottoni1");
 				   
-				   
-				   resetta(1);
+				   $("#ricarica").click();
+				   //resetta1(1);
 				   e.stopImmediatePropagation();
 				   
 				   e.preventDefault();
@@ -573,6 +575,7 @@ function onDeviceReady() {
     if(connectionStatus=='online'){
         $('#noconn').hide();
 		   localStorage.setItem("risppass", "")
+		   localStorage.setItem("mirino","0")
 
 			var lat = localStorage.getItem("lat");
 			var lng = localStorage.getItem("lng");
@@ -921,6 +924,8 @@ function onResume() {
 			   
 		$("#da").removeClass("custom-pass1").addClass("custom-pass11");
 		$("#a1").removeClass("custom-pass11").addClass("custom-pass1");
+		
+	  //$.mobile.changePage( "#win2", { transition: "slide", changeHash: false });
 			   
 	   resetta1(1);
 	}, 200);
@@ -976,6 +981,7 @@ function resetta1(focus) {
 	
 	if(connectionStatus=='online'){
 		
+
 	$("#da").removeClass("bottoni").addClass("bottoni1");
 
 	var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
@@ -993,7 +999,6 @@ function resetta1(focus) {
 		
 	var lat = localStorage.getItem("lat");
 	var lng = localStorage.getItem("lng");
-
 	
 	var latlng = new google.maps.LatLng(lat, lng, 1);
 	
@@ -1015,7 +1020,7 @@ function resetta1(focus) {
 	  setTimeout(function() {
 		 google.maps.event.trigger(map, "resize");
 		 map.setCenter(latlng);
-	  }, 600);
+	  }, 1000);
 
 	
 	var contentString1 =
@@ -1082,6 +1087,78 @@ function resetta1(focus) {
 			document.getElementById("destinazione").value = localStorage.getItem("destinazione");
 		}
 	}
+		
+		
+		
+		
+		
+		$(document).on("tap", "#ricarica", function(e){
+					   
+					   if(localStorage.getItem("destination")==0){
+					   
+					   var geocoder = new google.maps.Geocoder();
+					   geocoder.geocode({
+										"address": document.getElementById("viale").value
+										}, function(results) {
+										//alert(results[0].geometry.location.lat()); //LatLng
+										//alert(results[0].geometry.location.lng());
+										
+										localStorage.setItem("lat", results[0].geometry.location.lat())
+										localStorage.setItem("lng", results[0].geometry.location.lng())
+										
+										var latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng(), 1);
+										
+										setTimeout(function() {
+												   map.setCenter(latlng);
+												   marker2.setPosition(latlng);
+												   }, 700);
+										
+										
+										});
+	
+					   
+					   }
+					   
+					   else{
+					   
+					   
+					   var geocoder = new google.maps.Geocoder();
+					   geocoder.geocode({
+										"address": document.getElementById("destinazione").value
+										}, function(results) {
+										//alert(results[0].geometry.location.lat()); //LatLng
+										//alert(results[0].geometry.location.lng());
+										
+										localStorage.setItem("lat", results[0].geometry.location.lat())
+										localStorage.setItem("lng", results[0].geometry.location.lng())
+										
+										 var latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng(), 1);
+										
+										setTimeout(function() {
+												   map.setCenter(latlng);
+												   marker2.setPosition(latlng);
+												   }, 700);
+										
+										
+										});
+					   
+					   
+					   }
+					   
+
+					   
+					   e.stopImmediatePropagation();
+					   
+					   e.preventDefault();
+					   
+					   return false;
+					   
+					   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+					   });
+
+		
+		
+		
 		
 		
 		
@@ -1326,8 +1403,7 @@ function vediofferte(){
 		   $.each(result, function(i,item){
 				  
 
-				    localStorage.setItem("risppass", JSON.stringify(result))
-				  
+				localStorage.setItem("risppass", JSON.stringify(result))
 				  
 				  
 				  if(item.Token==1){
