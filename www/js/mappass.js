@@ -62,8 +62,12 @@ function onDeviceReady() {
 		$("#viale").show();
 		$("#destinazione").hide();
 				   
-		$("#da").removeClass("bottoni").addClass("bottoni1");
-		$("#a").removeClass("bottoni1").addClass("bottoni");
+		$("#da1").html("<img src='img/ico_start1.png' width='35px'>");
+		$("#a1").html("<img src='img/ico_finish2.png' width='35px'>");
+		
+		//$("#da").html("bottoni");
+		//$("#da").removeClass("bottoni").addClass("bottoni1");
+		//$("#a").removeClass("bottoni1").addClass("bottoni");
 				   
 		onResume();
 		if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
@@ -75,8 +79,11 @@ function onDeviceReady() {
 				   $("#viale").show();
 				   $("#destinazione").hide();
 				   
-				   $("#da1").removeClass("bottoni").addClass("bottoni1");
-				   $("#a1").removeClass("bottoni1").addClass("bottoni");
+				   $("#da1").html("<img src='img/ico_start2.png' width='35px'>");
+				   $("#a1").html("<img src='img/ico_finish1.png' width='35px'>");
+				   
+				   //$("#da1").removeClass("bottoni").addClass("bottoni1");
+				   //$("#a1").removeClass("bottoni1").addClass("bottoni");
 				   
 				    $("#ricarica").click();
 				   //resetta1(1);
@@ -89,8 +96,8 @@ function onDeviceReady() {
 				   $("#viale").show();
 				   $("#destinazione").hide();
 				   
-				   $("#da").removeClass("bottoni").addClass("bottoni1");
-				   $("#a").removeClass("bottoni1").addClass("bottoni");
+				   //$("#da").removeClass("bottoni").addClass("bottoni1");
+				   //$("#a").removeClass("bottoni1").addClass("bottoni");
 				   
 	               onResume();
 				   
@@ -236,8 +243,8 @@ function onDeviceReady() {
 				   $("#viale").hide();
 				   $("#destinazione").show();
 				   
-				   $("#da1").removeClass("bottoni1").addClass("bottoni");
-				   $("#a1").removeClass("bottoni").addClass("bottoni1");
+				   $("#da1").html("<img src='img/ico_start1.png' width='35px'>");
+				   $("#a1").html("<img src='img/ico_finish2.png' width='35px'>");
 				   
 				   $("#ricarica").click();
 				   //resetta1(1);
@@ -643,7 +650,11 @@ function CenterControl(controlDiv, map) {
 	controlText.style.paddingLeft = '5px';
 	controlText.style.paddingRight = '5px';
 	//controlText.innerHTML = '<br><table width="100%"><tr><td align="right"><a id="XXX" href="index.html" rel="external"><img src="img/xx.png" width="25px"></a></td></tr></table><table width="100%" align="center"><tr><td align="center" width="50%">DA</td><td align="center" width="50%">A</td></tr><tr><td align="center" width="50%"><input id="viale" name="viale" type="text" value="'+ localStorage.getItem("Via") +'"></td></tr><tr><td align="center" width="50%"><input id="citta" name="citta" type="text" value="Roma"></td></tr></table>';
-	controlText.innerHTML = '<table width="100%" class="xalto"><tr><td align="right">&nbsp;</td></tr><tr><td align="right"><a id="XX3" href="index.html" rel="external"><img src="img/xx.png" width="35px"></a><br></td></tr></table><br><table width="100%" border="0" valign="center" align="center" ><tr><td align="center" ><a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass"><font color="#fff">Quando</font></a></td><td align="center" ><a data-role="button" id="da1" href="#" data-theme="b" class="bottoni1"><font color="#fff">&nbsp;Da&nbsp;</font></a></td><td align="center" ><a data-role="button" id="a1" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;A&nbsp;</font></a></td><td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;+&nbsp;</font></a></td><td align="center" ><a data-role="button" id="anteprima" href="#" data-theme="b" class="custom-pass"><font color="#fff">Anteprima</font></a></td></tr></table>';
+	//controlText.innerHTML = '<table width="100%" class="xalto"><tr><td align="right">&nbsp;</td></tr><tr><td align="right"><a id="XX3" href="index.html" rel="external"><img src="img/xx.png" width="35px"></a><br></td></tr></table><br><table width="100%" border="0" valign="center" align="center" ><tr><td align="center" ><a data-role="button" id="quando" href="#" data-theme="b" class="custom-pass"><font color="#fff">Quando</font></a></td><td align="center" ><a data-role="button" id="da1" href="#" data-theme="b" class="bottoni1"><font color="#fff">&nbsp;Da&nbsp;</font></a></td><td align="center" ><a data-role="button" id="a1" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;A&nbsp;</font></a></td><td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;+&nbsp;</font></a></td><td align="center" ><a data-role="button" id="anteprima" href="#" data-theme="b" class="custom-pass"><font color="#fff">Anteprima</font></a></td></tr></table>';
+	
+	controlText.innerHTML = '<table width="100%" class="xalto"><tr><td align="right">&nbsp;</td></tr><tr><td align="right"><a id="XX3" href="#" rel="external"><img src="img/xx.png" width="35px"></a><br></td></tr></table><table width="100%" border="0" valign="center" align="center" ><tr><td align="center" ><a id="quando" href="#"><img src="img/ico_quando1.png" width="35px"></a></td><td align="center" ><a id="da1" href="#"><img src="img/ico_start2.png" width="35px"></a></td><td align="center" ><a id="a1" href="#"><img src="img/ico_finish1.png" width="35px"></a></td><td align="center" ><a id="piu" href="#"><img src="img/ico_plus1.png" width="35px"></a></td><td align="center" ><a id="offerte" href="#" ><img src="img/ico_offerte1.png" width="35px"></a></td><td align="center" ><a id="anteprima" href="#" ><img src="img/ico_anteprima1.png" width="35px"></td></tr></table>';
+	
+	
 	controlUI.appendChild(controlText);
 	
 	//<td align="center" ><a data-role="button" id="piu" href="#" data-theme="b" class="bottoni"><font color="#fff">&nbsp;+&nbsp;</font></a></td>
@@ -921,9 +932,7 @@ function onResume() {
 			   
 		$("#viale").show();
 		$("#destinazione").hide();
-			   
-		$("#da").removeClass("custom-pass1").addClass("custom-pass11");
-		$("#a1").removeClass("custom-pass11").addClass("custom-pass1");
+			
 		
 	  //$.mobile.changePage( "#win2", { transition: "slide", changeHash: false });
 			   
@@ -982,7 +991,7 @@ function resetta1(focus) {
 	if(connectionStatus=='online'){
 		
 
-	$("#da").removeClass("bottoni").addClass("bottoni1");
+	//$("#da").removeClass("bottoni").addClass("bottoni1");
 
 	var watchID = navigator.geolocation.getCurrentPosition(onSuccess2, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
 	

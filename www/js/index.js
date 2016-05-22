@@ -1483,7 +1483,7 @@ function resetta1(focus) {
 	  setTimeout(function() {
 		 google.maps.event.trigger(map, "resize");
 		 map.setCenter(latlng);
-	  }, 1000);
+	  }, 600);
 
 	
 	var contentString1 =
@@ -2385,7 +2385,21 @@ function timer(){
 												  }
 												  
 												  
+												 
 												  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
+												  if(item.stato==3){
+
+												  }
+												  
+												  if(item.stato==1){
+													 var icon3 = new google.maps.MarkerImage("img/1_giallo.png", null, null, null, new google.maps.Size(30,30));
+												  }
+												  if(item.stato==0){
+													var icon3 = new google.maps.MarkerImage("img/1_viola.png", null, null, null, new google.maps.Size(30,30));
+												  }
+												  if(item.stato==2){
+													 var icon3 = new google.maps.MarkerImage("img/1_verde.png", null, null, null, new google.maps.Size(30,30));
+												  }
 												  
 												  marker1.setMap(null);
 
@@ -2528,6 +2542,20 @@ function timer(){
 												  }
 												  
 												  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
+												  if(item.stato==3){
+												  
+												  }
+												  
+												  if(item.stato==1){
+													 var icon3 = new google.maps.MarkerImage("img/2_giallo.png", null, null, null, new google.maps.Size(30,30));
+												  }
+												  if(item.stato==0){
+												  var icon3 = new google.maps.MarkerImage("img/2_viola.png", null, null, null, new google.maps.Size(30,30));
+												  }
+												  if(item.stato==2){
+													 var icon3 = new google.maps.MarkerImage("img/2_verde.png", null, null, null, new google.maps.Size(30,30));
+												  }
+
 												  
 												  marker3.setMap(null);
 												  
@@ -2643,6 +2671,20 @@ function timer(){
 												  item3 = item.id_richiesta;
 												  
 												  var icon3 = new google.maps.MarkerImage("img/passeggero.png", null, null, null, new google.maps.Size(30,50));
+												  if(item.stato==3){
+												  
+												  }
+												  
+												  if(item.stato==1){
+													 var icon3 = new google.maps.MarkerImage("img/3_giallo.png", null, null, null, new google.maps.Size(30,30));
+												  }
+												  if(item.stato==0){
+												  var icon3 = new google.maps.MarkerImage("img/3_viola.png", null, null, null, new google.maps.Size(30,30));
+												  }
+												  if(item.stato==2){
+													 var icon3 = new google.maps.MarkerImage("img/3_verde.png", null, null, null, new google.maps.Size(30,30));
+												  }
+
 												  
 												  
 												  var isVisible4 = marker4.getVisible();
@@ -3565,7 +3607,7 @@ function richiesta1() {
 	$("#blob2").show();
 	
 				  
-				  $("#nickhome4").html("<a id='linknick1' href='#'><font color='#fff'>"+ nick1 +"</font></a>");
+				  $("#nickhome4").html("<a id='linknick1' href='#' class='noblu'><font color='#fff'>"+ nick1 +"</font></a>");
 	
 				  localStorage.setItem("id_nick", nick1)
 				  $("#nickhome3").html("<font color='#fff'>"+ nick1 +"</font>");
