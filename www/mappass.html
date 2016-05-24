@@ -47,7 +47,7 @@
 
 
 						.div2 {
-							background-image: url("img/sfondo.jpg");
+							background-image: url("img/sfondo.png");
 							background-color: #fff;
 							
 						}
@@ -618,11 +618,14 @@
 					  }
 						
 						.tabella {
-							top:100px;
-							background-color: #FFF;
+							background-color: #eceae4;
 							border: 1px solid #000;
 							border-color: #cc33cc;
-									
+							
+							border-radius: 10px;
+							-moz-border-radius: 10px; /* firefox */
+							-webkit-border-radius: 10px; /* safari, chrome */
+							
 						}
 						.tabella1 {
 							background-color:#cc33cc;
@@ -702,7 +705,7 @@
 	<table id="tblhome" width="90%" height="" border="0" valign="center" align="center" class="tabella" style="display:none">
 		<tr>
 			<td width="25%" align="center">
-				<a href="#"><img src="img/ico_quando1.png" width="50px"></a>
+				<a href="#"><img src="img/ico_quando1.png" width="40px"></a>
 			</td>
 			<td width="50%" align="center" valign="center" colspan="2">
 				<font size="5"><b>QUANDO</b></font><br>
@@ -741,10 +744,10 @@
 		</tr>
 
 		<tr>
-			<td width="75%" align="center" colspan="3">
+			<td width="75%" align="right" colspan="3">
 				<input id="datacal" name="datacal" type="text" value="" placeholder="data" readonly>
 			</td>
-			<td width="25%" align="center" colspan="1">
+			<td width="25%" align="center">
 				<img id="imgcalendario" src="img/calendar.png" width="30">
 			</td>
 			

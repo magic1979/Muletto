@@ -69,6 +69,17 @@
 			overflow: hidden;
 		}
 		
+		#wrapper2 {
+			position: absolute;
+			z-index: 1;
+			top: 5px;
+			bottom: 0px;
+			left: 0;
+			width: 100%;
+			background: #fff;
+			overflow: hidden;
+		}
+		
 		#scroller {
 			position: absolute;
 			z-index: 1;
@@ -442,11 +453,15 @@ a {text-decoration:none;}
 		
 		<div id="page6" data-role="page" class="div2" >
 			<br><center>
+				
+				<div id="wrapper2">
+					<div id="scroller">
+						
 				<img src="img/Logo.png" width="160px"><br>
 			<table align="center" width="80%">
 			<tr>
 				<td  align="left">
-					Lingua
+					<b>Lingua</b>
 				</td>
 			</tr>
 			
@@ -467,13 +482,13 @@ a {text-decoration:none;}
 			
 			<tr>
 				<td  align="left">
-					Fuso Orario
+					<b>Fuso Orario</b>
 				</td>
 			</tr>
 			<tr>
 				<td align="center">
 					<select id="fuso" name="fuso" data-theme="c" >
-						<option value="it">Italia</option>
+						<option value="Italy">Italy</option>
 					</select>
 					
 				</td>
@@ -481,8 +496,26 @@ a {text-decoration:none;}
 			<tr>
 				<td align="center">
 					<select id="citta" name="citta" data-theme="c" >
-						<option value="it">Roma</option>
+						<option value="154">Rome</option>
 					</select>
+				</td>
+			</tr>
+			<tr>
+				<td  align="center">
+					&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td  align="left">
+					<b>Tipo Veicolo</b>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<select id="veicolo" name="veicolo" data-theme="c" >
+						
+					</select>
+					
 				</td>
 			</tr>
 			<tr>
@@ -507,6 +540,9 @@ a {text-decoration:none;}
 			</tr>
 			
 			</table>
+			
+					</div>
+				</div>
 		</div><!-- /page6 -->
 		
 		<div id="page7" data-role="page" class="div2" >

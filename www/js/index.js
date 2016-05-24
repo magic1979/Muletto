@@ -102,8 +102,8 @@ receivedEvent: function(id) {
 	//localStorage.setItem("lng", "12.492475")
 	
 	
-	var altezzatbl = getRealContentHeight()-60;
-	var height = getRealContentHeight()-60;
+	var altezzatbl = getRealContentHeight()-80;
+	var height = getRealContentHeight()-80;
 	$("#tblhome").attr("height",height);
 	$("#tblhome3").attr("height",height);
 	
@@ -117,6 +117,13 @@ receivedEvent: function(id) {
 		
 	}
 	
+	if (localStorage.getItem("veicolo") === null || localStorage.getItem("veicolo")=="null" || typeof(localStorage.getItem("veicolo")) == 'undefined' || localStorage.getItem("veicolo")==0 || localStorage.getItem("veicolo")=="") {
+		
+		localStorage.setItem("veicolo", "6");
+		
+	}
+	
+	
 	IDPage = getParameterByName('id');
 	ODPage = getParameterByName('od');
 	
@@ -128,7 +135,7 @@ receivedEvent: function(id) {
 	  localStorage.setItem("exit", "0")
 	}
 	
-	$("#tblhome").html('<table id="tblhome" width="90%" height="'+ altezzatbl +'" border="0" valign="center" align="center" class="tabella"><tr height="48%"><td width="100%" align="center"><a id="mappa6" href="#" rel="external"><img src="img/Volante.png" width="120px"></a><br><b>Voglio essere autista</b><br><table><tr><td><table id="profiloperc" class="tabella1"><tr><td><font color="#FFF" size="4">Profilo '+ localStorage.getItem("perc_autista") +'%</font></td></tr></table></td><td><div id="stelleautista"></div></td></tr></table></td></tr><tr height="2%"><td width="100%" align="center"> </td></tr><tr height="48%"> <td width="100%" align="center"><a id="mappa7" href="#" rel="external"><img src="img/Valigia.png" width="120px"></a><br><b>Voglio essere passeggero</b><br><table><tr><td><table id="profiloperc2" class="tabella1"><tr><td><font color="#FFF" size="4">Profilo '+ localStorage.getItem("perc_pass") +'%</font></td></tr></table></td><td><div id="stellepass"></div></td></tr></table></td> </tr><tr height="10%"> <td width="100%" align="center"></td></tr></table>')
+	$("#tblhome").html('<table id="tblhome" width="90%" height="'+ altezzatbl +'" border="0" valign="center" align="center" class="tabella"><tr height="48%"><td width="100%" align="center"><a id="mappa6" href="#" rel="external"><img src="img/Volante.png" width="120px"></a><p class="testo_sottotitolo">voglio essere autista</p><table><tr><td><table id="profiloperc" class="tabella1"><tr><td><font color="#FFF" size="4" class="testo_bianco">Profilo '+ localStorage.getItem("perc_autista") +'%</font></td></tr></table></td><td><div id="stelleautista"></div></td></tr></table></td></tr><tr height="2%"><td width="70%" align="center"><hr></td></tr><tr height="48%"> <td width="100%" align="center"><a id="mappa7" href="#" rel="external"><img src="img/Valigia.png" width="120px"></a><p class="testo_sottotitolo">voglio essere passeggero</p><table><tr><td><table id="profiloperc2" class="tabella1"><tr><td><font color="#FFF" size="4" class="testo_bianco">Profilo '+ localStorage.getItem("perc_pass") +'%</font></td></tr></table></td><td><div id="stellepass"></div></td></tr></table></td> </tr><tr height="10%"> <td width="100%" align="center"></td></tr></table>')
 	
 	$("#nickhome").html(localStorage.getItem("nick"));
 	$("#nickhome3").html(localStorage.getItem("nick"));
@@ -1670,6 +1677,17 @@ function resetta1(focus) {
 										  zIndex: -12
 										  });
 		
+		marker5 = new google.maps.Marker ({
+										  map : map,
+										  icon: iconnn,
+										  optimized: false,
+										  position : myLatLng,
+										  //content:'<div class="popup">'+ beach[0] +'<br>Km'+ beach[5] +'<br><a href="#home3">Cliccami</a></div>',
+										  title: '',
+										  //label: ''+ beach[1] +','+ beach[2] +'',
+										  zIndex: -12
+										  });
+		
 		
 		
 			
@@ -2960,6 +2978,7 @@ function magia2C(utente,pass) {
 		window.clearInterval(i);
 	}
 	
+	
 	$("#magia").show();
 	$("#btninizia").hide();
 	$("#btnpass").hide();
@@ -3022,8 +3041,51 @@ function magia2C(utente,pass) {
 				  $("#pass1").removeClass("custom-pass2").addClass("custom-pass3");
 				  }
 				  
+				  if(item.stato==1){
+				  var icon11 = new google.maps.MarkerImage("img/marker_arancione_3.png", null, null, null, new google.maps.Size(40,40));
+				  }
+				  if(item.stato==0){
+				  var icon11 = new google.maps.MarkerImage("img/marker_fucsia_3.png", null, null, null, new google.maps.Size(40,40));
+				  }
+				  if(item.stato==2){
+				  var icon11 = new google.maps.MarkerImage("img/marker_verde_3.png", null, null, null, new google.maps.Size(40,40));
+				  }
+
+				  var dist1 = Math.round(item.distanza1)
+				  var dist2 = Math.round(14-Math.log(dist1)/Math.LN2)
+				  dist2 = dist2 +1;
+				  alert(dist2);
+				  
+				  map.setZoom(dist2)
+				  
 				  marker1.setVisible(true);
-				  marker1.setIcon(icon2a);
+				  marker1.setIcon(icon11);
+
+				  //marker rosso
+				  var latlng5 = new google.maps.LatLng(item.lat1, item.lng1);
+				  marker5.setVisible(true);
+				  //marker5.setIcon(icon2a);
+				  //marker5.setPosition(latlng5);
+				  
+				  marker5 = new google.maps.Marker ({
+													map : map,
+													icon: icon2a,
+													optimized: false,
+													position : latlng5,
+													content:'<div class="popup">Arrivo<br>Km'+ item.distanza1 +'</div>',
+													title: item.nick,
+													zIndex: -19
+													});
+				  
+				  google.maps.event.addListener(marker5, 'click', function() {
+												
+												infowindow.setContent(this.content);
+												infowindow.open(map, this);
+												
+												});
+				  
+				  
+				  
 				  
 				  var isVisible3 = marker3.getVisible();
 				  if(isVisible3){
