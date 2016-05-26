@@ -32,6 +32,17 @@
 							  padding:0px;
 						  }
 					  
+					  #footer {
+						  position: absolute;
+						  z-index: 2;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  background: #fff;
+						  padding: 0;
+						  
+					  }
+					  
 					  .linkchat {
 						  text-decoration: none;
 						  text-shadow:0 0 0;
@@ -40,9 +51,15 @@
 					  }
 					  
 
-					  
 					  .divchat {
 						  background: transparent !important;
+					  }
+					  
+					  .div1 {
+						  background-color: #488354;
+						  height: 52px;
+						  border: none;
+						  
 					  }
 
 
@@ -62,6 +79,40 @@
                           background: linear-gradient(to bottom, rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C */
                           filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
                       }
+					  
+					  .div59 {
+						  background-color: #fff;
+						  position: fixed;
+						  z-index: 19;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 50px;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  opacity: 0.2;
+						  filter: alpha(opacity=20);
+						  
+					  }
+					  
+					  .div599 {
+						  position: fixed;
+						  z-index: 20;
+						  bottom: 0;
+						  left: 0;
+						  width: 100%;
+						  height: 50px;
+						  padding: 0;
+						  color: #000;
+						  
+						  text-align: center;
+						  font-weight: bold;
+					  }
+					  
 						#win2 {
 							max-width: none;
 						}
@@ -314,7 +365,13 @@
 					  #map_geolocation img { max-height: none; max-width: none; }
 					  
 					  .custom-btn {
-							width: 280px;
+							width: 220px;
+							font-size: 16px;
+							
+							text-decoration: none;
+							text-shadow:0 0 0;
+							
+							
 						}
 						
 						.custom-btn2 {
@@ -432,6 +489,25 @@
 						  -moz-border-radius: 5px; /* firefox */
 						  -webkit-border-radius: 5px; /* safari, chrome */
 					  }
+					  
+						.custom-btn33 {
+							background-color: #cc33cc;
+							width: 95%;
+							font-size: 18px;
+							
+							color:#FFF;
+							
+							text-decoration: none;
+							text-shadow:0 0 0;
+							
+							font-family: ubuntu, helvetica, arial;
+							
+							padding: 5 5 5 5;
+							
+							border-radius: 5px;
+							-moz-border-radius: 5px; /* firefox */
+							-webkit-border-radius: 5px; /* safari, chrome */
+						}
 					  
 					  .bottoni {
 						  background-color: #cc33cc;
@@ -708,7 +784,7 @@
 				<a href="#"><img src="img/ico_quando1.png" width="40px"></a>
 			</td>
 			<td width="50%" align="center" valign="center" colspan="2">
-				<font size="5"><b>QUANDO</b></font><br>
+				<!--<font size="5"><b>QUANDO</b></font><br>-->
 			</td>
 			<td width="25%" align="center" valign="center">
 				<a id="XX3" href="#" rel="external"><img src="img/xx.png" width="35px"></a>
@@ -718,11 +794,11 @@
 
 		<tr>
 			<td width="100%" align="center" colspan="4">
-				<a data-role="button" id="adesso" href="#" data-theme="b" class="custom-pass">Adesso</a>
+				<a data-role="button" id="adesso" href="#" data-theme="b" class="custom-btn">Adesso</a>
 			</td>
 		</tr>
 		<tr>
-			<td width="100%" align="center" colspan="4"> o
+			<td width="100%" align="center" colspan="4"> oppure
 				<!--<a data-role="button" id="oggi" href="#" data-theme="b" class="custom-pass">Oggi</a><br>-->
 				<!--<a data-role="button" id="domani" href="#" data-theme="b" class="custom-pass">Domani</a>-->
 			</td>
@@ -742,9 +818,28 @@
 				<img src="img/clock.png" width="30">
 			</td>
 		</tr>
+		
+		<tr>
+			<td width="100%" align="center" colspan="4">
+				<select id="fuso1" name="fuso" data-theme="c" >
+					<option value="Italy">Italy</option>
+				</select>
+				
+			</td>
+		</tr>
+		<tr>
+			<td width="100%" align="center" colspan="4">
+				<select id="citta1" name="citta" data-theme="c" >
+					<option value="154">Rome</option>
+				</select>
+			</td>
+		</tr>
 
 		<tr>
-			<td width="75%" align="right" colspan="3">
+		    <td width="25%" align="center" >
+				<font size="4">Del giorno</font>
+			</td>
+			<td width="50%" align="center" colspan="2">
 				<input id="datacal" name="datacal" type="text" value="" placeholder="data" readonly>
 			</td>
 			<td width="25%" align="center">
@@ -756,7 +851,7 @@
 
 		<tr>
 			<td width="100%" align="center" colspan="4">
-				<a id="inviarichiesta" href="#" data-role="button" data-theme="b" class="custom-pass">Invia</a>
+				<a id="inviarichiesta" href="#" data-role="button" data-theme="b" class="custom-btn">Invia</a>
 			</td>
 		</tr>
 	 </table>
@@ -920,28 +1015,25 @@
 			<table id="tblhome3" width="90%" height="" border="0" valign="center" align="center" class="tabella">
 				<tr>
 					<td width="100%" align="center" colspan="2">
-						<br><!--<b>ANTEPRIMA</b>-->
+						<!--<b>ANTEPRIMA</b>-->
 					</td>
 				</tr>
 				<tr>
 					<td width="100%" align="left" colspan="2">
 						<input id="datacal3" name="datacal3" type="hidden" value="" readonly><input id="orario3" name="orario3" type="hidden" value="" readonly><input id="minuti3" name="minuti3" type="hidden" value="" readonly>
-						<div id="posticipata"></div>
+						<!--<div id="posticipata"></div>-->
 					</td>
 				</tr>
+
 				<tr>
-					<td width="100%" align="center" colspan="2">
-						<br><!--<b>ANTEPRIMA</b>-->
+					<td width="100%" align="left" colspan="2">
+						<img src="img/ico_plus1.png" width="40px">
 					</td>
 				</tr>
 				<tr>
 					<td width="100%" align="left" colspan="2">
-						<b>Partenza</b><br><input id="viale3" name="viale3" type="text" value="" readonly>
-					</td>
-				</tr>
-				<tr>
-					<td width="100%" align="left" colspan="2">
-						<b>Arrivo</b><br><input id="destinazione3" name="destinazione3" type="text" value="" placeholder="destinazione" readonly>
+						<input id="destinazione3" name="destinazione3" type="hidden" value="" placeholder="destinazione" readonly>
+						<input id="viale3" name="viale3" type="hidden" value="" readonly>
 					</td>
 				</tr>
 				<tr>
@@ -949,7 +1041,7 @@
 						Passeggeri
 					</td>
 					<td width="50%" align="center" >
-						<select id="passeggeri" name="passeggeri" data-theme="b">
+						<select id="passeggeri" name="passeggeri" data-theme="f">
 							<option selected>01</option>
 							<option>02</option>
 							<option>03</option>
@@ -998,7 +1090,7 @@
 						Fumatori
 					</td>
 					<td width="50%" align="center" >
-						<select id="fumatori" name="fumatori" data-role="flipswitch" data-theme="b">
+						<select id="fumatori" name="fumatori" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
@@ -1006,10 +1098,10 @@
 				</tr>
 				<tr>
 					<td width="50%" align="center" >
-						Animali
+						Piccolo animale a seguito
 					</td>
 					<td width="50%" align="center" >
-						<select id="animali" name="animali" data-role="flipswitch" data-theme="b">
+						<select id="animali" name="animali" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
@@ -1017,10 +1109,10 @@
 				</tr>
 				<tr>
 					<td width="50%" align="center" >
-						Meno 18 anni
+						Servizio minorenni non accompagnati
 					</td>
 					<td width="50%" align="center" >
-						<select id="meno18" name="meno18" data-role="flipswitch" data-theme="b">
+						<select id="meno18" name="meno18" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
@@ -1028,10 +1120,10 @@
 				</tr>
 				<tr>
 					<td width="50%" align="center" >
-						Disabili
+						Diversamente abili
 					</td>
 					<td width="50%" align="center" >
-						<select id="disabili" name="disabili" data-role="flipswitch" data-theme="b">
+						<select id="disabili" name="disabili" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
@@ -1039,10 +1131,10 @@
 				</tr>
 				<tr>
 					<td width="50%" align="center" >
-						Bambini
+						Seggiolino bambini
 					</td>
 					<td width="50%" align="center" >
-						<select id="bambini" name="bambini" data-role="flipswitch" data-theme="b">
+						<select id="bambini" name="bambini" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
@@ -1050,10 +1142,10 @@
 				</tr>
 				<tr>
 					<td width="50%" align="center" >
-						WiFi
+						Wifi
 					</td>
 					<td width="50%" align="center" >
-						<select id="wifi" name="wifi" data-role="flipswitch" data-theme="b">
+						<select id="wifi" name="wifi" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
@@ -1064,7 +1156,7 @@
 						Portapacchi
 					</td>
 					<td width="50%" align="center" >
-						<select id="portapacchi" name="portapacchi" data-role="flipswitch" data-theme="b">
+						<select id="portapacchi" name="portapacchi" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
@@ -1072,10 +1164,10 @@
 				</tr>
 				<tr>
 					<td width="50%" align="center" >
-						Rimorchio
+						Gancio rimorchio
 					</td>
 					<td width="50%" align="center" >
-						<select id="rimorchio" name="rimorchio" data-role="flipswitch" data-theme="b">
+						<select id="rimorchio" name="rimorchio" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
@@ -1083,13 +1175,18 @@
 				</tr>
 				<tr>
 					<td width="50%" align="center" >
-						bluetooth
+						Bluetooth
 					</td>
 					<td width="50%" align="center" >
-						<select id="bluetooth" name="bluetooth" data-role="flipswitch" data-theme="b">
+						<select id="bluetooth" name="bluetooth" data-role="flipswitch" data-theme="f">
 							<option>No</option>
 							<option>Si</option>
 						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" colspan="2">
+						<textarea id="notepass" name="notepass" cols="30" rows="10" class="scrivo" placeholder="Note"></textarea>
 					</td>
 				</tr>
 				
@@ -1155,32 +1252,41 @@
 			
 			<form name="formia7" action="entra.asp" method="post">
 				
-				<table width="95%" align="center" class="div58">
+				<table width="95%" align="center">
 					<tr>
 						<td width="100%" align="left" colspan="3">
-							<table width="90%" align="center" >
+							<table width="95%" align="center" class="tabella">
 								<tr>
 									<td width="250px" align="left" valign="center">
-										<table border="0" hight="20px"><tr><td></td></tr></table>
+										<!--<table border="0" hight="10px"><tr><td></td></tr></table>-->
+										<img src="img/ico_anteprima1.png" width="40px"><br>
 									</td>
 								</tr>
+
 								<tr>
 									<td width="100%" align="left" colspan="2">
 										<input id="datacal7" name="datacal7" type="hidden" value="" readonly><input id="orario7" name="orario7" type="hidden" value="" readonly><input id="minuti7" name="minuti7" type="hidden" value="" readonly>
-											<div id="posticipata7"></div>
+										<div id="posticipata7"></div>
 									</td>
 								</tr>
 								<tr>
 									<td width="100%" align="left" colspan="2">
-										<b>Partenza</b><br><input id="viale7" name="viale7" type="text" value="" readonly>
-											</td>
+									  <input id="viale7" name="viale7" type="hidden" value="" readonly>
+									  <div id="viale77"></div>
+									</td>
 								</tr>
 								<tr>
 									<td width="100%" align="left" colspan="2">
-										<b>Arrivo</b><br><input id="destinazione7" name="destinazione7" type="text" value="" placeholder="destinazione" readonly>
-											</td>
+										<input id="destinazione7" name="destinazione7" type="hidden" value="" placeholder="destinazione" readonly>
+										<div id="destinazione77"></div>
+									</td>
 								</tr>
-
+								
+								<tr>
+									<td width="100%" align="left" colspan="2">
+										<br><b><font color='#cc33cc'>Opzioni</font></b>
+									</td>
+								</tr>
 								<tr>
 									<td width="250px" align="left" valign="center">
 										<p id="passeggeri7">Passeggeri: No</p>
@@ -1233,7 +1339,17 @@
 								</tr>
 								<tr>
 									<td width="250px" align="center" valign="center">
-										<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>
+										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="center" valign="center">
+										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
+									</td>
+								</tr>
+								<tr>
+									<td width="250px" align="center" valign="center">
+										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
 									</td>
 								</tr>
 								
@@ -1247,6 +1363,33 @@
 
 				
 			</form>
+			
+			<table id="zoccolo" width="100%" border="0" align="center" valign="center" class="div59" >
+				<tr>
+					<td algn="center" width="100%" align="center" valign="center">
+						
+					</td>
+				</tr>
+			</table>
+			
+			<table width="100%" border="0" align="center" valign="center" class="div599" >
+				<tr>
+					<td width="100%" align="center" valign="center">
+						<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn" > Invia </a>
+					</td>
+				</tr>
+			</table>
+
+			
+			<!--<div id="footer9" data-position="fixed" data-role="footer" data-theme="b" data-tap-toggle="false" class="div1" data-transition="none">
+				<table id="idfooter4" width="100%" align="center">
+					<tr>
+						<td width="100%" align="center">
+							<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn33" >Invia</a>
+						</td>
+					</tr>
+				</table>
+			</div>-->
 			
 		</div>
 
