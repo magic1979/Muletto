@@ -682,6 +682,29 @@
 						  -webkit-border-radius: 5px; /* safari, chrome */
 					  }
 					  
+					  .custom-btn4blob {
+						  background-color: #cc33cc;
+						  border: 0px solid #000;
+						  border-color: #cc33cc;
+						  
+						  width: 120px;
+						  font-size: 28px;
+						  
+						  padding: 50 5 50 5;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
+					  
 					  .custom-btn5 {
 						  background-color: #ffffff;
 						  width: 120px;
@@ -778,6 +801,8 @@
     <body>
 
         <div id="geolocation"></div>
+		<audio id="successSound" src="/sound/open.mp3" type="audio/mpeg" ></audio>
+		<!--<audio id="successArrivo" src="/sound/bell.mp3" type="audio/mpeg" ></audio>-->
         
         <div data-role=page id=home class="div2">
 
@@ -840,7 +865,7 @@
         
         <div data-role=page id="win2" data-add-back-btn=true class="div2">
             
-			
+			<audio id="successArrivo" src="/sound/bell.mp3" type="audio/mpeg" ></audio>
 			<div data-role="content"></div>
 			
 			<table id="blob" width="100%" border="0" align="center" valign="center" class="div56" style="display:none">
@@ -849,7 +874,7 @@
 						<table align="center" width="100px" height="100%">
 							<tr>
 								<td width="100px" align="center" valign="center">
-									<a id="ric1" href="#" data-role="button" data-theme="b" class="custom-btn4"><font size="3" color="#fff"><b>Richiesta</b></font></a>
+									<a id="ric1" href="#" data-role="button" data-theme="b" class="custom-btn4blob"><font size="5" color="#fff"><b>Richiesta</b></font></a>
 								</td>
 							</tr>
 						</table>
@@ -1141,7 +1166,7 @@
 			<table width="100%" align="center">
 				<tr>
 					<td width="100%" align="left" colspan="3">
-						<table width="90%" align="center" class="div57">
+						<table width="90%" align="center" class="tabella">
 							<tr>
 								<td width="250px" align="left" valign="center">
 									<table border="0" hight="20px"><tr><td></td></tr></table>

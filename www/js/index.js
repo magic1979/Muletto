@@ -63,6 +63,8 @@ receivedEvent: function(id) {
 		$('#noconn').hide();
 		
 		localStorage.setItem("chatpass", "")
+			
+		playAudio('successSound');
 		
 		startgps();
 		
@@ -93,10 +95,34 @@ receivedEvent: function(id) {
 		
 		//window.location.href = "index.html";
 		
-		
 	}
-
 	
+		$(document).on("tap", "#esciapp", function(e){
+				   
+		  playAudio('successSound');
+				   
+	   	  e.stopImmediatePropagation();
+				   
+		  e.preventDefault();
+				   
+		  return false;
+				   
+		   if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
+				   
+	});
+
+	function playAudio(id) {
+		var audioElement = document.getElementById(id);
+		var url = audioElement.getAttribute('src');
+		var my_media = new Media(url,
+				// success callback
+				 function () { console.log("playAudio():Audio Success"); },
+				// error callback
+				 function (err) { console.log("playAudio():Audio Error: " + err); }
+		);
+			   // Play audio
+		my_media.play();
+	}
 	
 	//localStorage.setItem("lat", "41.889191")
 	//localStorage.setItem("lng", "12.492475")
@@ -673,8 +699,21 @@ receivedEvent: function(id) {
 	
 	function onConfirm(button) {
 		if(button==1){    //If User selected No, then we just do nothing
-			localStorage.setItem("email", "");
-			localStorage.setItem("emailpass", "");
+            localStorage.setItem("email", "");
+            localStorage.setItem("email2", "");
+            localStorage.setItem("emailpass", "");
+            localStorage.setItem("id_autista", "");
+            localStorage.setItem("nick", "");
+            localStorage.setItem("id_pass", "");
+            localStorage.setItem("nickpass", "");
+            
+            localStorage.setItem("stelleautista", "");
+            localStorage.setItem("stellepass", "");
+            localStorage.setItem("md5", "");
+            localStorage.setItem("perc_autista", "");
+            localStorage.setItem("perc_pass", "");
+            localStorage.setItem("id_utente", "");
+            
 			window.location.href = "Login.html";
 			
 			return;
@@ -1791,6 +1830,30 @@ function resetta1(focus) {
 		$("#setGPS").hide();
 		$("#Modifica").hide();
 		$("#lista").hide();
+        
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;//January is 0, so always add + 1
+        
+        var ora = today.getHours()
+        if(ora<10){ora="0"+ora}
+        
+        var minuti = today.getMinutes();
+        if(minuti<10){minuti="0"+minuti}
+        
+        var secondi = today.getSeconds();
+        if(secondi<10){secondi="0"+secondi}
+        
+        
+        var yyyy = today.getFullYear();
+        if(dd<10){dd="0"+dd}
+        if(mm<10){mm="0"+mm}
+        today = dd+'/'+mm+'/'+yyyy;
+        
+        $("#stamp").html(yyyy+"-"+mm+"-"+dd+" "+ora+":"+minuti+":00");
+        var ora_cell = yyyy+"-"+mm+"-"+dd+" "+ora+":"+minuti+":00";
+        
+        localStorage.setItem("ora_cell", ora_cell);
 		
 		
 		var centerControlDiv2 = document.createElement('div');
@@ -1811,7 +1874,7 @@ function resetta1(focus) {
 	
 	$.ajax({
 		   type:"GET",
-		   url:"http://purplemiles.com/www2/check_richiesta_autistaV3.php?email="+ localStorage.getItem("email") +"&latitudine="+ localStorage.getItem("lat") +"&longitudine="+ localStorage.getItem("lng") +"&id_autista="+ localStorage.getItem("id_autista") +"",
+		   url:"http://purplemiles.com/www2/check_richiesta_autistaV4.php?email="+ localStorage.getItem("email") +"&latitudine="+ localStorage.getItem("lat") +"&longitudine="+ localStorage.getItem("lng") +"&id_autista="+ localStorage.getItem("id_autista") +"&fuso="+ localStorage.getItem("citta") +"&ora_cell="+ localStorage.getItem("ora_cell") +"",
 		   contentType: "application/json",
 		   //data: {ID: "Lazio"},
 		   timeout: 7000,
@@ -2387,6 +2450,8 @@ function posizionegps(){
 function timer(){
 	
 	refreshIntervalId = setInterval(function() {
+                                    
+    
 
 									
 		//var watchID = navigator.geolocation.getCurrentPosition(onSuccess22, onError3, {timeout: 10000, enableHighAccuracy: false, maximumAge: 0 });
@@ -2417,7 +2482,7 @@ function timer(){
 									
 									$.ajax({
 										   type:"GET",
-										   url:"http://purplemiles.com/www2/check_richiesta_autistaV3.php?email="+ localStorage.getItem("email") +"&latitudine="+ localStorage.getItem("lat") +"&longitudine="+ localStorage.getItem("lng") +"&id_autista="+ localStorage.getItem("id_autista") +"",
+										   url:"http://purplemiles.com/www2/check_richiesta_autistaV4.php?email="+ localStorage.getItem("email") +"&latitudine="+ localStorage.getItem("lat") +"&longitudine="+ localStorage.getItem("lng") +"&id_autista="+ localStorage.getItem("id_autista") +"&fuso="+ localStorage.getItem("citta") +"&ora_cell="+ localStorage.getItem("ora_cell") +"",
 										   contentType: "application/json",
 										   //data: {ID: "Lazio"}, LIMIT 10
 										   timeout: 7000,
@@ -2496,7 +2561,7 @@ function timer(){
 												  passeggeri1 = item.passeggeri;
 												  animali1 = item.animali;
 												  fumatori1 = item.fumatori;
-												  meno181 = item.meno;
+												  meno181 = item.meno18;
 												  disabili1 = item.disabili;
 												  bambini1 = item.bambini;
 												  wifi1 = item.wifi;
@@ -2508,6 +2573,8 @@ function timer(){
 												  if(localStorage.getItem("palla1")!=1){
 											   
 												     palla1()
+												     playAudio('successArrivo');
+												     //SUONO RICEZIONE
 												  
 											       }
 												  
@@ -2672,7 +2739,7 @@ function timer(){
 												  passeggeri2 = item.passeggeri;
 												  animali2 = item.animali;
 												  fumatori2 = item.fumatori;
-												  meno182 = item.meno;
+												  meno182 = item.meno18;
 												  disabili2 = item.disabili;
 												  bambini2 = item.bambini;
 												  wifi2 = item.wifi;
@@ -2831,7 +2898,7 @@ function timer(){
 												  passeggeri3 = item.passeggeri;
 												  animali3 = item.animali;
 												  fumatori3 = item.fumatori;
-												  meno183 = item.meno;
+												  meno183 = item.meno18;
 												  disabili3 = item.disabili;
 												  bambini3 = item.bambini;
 												  wifi3 = item.wifi;
@@ -2981,6 +3048,25 @@ function timer(){
 										   
 										   },
 										   dataType:"jsonp"});
+									
+									
+									
+									
+									function playAudio(id) {
+									var audioElement = document.getElementById(id);
+									var url = audioElement.getAttribute('src');
+									var my_media = new Media(url,
+															 // success callback
+															 function () { console.log("playAudio():Audio Success"); },
+															 // error callback
+															 function (err) { console.log("playAudio():Audio Error: " + err); }
+															 );
+									// Play audio
+									my_media.play();
+									}
+									
+									
+									
 									
 									//setTimeout(function() {
 

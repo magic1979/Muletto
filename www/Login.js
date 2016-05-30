@@ -27,7 +27,8 @@ function onDeviceReady() {
 	$(document).on("tap", "#conferma", function(e){
 		//window.location.href = "#page6";
 		localStorage.setItem("lingua", document.getElementById("lingua").value);
-		localStorage.setItem("fuso", document.getElementById("citta").value);
+		localStorage.setItem("fuso", document.getElementById("fuso").value);
+        localStorage.setItem("citta", document.getElementById("citta").value);
 		
 		localStorage.setItem("veicolo", document.getElementById("veicolo").value);
 				   
@@ -52,14 +53,15 @@ function onDeviceReady() {
 				   setTimeout (function(){
 					  myScroll2.refresh();
 				   }, 1000);
+                   
+                   prendinazione()
+                   
+                   //prendimezzi()
 				   
 				   document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 300); }, false);
 				   
 				   document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-				   
-				   
-				   
-				   prendimezzi()
+                   
 
 				   e.stopImmediatePropagation();
 				   
@@ -189,6 +191,7 @@ function onDeviceReady() {
 			
 			
 			var watchID = navigator.geolocation.getCurrentPosition(gpsonSuccess, gpsonError, {timeout: 30000, enableHighAccuracy: true, maximumAge: 90000 });
+            
 			
 			document.getElementById("email").value = localStorage.getItem("email2")
 			
@@ -253,9 +256,10 @@ function prendimezzi(){
 		   $("#veicolo").html(mezzi);
 		   
 		   $("#veicolo").selectmenu("refresh");
+           
 		   
 		   $(".spinner").hide();
-		   
+           
 		   },
 		   error: function(){
 		   $(".spinner").hide();
@@ -273,26 +277,40 @@ function prendimezzi(){
 }
 
 function prendinazione(){
+    var nazione = ""
+    alert("nazione")
 	
-	$(".spinner").show();
+	/*$(".spinner").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://purplemiles.com/www2/prendifuso.php",
+		   url:"http://purplemiles.com/www2/check_prendinazione.php",
 		   contentType: "application/json",
-		   //data: {email:email,pin:pin},
 		   timeout: 7000,
 		   jsonp: 'callback',
 		   crossDomain: true,
 		   success:function(result){
 		   
 		   $.each(result, function(i,item){
-				  //alert(item.Token);
+				 
 				  
-				  if (item.Token == 1){
+                if (item.Token == 1){
+                  if(localStorage.getItem("fuso")==item.country){
+                  nazione = nazione + "<option value='"+item.country+"' selected>"+ item.country +"</option>"
+                  }
+                  else{
+                  
+                  if(item.country=="Italy"){
+                  nazione = nazione + "<option value='"+item.country+"' selected>"+ item.country +"</option>"
+                  }
+                  else{
+                  nazione = nazione + "<option value='"+item.country+"'>"+ item.country +"</option>"
+                  }
+                  
+                  }
+
 				  
-				  
-				  }
-				  else{
+                }
+                else{
 				  navigator.notification.alert(
 											   'Errore di rete',  // message
 											   alertDismissed,         // callback
@@ -300,9 +318,13 @@ function prendinazione(){
 											   'Done'                  // buttonName@
 											   );
 				  }
-				  });
+            });
 		   
 		   $(".spinner").hide();
+           
+           $("#fuso").html(nazione);
+           
+           $("#fuso").selectmenu("refresh");
 		   
 		   },
 		   error: function(){
@@ -316,7 +338,7 @@ function prendinazione(){
 										);
 		   
 		   },
-		   dataType:"jsonp"});
+		   dataType:"jsonp"});*/
 	
 }
 
