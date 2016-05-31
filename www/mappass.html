@@ -381,7 +381,7 @@
 						  text-decoration: none;
 						  text-shadow:0 0 0;
 						  
-						  padding: 5 45 5 45;
+						  padding: 15 45 15 45;
 						  
 						  border-radius: 5px;
 						  -moz-border-radius: 5px; /* firefox */
@@ -801,7 +801,7 @@
 				<a href="#"><img src="img/ico_quando1.png" width="40px"></a>
 			</td>
 			<td width="50%" align="center" valign="center" colspan="2">
-				<!--<font size="5"><b>QUANDO</b></font><br>-->
+				<font size="3" color="#cc33cc"><b>Quando vuoi partire?</b></font><br>
 			</td>
 			<td width="25%" align="center" valign="center">
 				<a id="XX3" href="#" rel="external"><img src="img/xx.png" width="35px"></a>
@@ -838,18 +838,19 @@
 		
 		<tr>
 			<td width="100%" align="center" colspan="4">
-				<select id="fuso1" name="fuso1" data-theme="c" >
-					<!--<option value="Italy">Italy</option>
-                    <option value="Germany">Germania</option>-->
-				</select>
+				<div id="fuso2"></div>
+				
+				<!--<select id="fuso1" name="fuso1" data-theme="c" >
+				</select>-->
 				
 			</td>
 		</tr>
 		<tr>
 			<td width="100%" align="center" colspan="4">
-				<select id="citta1" name="citta1" data-theme="c" >
-					<!--<option value="154">Rome</option>-->
-				</select>
+				<div id="citta2"></div>
+				
+				<!--<select id="citta1" name="citta1" data-theme="c" >
+				</select>-->
 			</td>
 		</tr>
 
@@ -1030,7 +1031,7 @@
 			
 			<form name="formia3" action="entra.asp" method="post">
 			
-			<table id="tblhome3" width="90%" height="" border="0" valign="center" align="center" class="tabella">
+			<table id="tblhome3" width="90%" height="" border="0" valign="center" align="center" class="tabella" >
 				<tr>
 					<td width="100%" align="center" colspan="2">
 						<!--<b>ANTEPRIMA</b>-->
@@ -1044,10 +1045,19 @@
 				</tr>
 
 				<tr>
-					<td width="100%" align="left" colspan="2">
+					<td width="30%" align="left" valign="center" colspan="2">
+						<!--<table border="0" hight="10px"><tr><td></td></tr></table>-->
 						<img src="img/ico_plus1.png" width="40px">
 					</td>
 				</tr>
+				
+				<tr>
+					<td width="100%" align="center" valign="center" colspan="2">
+						<!--<table border="0" hight="10px"><tr><td></td></tr></table>-->
+						<font size="3" color="#cc33cc"><b>Opzioni</b></font><br><br>
+					</td>
+				</tr>
+				
 				<tr>
 					<td width="100%" align="left" colspan="2">
 						<input id="destinazione3" name="destinazione3" type="hidden" value="" placeholder="destinazione" readonly>
@@ -1272,12 +1282,19 @@
 				
 				<table width="95%" align="center">
 					<tr>
-						<td width="100%" align="left" colspan="3">
-							<table width="95%" align="center" class="tabella">
+						<td width="100%" align="left">
+							<table width="95%" align="center" class="tabella" border="0">
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="50px" align="left" valign="center" colspan="2">
 										<!--<table border="0" hight="10px"><tr><td></td></tr></table>-->
-										<img src="img/ico_anteprima1.png" width="40px"><br>
+										<img src="img/ico_anteprima1.png" width="40px">
+									</td>
+								</tr>
+								
+								<tr>
+									<td width="100%" align="center" valign="center" colspan="2">
+										<!--<table border="0" hight="10px"><tr><td></td></tr></table>-->
+										<font size="3" color="#cc33cc"><b>Anteprima</b></font><br><br>
 									</td>
 								</tr>
 
@@ -1302,72 +1319,72 @@
 								
 								<tr>
 									<td width="100%" align="left" colspan="2">
-										<br><b><font color='#cc33cc'>Opzioni</font></b>
+										<br><br><b><font color='#cc33cc'>Opzioni</font></b>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="passeggeri7">Passeggeri: No</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="fumatori7">Fumatori:  No</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="animali7">Animali:  No</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="meno187">Meno 18 anni:  No</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="disabili7">Disabili:  No</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="bambini7">Bambini:  No</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="wifi7">WiFi:  No</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="portapacchi7">Portapacchi:  --</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="rimorchio7">Rimorchi:  --</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="left" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="bluetooth7">bluetooth7:  --</p>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="center" valign="center">
+									<td width="250px" align="left" valign="center" colspan="2">
 										<p id="note7">note7:  --</p>
 										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="center" valign="center">
+									<td width="250px" align="center" valign="center" colspan="2">
 										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
 									</td>
 								</tr>
 								<tr>
-									<td width="250px" align="center" valign="center">
+									<td width="250px" align="center" valign="center" colspan="2">
 										<!--<a id="back3" href="#" data-role="button" data-theme="b" class="custom-btn4" >Invia</a>--><br><br>
 									</td>
 								</tr>
@@ -1414,6 +1431,8 @@
 
 		
 		<div data-role=page id=home4 class="div2">
+			<audio id="successArrivo" src="/sound/bell.mp3" type="audio/mpeg" ></audio>
+			
 			<!--<div data-role="header" rel="external" align="center" data-theme="b" data-id="head1" data-tap-toggle="false" data-position="fixed" class="div3"></div>-->
 			<table border="0" valign="center" align="center" class="transbox">
 				<tr>

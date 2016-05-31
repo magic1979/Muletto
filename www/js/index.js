@@ -68,6 +68,8 @@ receivedEvent: function(id) {
 		
 		startgps();
 		
+		controllachat(1)
+		
 		//var lat = localStorage.getItem("lat");
 		//var lng = localStorage.getItem("lng");
 		
@@ -256,6 +258,7 @@ receivedEvent: function(id) {
 	var rimorchio1;
 	var bluetooth1;
 	var id_utente_pass1;
+	var note1;
 	
 	
 	var nick2;
@@ -279,6 +282,7 @@ receivedEvent: function(id) {
 	var rimorchio2;
 	var bluetooth2;
 	var id_utente_pass2;
+	var note2;
 	
 	var nick3;
 	var quando3;
@@ -301,6 +305,7 @@ receivedEvent: function(id) {
 	var rimorchio3;
 	var bluetooth3;
 	var id_utente_pass3;
+	var note3;
 	
 	var muoviti;
 	var setGPS;
@@ -2460,6 +2465,7 @@ function timer(){
 	connectionStatus = navigator.onLine ? 'online' : 'offline';
 									
 	if(connectionStatus=='online'){
+									controllachat(2);
 									var iconn = new google.maps.MarkerImage("img/1p.png", null, null, null, new google.maps.Size(1,1));
 									var lat = localStorage.getItem("lat");
 									var lng = localStorage.getItem("lng");
@@ -2569,6 +2575,7 @@ function timer(){
 												  rimorchio1 = item.rimorchio;
 												  bluetooth1 = item.bluetooth;
 												  id_utente_pass1 = item.id_utente_pass;
+												  note1 = item.note;
 												  
 												  if(localStorage.getItem("palla1")!=1){
 											   
@@ -2672,6 +2679,7 @@ function timer(){
 												  
 												   if(item.accettata==0){
 												    $("#blob3").show();
+												  
 												    for(i=0; i<10000; i++)
 												    {
 												     window.clearInterval(i);
@@ -2711,6 +2719,7 @@ function timer(){
 												  }
 												  
 												  countdown1(0);
+												  playAudio('successArrivo');
 
 												  }
 												   else{
@@ -2747,6 +2756,7 @@ function timer(){
 												  rimorchio2 = item.rimorchio;
 												  bluetooth2 = item.bluetooth;
 												  id_utente_pass2 = item.id_utente_pass;
+												  note2 = item.note;
 												  
 												  /*$(document).on("tap", "#pass2", function(e){
 																 //window.location.href = "#index3";
@@ -2837,6 +2847,7 @@ function timer(){
 												  
 												  if(item.accettata==0){
 												   $("#blob4").show();
+												  
 												   for(i=0; i<10000; i++)
 												   {
 												    window.clearInterval(i);
@@ -2873,6 +2884,7 @@ function timer(){
 												  }
 												  
 												  countdown2(0);
+												  playAudio('successArrivo');
 												  }
 												  else{
 												    $("#blob4").hide();
@@ -2906,6 +2918,7 @@ function timer(){
 												  rimorchio3 = item.rimorchio;
 												  bluetooth3 = item.bluetooth;
 												  id_utente_pass3 = item.id_utente_pass;
+												  note3 = item.note;
 												  
 												  item3 = item.id_richiesta;
 												  
@@ -2988,6 +3001,7 @@ function timer(){
 												  
 												  if(item.accettata==0){
 												  $("#blob5").show();
+												  
 												  for(i=0; i<10000; i++)
 												  {
 												  window.clearInterval(i);
@@ -3024,6 +3038,8 @@ function timer(){
 												  }
 												  
 												  countdown3(0);
+												  playAudio('successArrivo');
+												  
 												  }
 												  else{
 												    $("#blob5").hide();
@@ -4041,7 +4057,7 @@ function richiesta1() {
 				  
 	$("#Ad").html("<b>A: </b><font color='#cc33cc'>"+ arrivo1 +"</font>");
 				  
-	$("#distanza").html("<b>distanza: </b><font color='#cc33cc'>"+ distanza1 +"</font>");
+	$("#distanza").html("<b>distanza: </b><font color='#cc33cc'>"+ distanza1 +" Km</font>");
 	
 	$("#passeggeri").html("<b>passeggeri: </b><font color='#cc33cc'>"+ passeggeri1 +"</font>");
 	
@@ -4063,7 +4079,7 @@ function richiesta1() {
 	
 	$("#bluetooth").html("<b>bluetooth: </b><font color='#cc33cc'>"+ bluetooth1 +"</font>");
 	
-			       
+	$("#note").html("<b>Note: </b><font color='#cc33cc'>"+ note1 +"</font>");
 	
 	
 	
@@ -4270,7 +4286,7 @@ function richiesta2() {
 				  
 				  $("#Ad").html("<b>A: </b><font color='#cc33cc'>"+ arrivo2 +"</font>");
 				  
-				  $("#distanza").html("<b>Distanza: </b><font color='#cc33cc'>"+ distanza2 +"</font>");
+				  $("#distanza").html("<b>Distanza: </b><font color='#cc33cc'>"+ distanza2 +" Km</font>");
 	
 	$("#passeggeri").html("<b>passeggeri: </b><font color='#cc33cc'>"+ passeggeri2 +"</font>");
 	
@@ -4291,6 +4307,8 @@ function richiesta2() {
 	$("#rimorchio").html("<b>rimorchio: </b><font color='#cc33cc'>"+ rimorchio2 +"</font>");
 	
 	$("#bluetooth").html("<b>bluetooth: </b><font color='#cc33cc'>"+ bluetooth2 +"</font>");
+	
+	$("#note").html("<b>Note: </b><font color='#cc33cc'>"+ note2 +"</font>");
 	
 	
 	
@@ -4481,7 +4499,7 @@ function richiesta3() {
 				  
 				  $("#Ad").html("<b>A: </b><font color='#cc33cc'>"+ arrivo3 +"</font>");
 				  
-				  $("#distanza").html("<b>Distanza: </b><font color='#cc33cc'>"+ distanza3 +"</font>");
+				  $("#distanza").html("<b>Distanza: </b><font color='#cc33cc'>"+ distanza3 +" Km</font>");
 	
 	$("#passeggeri").html("<b>passeggeri: </b><font color='#cc33cc'>"+ passeggeri3 +"</font>");
 	
@@ -4502,6 +4520,8 @@ function richiesta3() {
 	$("#rimorchio").html("<b>rimorchio: </b><font color='#cc33cc'>"+ rimorchio3 +"</font>");
 	
 	$("#bluetooth").html("<b>bluetooth: </b><font color='#cc33cc'>"+ bluetooth3 +"</font>");
+	
+	$("#note").html("<b>Note: </b><font color='#cc33cc'>"+ note3 +"</font>");
 	
 	
 	if(stato3==0){
@@ -4784,7 +4804,7 @@ function inviachat() {
 	
 	$.ajax({
 		   type:"GET",
-		   url:"http://purplemiles.com/www2/pubblica_chat.php?id_messaggio="+ localStorage.getItem("id_richiesta") +"&nick="+ localStorage.getItem("nick") +"&messaggio="+ indirizzo +"",
+		   url:"http://purplemiles.com/www2/pubblica_chat_autista.php?id_messaggio="+ localStorage.getItem("id_richiesta") +"&nick="+ localStorage.getItem("nick") +"&messaggio="+ indirizzo +"",
 		   contentType: "application/json",
 		   //data: {ID: "Lazio"}, LIMIT 10
 		   timeout: 7000,
@@ -5043,7 +5063,7 @@ function inviopasseggero(come){
 	$("#spinner3").show();
 	$.ajax({
 		   type:"GET",
-		   url:"http://purplemiles.com/www2/check_inviopasseggero.php?id="+ localStorage.getItem("id_richiesta") +"&note=note&importo="+ coming +"&id_autista="+ localStorage.getItem("id_autista") +"",
+		   url:"http://purplemiles.com/www2/check_inviopasseggero.php?id="+ localStorage.getItem("id_richiesta") +"&note="+ document.getElementById("noteautista").value +"&importo="+ coming +"&id_autista="+ localStorage.getItem("id_autista") +"",
 		   contentType: "application/json",
 		   //data: {ID: "Lazio"}, LIMIT 10
 		   timeout: 7000,
@@ -5103,6 +5123,56 @@ function inviopasseggero(come){
 										'Attenzione',           // title
 										'Done'                  // buttonName
 										);
+		   
+		   },
+		   dataType:"jsonp"});
+	
+}
+
+function controllachat(uman) {
+	
+	$.ajax({
+		   type:"GET",
+		   url:"http://purplemiles.com/www2/controlla_chat.php?nick="+ localStorage.getItem("nick") +"",
+		   contentType: "application/json",
+		   //data: {ID: "Lazio"}, LIMIT 10
+		   timeout: 7000,
+		   jsonp: 'callback',
+		   crossDomain: true,
+		   success:function(result){
+		   
+		   if(localStorage.getItem("chatcontroll")==JSON.stringify(result)){
+		   
+		   }
+		   else{
+		   
+		   localStorage.setItem("chatcontroll", JSON.stringify(result))
+		   
+		   if(uman==2){
+		   
+		   $.each(result, function(i,item){
+				  
+				if(item.Token==1){
+				  localStorage.setItem("id_richiesta",item.canale)
+				  
+				  chatting(0,item.canale);
+				}
+				  
+		    });
+		   }
+		   
+		   }
+		   
+		   },
+		   error: function(){
+		   
+		   navigator.notification.alert(
+										'Possibile errore di rete, riprova tra qualche minuto.',  // message
+										alertDismissed,         // callback
+										'Attenzione',           // title
+										'Done'                  // buttonName
+										);
+		   
 		   
 		   },
 		   dataType:"jsonp"});

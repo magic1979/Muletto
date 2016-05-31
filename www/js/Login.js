@@ -174,6 +174,12 @@ function onDeviceReady() {
 		
 	});
 	
+	$(document).on("tap", "#legenda", function(e){
+				   
+		var ref = window.open('http://www.purplemiles.com/www/legenda.php?lang=en', '_system', 'location=no');
+				   
+	});
+	
 	$(document).on("tap", "#regsito", function(e){
 				   
 		var ref = window.open('http://www.purplemiles.com/www/enter.php?lang=it', '_system', 'location=no');
