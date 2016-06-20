@@ -164,11 +164,11 @@ function scatta(){
 	//alert()
 	
 	navigator.camera.getPicture(Successo, onFail, { quality: 30,
-								destinationType: Camera.DestinationType.DATA_URL,
-								encodingType: Camera.EncodingType.PNG,
-								targetWidth: 200,
-								targetHeight: 200
-								});
+		destinationType: Camera.DestinationType.DATA_URL,
+		encodingType: Camera.EncodingType.PNG,
+		targetWidth: 200,
+		targetHeight: 200
+	});
 }
 
 function getFoto() {

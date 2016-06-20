@@ -266,7 +266,7 @@
 					  .divmagia {
 						  position: absolute;
 						  z-index: 20;
-						  bottom: 30px;
+						  top: 55px;
 						  left: 0;
 						  width: 100%;
 						  height: 5%;
@@ -767,6 +767,23 @@
 						  -webkit-border-radius: 5px; /* safari, chrome */
 					  }
 					  
+					  .custom-btn4R {
+						  background-color: #cc33cc;
+						  width: 75px;
+						  font-size: 14px;
+						  
+						  text-decoration: none;
+						  text-shadow:0 0 0;
+						  
+						  color:#FFF;
+						  
+						  font-family: ubuntu, helvetica, arial;
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+					  }
+					  
 					  .custom-btn4blob {
 						  background-color: #cc33cc;
 						  border: 0px solid #000;
@@ -932,15 +949,106 @@
 					  .bannertbl {
 						  background-color: #cc33cc;
 						  
-						  bottom: 10;
-						  left: 20;
+						  bottom: 20;
+						  left: 25;
 						  width: 250px;
-						  height: 20px;
+						  height: 30px;
 						  
 						  text-align: left;
 						  font-weight: bold;
 						  
 					  }
+					  
+					  .bannertbl1 {
+						  background-color: #cc33cc;
+						  position: fixed;
+						  
+						  bottom: 50;
+						  left: 70;
+						  width: 200;
+						  height: 40px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  opacity: 0.5;
+						  filter: alpha(opacity=50);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 99;
+					  }
+					  
+					  .bannertbl2 {
+						  position: fixed;
+						  
+						  bottom: 35;
+						  left: 70;
+						  width: 200;
+						  height: 20px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  z-index: 100;
+					  }
+					  
+					  .bannertbl3 {
+						  position: fixed;
+						  
+						  top: 3;
+						  right: 10;
+						  width: 200px;
+						  height: 42px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  z-index: 100;
+					  }
+					  
+					  
+					  
+					  .bannertbl4 {
+						  background-color: #cc33cc;
+						  position: fixed;
+						  
+						  top: 120;
+						  left: 15;
+						  width: 95%;
+						  height: 40px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  opacity: 0.5;
+						  filter: alpha(opacity=50);
+						  
+						  border-radius: 5px;
+						  -moz-border-radius: 5px; /* firefox */
+						  -webkit-border-radius: 5px; /* safari, chrome */
+						  
+						  z-index: 99;
+					  }
+					  
+					  .bannertbl5 {
+						  position: fixed;
+						  
+						  top: 105;
+						  left: 15;
+						  width: 100%;
+						  height: 16px;
+						  
+						  text-align: center;
+						  font-weight: bold;
+						  
+						  z-index: 100;
+					  }
+					  
+					  
+					  
 					  
 					  .ui-page { -webkit-backface-visibility: hidden; }
 
@@ -966,7 +1074,7 @@
                     	&nbsp;&nbsp;<img id="esciapp" src="img/Logo.png" width="65px" valign="center">
                     </td>
 					<td align="center" width="40%" valign="center">
-                    	<table><tr><td><font color="#cc33cc" size="4"><b><div id="nickhome">NickName</div></b></font></td></tr></table>
+                    	<table><tr><td><font color="#cc33cc" size="4"><b><div id="nickhome"></div></b></font></td></tr></table>
                     </td>
 					<td align="right" width="30%" valign="center">
                     	<a id="ChiudiXX" href="#" rel="external"><img src="img/ico_close1.png" width="45px"></a>&nbsp;&nbsp;
@@ -1162,19 +1270,26 @@
 			
 			<table id="btninizia" width="100%" border="0" align="center" valign="center" class="div55" >
 				<tr id="modificastart2" style="display:none">
-					<td width="100%" align="center">
-						<table align="center" width="220px" ><tr><td width="100px" align="center">
-							<input id="modificastart" name="modificastart" type="text" value="" class="scrivo" placeholder="Indirizzo dell'autista" style="display:none">
-						</td></tr></table>
+					<td width="50px" align="center">
+						<a id="ricarica1" href="#" rel="external"><img src="img/ico_mirino.png" width="50px"></a>
+					</td>
+					<td width="180px" align="left">
+						<table align="left" width="180px" ><tr>
+							<td width="180px" align="center">
+							  <input id="modificastart" name="modificastart" type="text" value="" class="scrivo" placeholder="Indirizzo dell'autista" style="display:none">
+							</td>
+						</tr>
+					</table>
 					</td>
 				</tr>
 				<tr>
-					<td width="100%" align="center">
+					<td width="100%" align="center" colspan="2">
 						<table align="center" width="100px"><tr><td width="100px" align="center">
-						<a id="inizia" href="#" data-role="button" data-theme="b" class="custom-btn3"><font color="#fff"><b>Inizia</b></font></a>
+						<a id="inizia" href="#" data-role="button" data-theme="b" class="custom-btn3"><font color="#fff"><b>&nbsp;&nbsp;Inizia&nbsp;&nbsp;</b></font></a>
 						</td></tr></table>
 					</td>
 				</tr>
+				
 				
 			</table>
 			
@@ -1190,22 +1305,21 @@
 			</table>
 			
 			<table id="magia" width="90%" border="0" align="center" valign="center" class="divmagia" style="display:none">
+
 				<tr>
-					<td width="100%" align="center" colspan="2">
+					<td width="100%" align="center">
+						<table align="center" width="280px" class="bannertbl"><tr><td width="100%" align="left">
+							<div id="bannermagia"></div>
+						</td></tr></table>
+					</td>
+				</tr>
+				<tr>
+					<td width="100%" align="center" >
 						<table align="center" width="100px"><tr><td width="100px" align="center">
 							<a id="tornareset" href="#" ><img src="img/ico_text1.png" width="45px"></a>
 						</td></tr></table>
 					</td>
 				</tr>
-				<tr>
-					<td width="20px" align="center">&nbsp;&nbsp;</td>
-					<td width="100%" align="center">
-						<table align="left" width="240px" class="bannertbl"><tr><td width="100%" align="left">
-							<div id="bannermagia"></div>
-						</td></tr></table>
-					</td>
-				</tr>
-				
 				
 			</table>
 			
@@ -1213,17 +1327,26 @@
 			
 			<table id="btnpass" width="100%" border="0" align="center" valign="center" class="div555" style="display:none">
 				<tr>
-					<td width="60px" align="right" valign="center">
+					<td width="65px" align="right" valign="right">
 						<a id="ricarica" href="#" rel="external"><img src="img/ico_mirino.png" width="55px"></a>
 					</td>
 					<td width="200px" align="left" valign="center" >
 						<table align="center"border="0" width="200px" valign="center" >
 							<tr>
 								<td align="center" valign="center" >
-									<div id="pass0" style="display:none"><br><a id="" href="#" data-role="button" data-theme="b" class="custom-attesa"><font color="#fff"><b>In attesa di richieste<b></font></a></div>
+									<div id="pass0" style="display:none">
+										<table border="0" width="100%" align="center" valign="center" class="bannertbl1"><tr><td align="center" valign="center">&nbsp;<br></td></tr></table>
+										<table border="0" width="100%" align="center" valign="center" class="bannertbl2">
+											<tr>
+												<td align="center" valign="center">&nbsp;<font size="4" color="#fff"><div id="s_partenza" valign="center"><b>In attesa di richieste</b><br></div></font><br>
+												</td>
+											</tr>
+										</table>
+									</div>
 									<a id="pass1" href="#" data-theme="b" class="custom-pass" style="display:none"><font color="#fff">&nbsp;1&nbsp;</font></a>&nbsp;&nbsp;<a id="pass2" href="#" data-theme="b" class="custom-pass" style="display:none"><font color="#fff">&nbsp;2&nbsp;</font></a>&nbsp;&nbsp;<a id="pass3" href="#" data-theme="b" class="custom-pass" style="display:none"><font color="#fff">&nbsp;3&nbsp;</font></a>&nbsp;&nbsp;<a id="lista" href="#" data-theme="b" class="custom-pass9" style="display:none"><font color="#cc33cc"><img src="img/List.png" width="20px" ></font></a>
 								</td>
 							</tr>
+							
 						</table>
 					</td>
 					<td width="100%" align="right">
@@ -1325,7 +1448,7 @@
 						<div id="4img"><img src="img/ico_viola.png" width="30"></div>
 					</td>
 					<td align="center" width="50%">
-						<table class="tabella1"><tr><td align="center"><font color="#FFF"><div id="nickhome4">NickName</div></font></td></tr></table>
+						<table class="tabella1"><tr><td align="center"><font color="#FFF"><div id="nickhome4"></div></font></td></tr></table>
 						
 					</td>
 					<td align="center" width="25%">
@@ -1345,6 +1468,11 @@
 				<tr>
 					<td width="100%" align="left" colspan="3">
 						<table width="90%" align="center" class="tabella">
+							<tr>
+								<td width="250px" align="center" valign="center">
+									<font size="4"><b>Richiesta</b></font><br>
+								</td>
+							</tr>
 							<tr>
 								<td width="250px" align="left" valign="center">
 									<table border="0" hight="20px"><tr><td></td></tr></table>
@@ -1418,7 +1546,7 @@
 							
 							<tr>
 								<td width="250px" align="left" valign="center">
-									&nbsp;&nbsp;<a id="xchiudi1" href="#" style="display:none"><img src="img/ico_to_map.png" width="50"></a><a id="xchiudi2" href="#" style="display:none"><img src="img/ico_to_map.png" width="50"></a><a id="xchiudi3" href="#" style="display:none"><img src="img/ico_to_map.png" width="50"></a>&nbsp;&nbsp;&nbsp;&nbsp;  <a id="chat1" style="display:none"><font color="#fff"><img src="img/chat.png" width="50"></font></a><a id="chat2" style="display:none"><font color="#fff"><img src="img/chat.png" width="50"></font></a><a id="chat3" style="display:none"><font color="#fff"><img src="img/chat.png" width="50"></font></a>
+									
 								</td>
 							</tr>
 							
@@ -1450,20 +1578,40 @@
 				</tr>
 			</table>
 			
-			<table width="100%" border="0" align="center" valign="center" class="div599" >
+			<table width="98%" border="0" align="center" valign="center" class="div599" >
 				<tr>
-					<td width="50%" align="center" valign="center">
-						<a id="risp1" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Rispondi</font></a>
-						<a id="risp2" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Rispondi</font></a><a id="risp3" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Rispondi</font></a>
+					<td width="40%" align="center" valign="center">
+						<a id="risp1" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Rispondi</font></a>
+						<a id="risp2" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Rispondi</font></a>
+						<a id="risp3" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Rispondi</font></a>
 						
-						<a id="gps1" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Percorso</font></a>
-						<a id="gps22" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Percorso</font></a><a id="gps3" data-role="button" data-theme="b" class="custom-btn4" style="display:none"><font color="#fff">Percorso</font></a>
+						<a id="gps1" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Percorso</font></a>
+						<a id="gps22" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Percorso</font></a>
+						<a id="gps3" data-role="button" data-theme="b" class="custom-btn4R" style="display:none"><font color="#fff">Percorso</font></a>
+					</td>
+					
+					<td width="15%" align="center" valign="center">
+						<a id="cell1" style="display:none"><img src="img/ico_telephone.png" width="45"></a>
+						<a id="cell2" style="display:none"><img src="img/ico_telephone.png" width="45"></a>
+						<a id="cell3" style="display:none"><img src="img/ico_telephone.png" width="45"></a>
+					</td>
+					
+					<td width="15%" align="center" valign="center">
+						<a id="chat1" style="display:none"><font color="#fff"><img src="img/chat.png" width="45"></font></a>
+						<a id="chat2" style="display:none"><font color="#fff"><img src="img/chat.png" width="45"></font></a>
+						<a id="chat3" style="display:none"><font color="#fff"><img src="img/chat.png" width="45"></font></a>
+					</td>
+					
+					<td width="15%" align="center" valign="center">
+						<a id="xchiudi1" href="#" style="display:none"><img src="img/ico_to_map.png" width="45"></a>
+						<a id="xchiudi2" href="#" style="display:none"><img src="img/ico_to_map.png" width="45"></a>
+						<a id="xchiudi3" href="#" style="display:none"><img src="img/ico_to_map.png" width="45"></a>
 					</td>
 
-					<td width="50%" align="center" valign="center">
-						<a id="close1" style="display:none"><font color="#fff"><img src="img/ico_trash.png" width="45"></font></a>
-						<a id="close2" style="display:none"><font color="#fff"><img src="img/ico_trash.png" width="40"></font></a>
-						<a id="close3" style="display:none"><font color="#fff"><img src="img/ico_trash.png" width="40"></font></a>
+					<td width="15%" align="center" valign="center">
+						<a id="close1" style="display:none"><img src="img/ico_trash.png" width="65"></a>
+						<a id="close2" style="display:none"><img src="img/ico_trash.png" width="65"></a>
+						<a id="close3" style="display:none"><img src="img/ico_trash.png" width="65"></a>
 					</td>
 				</tr>
 			</table>
@@ -1505,10 +1653,10 @@
 						<img src="img/Logo.png" width="60">
 					</td>
 					<td align="center" width="50%">
-						<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome5">NickName</div></font></td></tr></table>
+						<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome5"></div></font></td></tr></table>
 					</td>
 					<td align="center" width="25%">
-						<a id="ritorna5" href="#"><img src="img/xx.png" width="30"></a>
+						<a id="ritorna5" href="#"><img src="img/ico_close.png" width="40"></a>
 					</td>
 				</tr>
 			</table>
@@ -1535,7 +1683,7 @@
 						<div id="4img"><img src="img/ico_chat2.png" width="40"></div>
 					</td>
 					<td align="center" width="50%">
-						<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome6">NickName</div></font></td></tr></table>
+						<table class="tabella1"><tr><td><font color="#FFF"><div id="nickhome6"></div></font></td></tr></table>
 					</td>
 					<td align="center" width="25%">
 						<a id="indietro6" href="#"><img src="img/ico_close1.png" width="40"></a>
@@ -1551,7 +1699,7 @@
 				<table id="tblchat" width="90%" align="center" style="display:none" class="tabellaA">
 				<tr>
 					<td width="100%" align="center" >
-						<textarea id="chattext" cols="30" rows="4" class="scrivo" placeholder="Chat"></textarea>
+						<textarea id="chattext" cols="30" rows="4" class="scrivo" placeholder="Scrivi messaggio"></textarea>
 					</td>
 				</tr>
 				<!--<tr>
@@ -1580,7 +1728,7 @@
 				<table width="100%" border="0" align="center" valign="center" class="div599" >
 					<tr>
 						<td width="100%" align="center" valign="center">
-							<a id="back6" href="#" data-role="button" data-theme="b" class="custom-btn3">Invia</a>
+							<a id="back6" href="#" data-role="button" data-theme="b" class="custom-btn33">Invia messaggio</a>
 						</td>
 					</tr>
 				</table>
