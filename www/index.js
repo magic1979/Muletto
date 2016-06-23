@@ -4714,7 +4714,7 @@ function inviachat() {
 					
 				  }
 				  
-				  });
+			});
 		   
 		   
 		   
