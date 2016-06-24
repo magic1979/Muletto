@@ -2089,7 +2089,7 @@ function vediofferte(){
 					 });
 				  
 				    $(document).on("touchstart", "#rifiuta"+ item.id_richiesta +"_"+ item.id_autista + "", function(e){
-						accettaofferta(3,item.id_richiesta,item.id_autista)
+						elimina2(item.id_richiesta,item.id_autista)
 						if ($.browser.iphone || $.browser.ipad) $(this).trigger('click');
 					});
 				  
@@ -2263,7 +2263,7 @@ function vediofferte(){
 				  }
 				  else{
 				  
-				  $("#offerte4").html("<br><br><table width='90%' border='0' valign='center' align='center' class='tabella'><tr> <td align='center'><br></td></tr><tr><td align='center'>Nessuna offerta in arrivo<br></td></tr></table>");
+				  $("#offerte4").html("<br><br><table width='90%' border='0' valign='center' align='center' class='tabella'><tr> <td align='center'><br></td></tr><tr><td align='center'>Nessuna offerta in arrivo<br><br></td></tr></table>");
 				}
 				  
 			});
